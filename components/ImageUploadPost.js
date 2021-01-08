@@ -19,8 +19,9 @@ export default ImagePostUpload;
 
 const styles = StyleSheet.create({
     video: {
-      height: height/1.6,
-      width: width/1.4,
+      height: height/1.8,
+
+      width: width,
       backgroundColor: '#000',
       marginTop:25
     },
