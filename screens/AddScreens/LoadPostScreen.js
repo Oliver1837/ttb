@@ -84,20 +84,6 @@ if(griglia!==true ){  setTw(!tw); }
     );
   
 }
-LoadPostScreen.navigationOptions = {
-    headerTitle: null,
-    headerRight: ()=>{ return (
-        <TouchableOpacity style={{
-          marginRight:5
-        }} onPress={()=>{
-            if(griglia!==true ){  setTw(!tw); }
-        }}>
-         <Text style={{
-             fontWeight:"bold",
-         }}>Avanti</Text>    
-        </TouchableOpacity>
-      )}
-  };
 
 export default LoadPostScreen;
 

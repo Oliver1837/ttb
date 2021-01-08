@@ -1,6 +1,16 @@
-import React from 'react'
-import {View} from 'react-native'
-const GridOne =()=>{
+import React, { useState } from 'react'
+import {Image, TouchableOpacity, View} from 'react-native'
+const GridOne =(props)=>{
+const image= (<Image
+source={{uri:props.uri}}
+style={{
+    height:"100%",
+    width:"100%"
+}}
+/>)
+const [selectd,setSelected] = useState(false);
+
+
     return (
         
         <View style={{
@@ -16,14 +26,20 @@ const GridOne =()=>{
         width:50,
         height:150,
     }}>
-<View  style={{
+<TouchableOpacity  style={{
          height:75,
         width:51,
         borderWidth:1,
         borderBottomWidth:0
         
-    }}>
-</View> 
+    }}
+    
+    onPress={()=>{
+        setSelected(true);
+    }}
+    >
+        {selectd ?image :null}
+</TouchableOpacity> 
 <View  style={{
         width:51,
         height:75.5,

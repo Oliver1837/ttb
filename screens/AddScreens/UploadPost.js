@@ -1,3 +1,4 @@
+import { Button, Icon, Left, List, ListItem, Right } from 'native-base';
 import React, { useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, TextInput, View ,TouchableOpacity, Switch} from 'react-native';
 import { TAGS } from '../../data/dummy-data';
@@ -65,105 +66,66 @@ const  UploadPost =(props)=> {
       </View>
       </View>
       <View style={styles.containerTip}>
-      <Text>Seleziona uno o più Tips :</Text>
-      <FlatList
-                  style={{ marginBottom: 15}}
-                  data={Tags}
-                 numColumns={3}
-                 showsVerticalScrollIndicator={false}
-
-                     renderItem={({item})=>{
-                      return(<TouchableOpacity style={{
-                     flexDirection:'row',
-                     padding:4,
-                    borderColor:"black",
-                     borderWidth:1,
-                     alignItems:"center",
-                     borderRadius:25,
-                     margin:2,
-                     minHeight:25,
-          minWidth:25,
-          backgroundColor:select.findIndex(t => t ===item.nameTag )>=0 ?"#66FF66": "white",
-        }}
-        onPress={()=>{
-            const index = select.findIndex(t => t ===item.nameTag );
-            console.log(index)
-            if(index>=0){
-
-                var newSelect = select
-                newSelect = newSelect.filter(t => t !== item.nameTag);
-               setSelect(newSelect);   
-             
-              }else{
-             
-                  setSelect(select.concat(item.nameTag))
-    
-        }
-
-            console.log(select)
-        }}
-        >
-          <Image source={{uri:item.urlTag}} style={{height:25,width:25,padding:2}}/>
-          <Text  style={{color: 'black', fontWeight: 'bold', textAlign:"center",padding:2,}}>{item.nameTag}</Text></TouchableOpacity>)
-       }}
-                  
-                  />
-      </View>
-      <View style={styles.containerTip}>
-
-      <Text> Tipo di Post:</Text>
-      <View style={
-          {
-              width:100,
-              alignItems:"center"
-              ,height:70,
+      <Text>Tips:</Text>
+         
+      <UselessTextInput
+       style={{
+          
+        width:"100%",
         
-              borderColor:"black",
-              borderWidth:1
-          }
-      }>
-      <View style={
-          {
-              width:100,
-              alignItems:"center"
-              ,height:35,
-              flexDirection:"row",
-              borderColor:"black",
-              borderWidth:1
-          }
-      }>
-       <Text>2Hand</Text>  
-       <Switch
-        trackColor={{ false: '#767577', true: '#81b0ff' }}
-        thumbColor={isTwoHand ? '#f5dd4b' : '#f4f3f4'}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitchTwoHand}
-        value={isTwoHand}
+      }}
+        multiline
+        numberOfLines={4}
+        onChangeText={text => onChangeText(text)}
+        value={"Inserisci i tuoi tips"}
       />
+        <List>
+      <ListItem>
+              <Left>
+                <Text>Tag I tuoi amici</Text>
+              </Left>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+            <ListItem>
+              <Left>
+                <Text>Aggiungi Luogo</Text>
+              </Left>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+      </List>
+     
       </View>
-      <View style={
-          {
-              width:100,
-              alignItems:"center"
-              ,height:35,
-              flexDirection:"row"
-          }
-      }>
-       <Text>Griglia</Text>  
-       <Switch
-        trackColor={{ false: '#767577', true: '#81b0ff' }}
-        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      />
-      </View>
-      </View>
-      </View>
+    
     </View>
   );
 }
 export default UploadPost;
+UploadPost.navigationOptions = (navData)=>{
+  return{
+  headerRight: ()=>{
+      return(<TouchableOpacity style={{  marginRight:5}}
+      onPress={()=>{
+              navData.navigation.navigate({routeName:"UploadPost",
+                  params:{
+                      uri : navData.navigation.getParam("uri")
+                  }
+          
+          
+          })
+      }} >
+       <Text style={{
+           fontWeight:"bold",
+           color:"black"
+       }}>Publica</Text>    
+      </TouchableOpacity>)
+  }
+}
+
+        }
 const styles = StyleSheet.create({
   container: {
   

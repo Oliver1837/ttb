@@ -111,7 +111,8 @@ const FeedNavigator = createStackNavigator({
   },
   UploadPost: UploadPost,
   SelGrid : GridScreen,
-  Selezione: SelectPositionScreen
+  Selezione: SelectPositionScreen,
+  CheckPost : UploadPost
   });
   const CameraNavigator = createStackNavigator({
     Camera:{screen : PhotoPickerScreen,
