@@ -3,9 +3,15 @@ import { View ,Text, Image,StyleSheet, TouchableOpacity} from 'react-native';
 import { Container, Header, Tab, Tabs } from 'native-base';
 import Button from '../../components/UI/Button';
 import { Ionicons } from '@expo/vector-icons';
+import ListPostPreview from '../../components/ListPostPreview';
+import { POSTS, TWOHAND } from '../../data/dummy-data';
+import ListTwoHandPreview from '../../components/ListTwoHandPreview';
 
 const TipScreen = props =>{
     const tag = props.navigation.getParam("tag");
+    const post = props.navigation.getParam("posts")
+    const ths = TWOHAND.filter(t =>  POSTS.filter( p=> p.idPost === t.idPost && (p.nameTag.includes(tag.nameTag) === true) ).length>0)
+
     return (
       <View style={{ 
         flex: 1,
@@ -77,7 +83,7 @@ const TipScreen = props =>{
         </View>
         <Text style={{
           fontSize:18
-        }}>Numero di post 0</Text>
+        }}>Numero di post {post.length}</Text>
         </View>
  
        
@@ -90,19 +96,20 @@ const TipScreen = props =>{
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
-         
+             <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="1"/>
            </Tab>
            <Tab   heading="RECENTI" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
-              
+              <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="1"/>
            </Tab>
            <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
-              
+              <ListTwoHandPreview routeName="PostProfile" ths={ths} navigation={props.navigation} />
+
            </Tab>
          </Tabs>
          </Container>

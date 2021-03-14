@@ -10,10 +10,11 @@ console.log(props.url)
 
 let  posts = POSTS;
 const preferredTag = useSelector(state => state.user.preferredTag)
-var isPreferred = preferredTag.filter(tag=> tag.nameTag === props.title).length ;
-//console.log(postTips)
+console.log(preferredTag)
+var isPreferred = preferredTag.findIndex(tag=> tag=== props.title);
+console.log(isPreferred)
 posts = posts.filter(p=> p.nameTag.filter(t => t=== props.title).length>0 )
-      console.log(posts)
+      
 const dispatch= useDispatch()
 
 return (
@@ -36,7 +37,7 @@ return (
           borderRadius:10,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:"#0095f6",
+          backgroundColor:isPreferred <0 ?"#0095f6":"black",
           height:40,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -44,10 +45,10 @@ return (
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"#0095f6"
+          borderColor:isPreferred <  0 ?"#0095f6":"black"
         }}
         onPress={()=>{
-        //    dispatch(toggleTagFollow(props.title))
+           dispatch(toggleTagFollow(props.title))
         }}
         >
           <Text style={{

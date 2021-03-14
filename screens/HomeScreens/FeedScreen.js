@@ -1,11 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react'
 import {View , Text, StyleSheet, TouchableOpacity,Dimensions,FlatList} from 'react-native'
+import { enableScreens } from 'react-native-screens';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import { useSelector } from 'react-redux';
 import Post from '../../components/Post';
 import Button from '../../components/UI/Button'
-
+enableScreens();
 const {width, height} = Dimensions.get('window');
 
 import  {POSTS} from '../../data/dummy-data'
@@ -16,8 +17,10 @@ const FeedScreen = props =>{
 
     let posts = POSTS;
     posts = posts.filter(p=> p.nameTag.filter(tag => user.preferredTag.filter(t=> t ===tag).length>0).length>0)
-    console.log(posts)
+    console.log("FEED")
     posts = posts.filter(p=> p.isTwoHand===false);
+    console.log(posts)
+
 
     return (
         <View  style={{ 
@@ -72,7 +75,11 @@ const FeedScreen = props =>{
             height:height,
             width:width
         }}
-        ><Post post={item} isTwoHand = {false}/> 
+        ><Post post={item} isTwoHand = {false} navigation={
+         
+            props.navigation
+          
+        }/> 
         </GestureRecognizer>)} }
         showsVerticalScrollIndicator={false}
         snapToInterval={Dimensions.get('window').height}
@@ -97,7 +104,9 @@ FeedScreen.navigationOptions = navData => {
     headerRight: ()=>{ return (
       <TouchableOpacity style={{
         marginRight:5
-      }} onPress={()=>{
+      }} onPress={()=>{ 
+
+        navData.navigation.navigate("Carrello")
       }}>
          <Ionicons name="cart" size={30} color="white" />      
 </TouchableOpacity>

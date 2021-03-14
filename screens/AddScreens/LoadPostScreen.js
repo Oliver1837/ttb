@@ -3,78 +3,39 @@ import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import ImagePostUpload from '../../components/ImageUploadPost'
 import HeaderAdd from '../../components/HeaderAdd';
 import SelectGrid from '../../components/SelectGrid';
+import ImageFilter from '../../components/ImageFilter';
+import HeaderAlbum from '../../components/HeaderAlbum';
 const LoadPostScreen = props =>{
     const uri = props.navigation.getParam("uri");
-    const [griglia,setGriglia] = useState(false);
-    const [tw,setTw] = useState(false);
     console.log(uri)
-
+    const filter = [" ", " " ," " ," ", " "]  
     
     return (
-        <View  style={{flexDirection:"column",justifyContent:"center" ,alignItems:"center",backgroundColor:"#FFF"}}>        
-     
-     <ImagePostUpload uri = {uri.uri} navigation = {props.navigation} style={{      marginTop:50}}/>
-
- <View style={{
+        <View>      
+     <HeaderAlbum  uri={uri.uri} routeNameContinua="UploadPost" navigate={props.navigation} routeNameBack="AlbumNav" label="AVANTI"  array={null}/>  
+    
+     <View  style={{flexDirection:"column",justifyContent:"center" ,alignItems:"center",backgroundColor:"#FFF"}}>    
+     <ImagePostUpload uri = {uri.uri} navigation = {props.navigation} style={{marginTop:50}}/>
+     <View style={{
   flexDirection:"row",
- height:250,
+ height:350,
 
   width:"90%",
   padding:10,
   justifyContent:"space-between"}}>
+   <ScrollView style={{
 
-      <TouchableOpacity style={{
-borderColor:"grey",
-borderWidth:1,
-height:100,
-width:100,
-alignContent:"center",
-borderRadius:10,
-justifyContent:"center",
-flexDirection:"column"
 
-}}
+  padding:25
+}} horizontal={true}>
+{filter.map(f => {return  <ImageFilter uri={uri.uri}/>})}
 
->
-<Text style={{textAlign:"center",color:"grey",}}>Filtri</Text>
-</TouchableOpacity>
-<TouchableOpacity style={{
-borderColor:griglia?"green":"grey",
-borderWidth:1,
-height:100,
-width:100,
-alignContent:"center",
-borderRadius:10,
-justifyContent:"center",
-flexDirection:"column"
-
-}}
-onPress={()=>{
-  props.navigation.navigate({routeName:"SelGrid",params:{
-    uri :uri
-  }});
-}}
->
-<Text style={{textAlign:"center",color:griglia?"green":"grey",}}>GRIGLIA</Text>
-</TouchableOpacity>
-<TouchableOpacity style={{
-borderColor:tw?"green":"grey",
-borderWidth:1,
-height:100,
-width:100,
-alignContent:"center",
-borderRadius:10,
-justifyContent:"center",
-flexDirection:"column"
-}}
-
-onPress={()=>{
-if(griglia!==true ){  setTw(!tw); }
-}}
->
-<Text style={{textAlign:"center",color:tw?"green":"grey",}}>2HAND</Text>
-</TouchableOpacity>
+</ScrollView>
+    
 </View>
+</View>
+ 
+
 
 
 

@@ -1,4 +1,4 @@
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import FeedScreen from '../screens/HomeScreens/FeedScreen';
@@ -11,15 +11,9 @@ import PostSearchScreen from '../screens/SearchScreens/PostScreen';
 import ProfileSearchScreen from '../screens/SearchScreens/ProfileScreen';
 import PostProfileScreen from '../screens/SearchScreens/PostProfileScreen';
 import TipScreen from '../screens/SearchScreens/TipScreen';
-import Add from '../screens/ShareScreens/Add';
-import DirectoryImage from '../screens/ShareScreens/DirectoryImage';
-import ImagePickerExample from '../screens/AddScreens/ImagePickerExample';
 import PhotoPickerScreen from '../screens/AddScreens/PhotoPickerScreen';
 import LoadPostScreen from '../screens/AddScreens/LoadPostScreen';
-import HeaderSearch from '../components/HeaderSearch';
-import HeaderAdd from '../components/HeaderAdd';
-import Header from '../components/Header';
-import HeaderCart from '../components/HeaderCart';
+
 
 import UploadPost from '../screens/AddScreens/UploadPost';
 import MyProfile from '../screens/ProfileScreens/MyProfile';
@@ -30,6 +24,47 @@ import NotificationScreen from '../screens/NotificationScreens/NotifcationScreen
 import AlbumScreen from '../screens/AddScreens/AlbumScreen';
 import GridScreen from '../screens/AddScreens/GridSelect';
 import SelectPositionScreen from '../screens/AddScreens/SelectPositionScreen';
+import StartupScreen from '../screens/StartupScreen';
+import AuthNavigator from '../Navigation/Auth'
+import { Text, TouchableOpacity, View } from 'react-native';
+import CommentScreen from '../screens/CommentScreen'
+import MacroTipsScreen from '../screens/SearchScreens/MacroTips';
+
+class Notifica extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      value : false,
+      go:true
+    }
+  }
+  
+  componentDidMount(){
+    
+    this.state.go = setInterval(()=>  { 
+      this.state.go=!this.state.go },5000)
+
+   // this.state.value = setInterval(()=>   console.log("1") ,200)
+  }
+
+  render(){
+
+ return ( 
+  <View>
+ <Ionicons name="md-heart-outline" size={24} color="black"  />
+ </View>
+ )
+}
+
+}
+
+
+
+
+
+
+
+
 
 const FeedNavigator = createStackNavigator({
     Feed:{ screen:FeedScreen,
@@ -41,7 +76,7 @@ const FeedNavigator = createStackNavigator({
       headerTintColor:"#FFF",
       headerTitleAlign:"center"
   
-    }},
+    }},Carrello : CartScreen,
     Profile:{screen:ProfileScreen,
       navigationOptions:{
         
@@ -60,8 +95,8 @@ const FeedNavigator = createStackNavigator({
           headerBackTitle:""
          // header:null
       
-        }}
-  
+        }},
+      Comment : {screen:CommentScreen}
   });
   const SearchNavigator = createStackNavigator({
     Search:{ screen:SearchScreen,
@@ -78,7 +113,7 @@ const FeedNavigator = createStackNavigator({
       headerTintColor:"#fff",
   
     }},
-    Profile:ProfileSearchScreen,
+    Profile:ProfileScreen,
     PostProfile:{ screen:PostProfileScreen,
         navigationOptions:{
           
@@ -92,7 +127,15 @@ const FeedNavigator = createStackNavigator({
         headerTitleAlign:"center",
         headerBackTitle:""
     
-      }}
+      }},
+      MacroTips : {screen:MacroTipsScreen,    navigationOptions:{
+          
+        title:null,
+        headerTitleAlign:"center",
+        headerBackTitle:""
+    
+      }},
+      Comment : {screen:CommentScreen}
   
   });
   const AlbumNavigator = createStackNavigator({
@@ -106,22 +149,29 @@ const FeedNavigator = createStackNavigator({
   }
 
     ,
-    CheckPhotoAlbum :{screen: LoadPostScreen
+    CheckPhotoAlbum :{screen: LoadPostScreen ,
+      navigationOptions:{
+      header:null
+    
+      }
   
   },
-  UploadPost: UploadPost,
-  SelGrid : GridScreen,
-  Selezione: SelectPositionScreen,
-  CheckPost : UploadPost
-  });
-  const CameraNavigator = createStackNavigator({
-    Camera:{screen : PhotoPickerScreen,
+  UploadPost: {screen:UploadPost ,
+    navigationOptions:{
+    header:null
+  
+    }},
+  Camera:{screen : PhotoPickerScreen,
     navigationOptions:{
       headerTransparent:true,
       headerTintColor:"#fff",
       title:null
     }
     },
+ 
+  });
+  const CameraNavigator = createStackNavigator({
+  
     
     
     CheckPhoto :{screen: LoadPostScreen
@@ -131,7 +181,8 @@ const FeedNavigator = createStackNavigator({
 
   }
   },
-  UploadPost: UploadPost
+  UploadPost: UploadPost,
+  
   });
   const AddNavigation = createStackNavigator({
     Album:{screen:AlbumNavigator,
@@ -141,13 +192,7 @@ const FeedNavigator = createStackNavigator({
         header:null
       },
       },
-    Camera :{screen: CameraNavigator,
-      navigationOptions:{
-        headerTransparent:true,
-        headerTintColor:"#fff",
-        header:null
-      },
-    }
+  
     
   })
   const ProfileNavigation = createStackNavigator({
@@ -162,7 +207,10 @@ const FeedNavigator = createStackNavigator({
         headerTransparent:true,
         headerTintColor:"#fff"
       }},
-    PostProfile:ProfilePostScreen 
+    PostMyProfile:{screen:MyProfilePostScreen,  navigationOptions:{
+      headerTransparent:true,
+      headerTintColor:"#fff"
+    }} 
   });
   const TipToBeNavigator = createBottomTabNavigator({
 
@@ -208,9 +256,10 @@ Add :{
 },Notifche : {screen:NotificationScreen,  navigationOptions:{
   tabBarIcon: () => {
     return (
-      <Ionicons name="md-heart-outline" size={24} color="black" />
+    <Notifica/>
     );
   },
+ 
   
 },},
 Profile:{screen:ProfileNavigation,
@@ -225,5 +274,10 @@ Profile:{screen:ProfileNavigation,
 }
   }
   );
-  export default createAppContainer(TipToBeNavigator);
+  const MainNavigator = createSwitchNavigator({
+    Startup: StartupScreen,
+    Auth: AuthNavigator,
+    TipToBeHome: TipToBeNavigator
+  });
+  export default createAppContainer(MainNavigator);
   //<Ionicons name="md-person-circle-sharp" size={24} color="black" /> No

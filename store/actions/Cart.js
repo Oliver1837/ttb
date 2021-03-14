@@ -5,7 +5,7 @@ export const addCart = (user,post,price) => {
     return { type: ADD_CART, user: user ,post : post ,price:price };
   };
   export const removeCart = (user,post) => {
-    return { type: ADD_CART, user: user ,post : post};
+    return { type: REMOVE_CART, user: user ,post : post};
   };
   export const clearCart = () => {
     return { type: ADD_CART, user: user ,post : post };

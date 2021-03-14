@@ -13,7 +13,6 @@ const ProfileScreen = (props)=> {
 
    const user = USERS.find(u => userId === u.idUser);
    const posts = POSTS.filter(p => p.userId === user.idUser);
-   const grid = GRIDS.filter(g=> g.userId===user.idUser)
    const ths = TWOHAND.filter(th => th.idUser===user.idUser)
    const userSelector = useSelector(state => state.user);
    const follow = userSelector.follow.findIndex(f=> f === userId);

@@ -10,7 +10,7 @@ const SelectPositionScreen = props =>{
   const numberGrid =0 ;
   let grid = null;
   if(numberGrid===0){
-      grid = <GridOne add={true} style={{ marginTop:50}} uri={uri}/>
+      grid = <GridOne add={true} style={{ marginTop:50}} uri={uri} isSelection={true}/>
   }
   if(numberGrid===1){
     grid = <GridOne/>

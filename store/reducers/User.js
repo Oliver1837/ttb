@@ -14,18 +14,21 @@ const initialState = {
         case TOGGLE_FOLLOW:
             const follow =action.idUser
             const indexFollow = state.follow.findIndex(f => f ===follow);
+            console.log(state.follow)
+            console.log(follow)
             if(indexFollow >=0){
+                console.log("Esiste")
                 let updateFollow = [...state.follow]
                 updateFollow = updateFollow.filter(f => f !== follow);
-                return{...state,likes:updateFollow}
+                return{...state,follow:updateFollow}
 
             }else{
+                
+                console.log(" Nonc Esiste")
                 let updateFollow = [...state.follow]
-                return{...state,likes:updateFollow.concat(follow)}
+                return{...state,follow:updateFollow.concat(follow)}
 
             }
-            return state;
-            return state;
         case TOGGLE_LIKE:
             const like =action.idPost
             const index = state.likes.findIndex(l => l ===like);
@@ -58,12 +61,15 @@ const initialState = {
                 const tag =action.nameTag
                 const indexT = state.preferredTag.findIndex(t=> t ===tag);
                 console.log("Toggle tag ")
+                console.log(tag)
                 if(indexT >=0){
+                    console.log("Non esiste")
                     let updatePreferredTag = [...state.preferredTag]
                     updatePreferredTag = updatePreferredTag.filter(p => p !== tag);
                     return{...state,preferredTag:updatePreferredTag}
     
                 }else{
+                    console.log("Non esiste")
                     let updatePreferredTag = [...state.preferredTag]
                     return{...state,preferredTag:updatePreferredTag.concat(tag)}
     

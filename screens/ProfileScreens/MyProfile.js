@@ -9,8 +9,17 @@ import Button from '../../components/UI/Button';
 import { Ionicons } from '@expo/vector-icons';
 import { GRIDS, POSTS, TWOHAND, USERS } from '../../data/dummy-data';
 import HeaderCart from '../../components/HeaderCart';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 const MyProfile = (props)=> {
   const userSelector = useSelector(state=> state.user)
+  const postSelector = useSelector(state => state.post)
+  const user = userSelector.user;
+  console.log(user.idUser)
+  console.post
+  const posts = postSelector.posts.filter(p => p.userId === user.idUser );
+
+  const postsNormal = posts.filter(p=> p.isGrid===true)
+  
   const preferred = userSelector.preferred
   return (
     <View style={styles.screen}>
@@ -111,13 +120,13 @@ style={styles.container}
                
               <View>
                 <Text style={styles.textData}>Post</Text>
-                <Text style={styles.textData}>0</Text>
+                <Text style={styles.textData}>{postsNormal.length}</Text>
 
               </View>
               
               <View>
                 <Text style={styles.textData}>Following</Text>
-                <Text style={styles.textData}>0</Text>
+                <Text style={styles.textData}>{userSelector.follow.length}</Text>
 
               </View>
               
@@ -140,7 +149,42 @@ style={styles.container}
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
+               <FlatList
+             data={postsNormal }
+            numColumns={3}
+            keyExtractor={(item, index) => item.idPost}
+            renderItem={({item})=>{
+              console.log(item)
+              return (
+                <View
+                style={{
+                 margin:0.4,
+                 
+                  }}>
+                <TouchableOpacity 
+                 onPress={()=>{
+                  
+                  props.navigation.navigate({
+                      routeName:'PostMyProfile',
+                  
+                      params: {
+                          post : item,
+                          isTwoHand : false
+          
+                        }});
+               
+  
+           }}>
+                <ImageBackground
+                 style={styles.imagePosts}
+                 source={{uri:item.urlPost} }
+                 resizeMode='cover'/>
               
+                </TouchableOpacity>
+           </View>
+                )
+            }}
+            />
            </Tab>
            <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
@@ -288,5 +332,10 @@ imageThumbnail: {
     margin:0.2,
     width:(Dimensions.get('window').width/3   - 1)
     ,height:(Dimensions.get('window').height/4 ),
+  },
+  imagePosts: {
+    margin:0.2,
+    width:(Dimensions.get('window').width/3   - 1)
+    ,height:(Dimensions.get('window').width/3   - 1),
   },
 });

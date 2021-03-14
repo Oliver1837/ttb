@@ -4,7 +4,7 @@ import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,Im
 import { useDispatch } from 'react-redux';
 import Post from '../../components/Post';
 import { TWOHAND, USERS } from '../../data/dummy-data';
-import { addCart } from '../../store/actions/Cart';
+import { addCart, removeCart } from '../../store/actions/Cart';
 const {width, height} = Dimensions.get('window');
 
 const PostScreen = (props)=>{
@@ -19,13 +19,19 @@ const PostScreen = (props)=>{
    }
    
   
-   
     const dispatch = useDispatch()
     return (
-        <Post post ={post} isTwoHand = {isTwoHand} onAddCart={()=>{
+        <Post post ={post} isTwoHand = {isTwoHand} user={user} onAddCart={()=>{
           console.log("add ")
           dispatch(addCart(user,post,price))
-        }}/>
+        }}
+        onRemoveCart={()=>{
+          console.log("remove ")
+          dispatch(removeCart(user,post,price))
+        }}
+        navigation={props.navigation}
+        
+        />
       );
 }
 PostScreen.navigationOptions = navData => {

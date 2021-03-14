@@ -10,7 +10,7 @@ const {width, height} = Dimensions.get('window');
 const PostScreen = (props)=>{
     const post = props.navigation.getParam("post")
   
-  
+    console.log(post)
 
     const config = {
       velocityThreshold: 0.4,
@@ -20,13 +20,7 @@ const PostScreen = (props)=>{
       <GestureRecognizer
         onSwipeLeft={() =>{
           console.log("SWIPE SX")
-            props.navigation.navigate({
-                routeName: 'PostProfile',
-            
-                params: {
-                    userId: post.userId,
-    
-                  }});
+         
                 
         }}
         config={config}
@@ -35,7 +29,7 @@ const PostScreen = (props)=>{
             width:width
         }}
         >
-        <Post post ={post} />
+        <Post post ={post} me={true}/>
         </GestureRecognizer>
       );
 }

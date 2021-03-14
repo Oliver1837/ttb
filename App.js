@@ -1,23 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Post from './components/Post';
-import FeedScreen from './screens/HomeScreens/FeedScreen';
 import Tiptobe from './Navigation/TtbNavigation'
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import userReducer from './store/reducers/User';
 import cartReducer from './store/reducers/Cart';
-
+import commentReducer from './store/reducers/Comment';
+import postReducer from './store/reducers/UploadPost'
 import { Provider } from 'react-redux';
+import * as Permissions from 'expo-permissions';
+
 
 const rootReducer = combineReducers({
   user : userReducer,
-  cart : cartReducer
+  cart : cartReducer,
+  post : postReducer,
+  comment: commentReducer
 });
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
+async function checkMultiPermissions() {
+  const { status, expires, permissions } = await Permissions.getAsync(
+    Permissions.CAMERA_ROLL
+    
+  );
+  if (status !== 'granted') {
+    console.log('Hey! You have not enabled selected permissions');
+  }
+}
+
 export default function App() {
+  const [permission, askPermission, getPermission] = Permissions.usePermissions(Permissions.MEDIA_LIBRARY,{ask:true});
+  askPermission()
+    checkMultiPermissions();
   return (
     <Provider store={store}>
 

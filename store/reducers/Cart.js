@@ -8,7 +8,7 @@ const initialState = {
   export default (state = initialState, action) => {
     switch (action.type) {
         
-        case ADD_CART:
+        case ADD_CART:{
             console.log("ADD Reducer")
             const user = action.user
             const cart = [...state.cart]
@@ -17,11 +17,9 @@ const initialState = {
                 var carrello = new Carrello(user ,posts.concat(action.post) ,action.price);
                 return {...state,cart:cart.concat(carrello)}
             } else{
-                console.log("ENtra?");
                 var price = action.price
                 var indexCart = cart.findIndex(c => c.user === user );
                 if(indexCart>=0){
-                    console.log("Esiste");
                     var updateCart = cart.find(c => c.user ===user);
                     if(updateCart.post.findIndex(p => p === action.post)>=0){
                         return {...state , cart : cart}
@@ -40,12 +38,40 @@ const initialState = {
                 }
                 }
 
-            
-            
-           // const newCart = 
-            return state
-        case REMOVE_CART:
-            return state
+        }
+        case REMOVE_CART:{  return state
+        }
+          /*  console.log("Remove Reducer")
+            const user = action.user
+            const cart = [...state.cart]
+            if(cart.length===0){
+                return state
+            } else{
+              //  var price = action.price
+              
+                var indexCart = cart.findIndex(c => c.user === user );
+                if(indexCart>=0){
+                    var updateCart = cart.find(c => c.user ===user);
+                    var indexPost = updateCart.post.findIndex(p => p === action.post)>=0
+                    if(indexPost>=0){
+                         updateCart.post.splice(indexPost,1)
+                        if(updateCart.post.lenght>0){
+                            return {...state , cart : updateCart}
+                        }else{
+                            //updateCart.splice(indexCart,1)
+                            return {...state , cart : updateCart}
+                        }
+                      
+                    }else{
+                        return state
+                    }
+               
+                    
+                }else{
+                    return state
+                }
+                }
+            } */
         case CLEAR_CART:
             return state
 

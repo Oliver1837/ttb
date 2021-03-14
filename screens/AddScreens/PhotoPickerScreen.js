@@ -59,7 +59,7 @@ export default class PhotoPickerScreen extends React.Component {
   }
   goToLoadPost=(uri)=>{
     this.props.navigation.navigate({
-        routeName: 'CheckPhoto',
+        routeName: 'CheckPhotoAlbum',
         params:{
             uri : uri
         }

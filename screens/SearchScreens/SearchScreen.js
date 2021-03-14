@@ -1,88 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View,Text,StyleSheet, TextInput, ScrollView ,FlatList, TouchableOpacity} from 'react-native';
 
 import HeaderSearch from '../../components/HeaderSearch';
 import CardSearch from '../../components/CardSearch';
-import { Container, Header, Content, Tab, Tabs,Item,Icon,Input,Button, List, ListItem,Left,Right,Body, Switch} from 'native-base';
-import { TAGS } from '../../data/dummy-data';
-import { useDispatch } from 'react-redux';
+import { Container, Header, Tab, Tabs } from 'native-base';
+import { MACRO, POSTS, TAGS, USERS } from '../../data/dummy-data';
+import { useDispatch, useSelector } from 'react-redux';
+import MacroList from '../../components/MacroList';
+import TabSearch from '../../components/TabSearch';
 
 const SearchScreen = (props) =>{
-  
-   const tags= TAGS;
-   const macro = ["Sport","Fashion","Casual","Rock","Utenti"]
+
+  console.log("SEARCH")
+  const  [tags,setTags]= useState([]);
+  const  [viewTags,setViewTags]= useState(false);
+  const  [isSearch,setIsSearch] = useState(false);
+  const  [users, setUsers] = useState([])
+  const post = useSelector(state => state.post);
+
+  const[pressSearchShow,setPressSearchShow] = useState(true)
+  function search(val='') {
+    console.log(tags)
+    setViewTags(false);
+    if(val!=''){
+       setTags( TAGS.filter(t=> t.nameTag.includes(val)===true));
+       setUsers( USERS.filter(u=> u.username.includes(val)===true));
+    console.log(tags)
+  }else{
+    setTags([]);
+    setUsers([])
+    setIsSearch(true)
+
+
+  }
+  }
+
+  function showSearch(val){
+    setPressSearchShow(val)
+  }
+  const macro = MACRO
 return(
 
-      <View style={{backgroundColor:"#FFF"}}>
-        <HeaderSearch/>
-  <FlatList
-  style={{
-  
-    height:60,
-    backgroundColor:"#FFF"
+      <View style={{backgroundColor:"#FFF",minHeight:"100%",maxHeight:"100%"}}>
+        <HeaderSearch search={search} showSearch={showSearch}/>
+  {pressSearchShow===false ?  
+  <TabSearch tips={tags} users={users} navigation={props.navigation}/>
+            : 
+  <View>
+ <MacroList macros={macro} navigation={props.navigation}/>
     
-  }}
-  showsHorizontalScrollIndicator={false}
-  data={macro}
-  horizontal={true}
-  renderItem={
-({item})=>{
-return(<TouchableOpacity
-  style={{
-    justifyContent:"center",
-    alignItems:'center',
-    borderRadius:10,
-    borderWidth:1,
-    borderWidth:2,
-    height:40,
-    margin:5,
-    elevation: 20,
-    shadowRadius: 100 ,
-    shadowOffset : { width: 1, height: 13},
-    minWidth: 100,
-    backgroundColor:"black"
-  }}
-
->
-  <Text style={{
-            color:"#FFF",
-            fontSize:20,
-            textAlign:"center",
-            fontWeight:"bold",
-            textAlignVertical:"center"
-            ,
-            padding:5
-
-          }}>{item}</Text>
-</TouchableOpacity>)
-}
-  }
-  />
-
         <FlatList
-      data={tags}
+      data={TAGS}
       
       renderItem={
       ({item}) =>  (
         <TouchableOpacity 
         onPress={()=>{
-         
+        let  posts = post.posts;
+         posts = posts.filter(p=> p.nameTag.filter(t => t=== item.nameTag).length>0 && p.isTwoHand==false )
          props.navigation.navigate({
              routeName: 'Tip',
          
              params: {
                  tag: item, 
+                 posts: posts
                }});
-      
-
-  }}>
+              }}>
           <CardSearch title={item.nameTag} url={item.urlTag} navigation ={props.navigation} />
           </TouchableOpacity>
         )
       }
-      style={{width:'100%',height:'88%'}}>
-      </FlatList>
+      style={{width:'100%',height:'88%'}}/>
+      
       </View>
+      }
+      
+    
+      </View>
+      
     
       
       

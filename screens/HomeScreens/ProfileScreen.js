@@ -9,17 +9,23 @@ import Button from '../../components/UI/Button';
 import { GRIDS, POSTS, TAGS, TWOHAND, USERS } from '../../data/dummy-data';
 import { toggleFollow } from '../../store/actions/User';
 import { Rating, AirbnbRating } from 'react-native-ratings';
+import InformazioneProfile from '../../components/Profile/information_profile'
+import PostPreview from '../../components/PostPreview';
+import ListPostPreview from '../../components/ListPostPreview';
+import TwoHandPreview from '../../components/TwoHandPreview';
+import ListTwoHandPreview from '../../components/ListTwoHandPreview';
 const ProfileScreen = (props)=> {
    const userId= props.navigation.getParam("userId")
 
    const user = USERS.find(u => userId === u.idUser);
-   const posts = POSTS.filter(p => p.userId === user.idUser);
+   const posts = POSTS.filter(p => p.userId === user.idUser );
    const grid = GRIDS.filter(g=> g.userId===user.idUser)
    const ths = TWOHAND.filter(th => th.idUser===user.idUser)
+   const postsNormal = posts.filter(p=> p.isGrid===true)
    const userSelector = useSelector(state => state.user);
    const follow = userSelector.follow.findIndex(f=> f === userId);
-   let isFollow = follow >= 0 ? true : false
-   const [f,setF] = useState(follow >= 0 ? true : false);
+   const isSearch = false;
+ 
    const dispatch = useDispatch();
    console.log(ths)
   return (
@@ -84,7 +90,7 @@ style={styles.container}
           borderRadius:10,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:props.follow?"black":"#0095f6",
+          backgroundColor:follow>=0?"black":"#0095f6",
           height:40,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -92,11 +98,11 @@ style={styles.container}
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:props.follow?"black":"#0095f6",
+          borderColor:follow>=0?"black":"#0095f6",
           width:100,
           flexDirection:"row"
         }}
-        onPress={props.toggleTag}
+        onPress={()=> dispatch(toggleFollow(userId))}
         >
            <Text style={{
             color:"white",
@@ -132,28 +138,7 @@ style={styles.container}
         </TouchableOpacity>
 
      </View>
-          <View style={{
-                 flexDirection:"row"
-          }}>
-               
-              <View>
-                <Text style={styles.textData}>Tips</Text>
-                <Text style={styles.textData}>{posts.length}</Text>
-
-              </View>
-              
-              <View>
-                <Text style={styles.textData}>Following</Text>
-                <Text style={styles.textData}>{user.nFollowing}</Text>
-
-              </View>
-              
-              <View>
-                <Text style={styles.textData}>Follower</Text>
-                <Text style={styles.textData}>{user.nFollower}</Text>
-
-              </View>
-          </View>
+    <InformazioneProfile lenght={postsNormal.length} user ={user}/>
      </View>
 
 
@@ -167,88 +152,14 @@ style={styles.container}
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
-                 <FlatList
-             data={grid }
-            numColumns={1}
-            keyExtractor={(item, index) => item.idGrid}
-            renderItem={({item})=>{
-              return (
-              <GridEnzo grid ={item} navigation={  props.navigation}/>
-                )
-            }}
-            />
+                <ListPostPreview posts={postsNormal} navigation={props.navigation} routeName='Post' key="1"/>
   
            </Tab>
            <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
-                    <FlatList
-             data={ths }
-             numColumns={3}
-
-            keyExtractor={(item, index) => item.idTwoHand}
-            renderItem={({item})=>{
-                const post = POSTS.find(p => p.idPost===item.idPost)
-               const url =  post.urlPost
-               const prezzo = TWOHAND.find(tw=>tw.idPost===post.idPost).prezzo
-              return (
-<View
-              style={{
-               margin:0.4,
-               
-                }}>
-              <TouchableOpacity 
-               onPress={()=>{
-                
-                props.navigation.navigate({
-                    routeName: 'Post',
-                
-                    params: {
-                        post : post,
-                        isTwoHand : true
-        
-                      }});
-             
-
-         }}>
-              <ImageBackground
-               style={styles.imageThumbnail}
-               source={{uri:url} }
-               resizeMode='cover'
-            >
-              <View style={
-                {
-                  height:"100%",
-                  width:"100%",
-                  flexDirection:"row-reverse",
-                  marginTop:150,
-                }
-              }>
-                
-              <FontAwesome name="dollar" size={20} color="white"  style={{
-                marginRight:10,
-                marginTop:4
-              }}></FontAwesome>
-              <Text style={
-                {
-                  fontSize:20,
-                  fontWeight:"bold",
-                  color:"#fff",
-
-                }
-              }>{prezzo}</Text>
-              </View>
-              
-      
-
-            </ImageBackground>
-            
-              </TouchableOpacity>
-         </View>
-                )
-            }}
-            />
+             <ListTwoHandPreview routeName="Post" ths={ths} navigation={props.navigation}/>
            </Tab>
           
          </Tabs>
@@ -266,6 +177,7 @@ ProfileScreen.navigationOptions = navData => {
       <TouchableOpacity style={{
         marginRight:5
       }} onPress={()=>{
+        navData.navigation.navigate("Carrello")
       }}>
          <Ionicons name="cart" size={30} color="black" />      
 </TouchableOpacity>
@@ -290,13 +202,7 @@ const styles = StyleSheet.create({
     paddingTop:15
     
   },
-  textData:{
-      fontWeight:"bold",
-      fontSize:16,
-      margin:4,
-      textAlign:"center"
-
-  },
+  
   screen:{
     flex:1,
    backgroundColor:'white',
@@ -308,5 +214,10 @@ imageThumbnail: {
     margin:0.2,
     width:(Dimensions.get('window').width/3   - 1)
     ,height:(Dimensions.get('window').height/4 ),
+  },
+  imagePosts: {
+    margin:0.2,
+    width:(Dimensions.get('window').width/3   - 1)
+    ,height:(Dimensions.get('window').width/3   - 1),
   },
 });

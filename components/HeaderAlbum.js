@@ -1,8 +1,10 @@
 import React from 'react';
 import {View,Text,StyleSheet, TextInput,TouchableOpacity} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-const HeaderAlbum = (props)=>{
-    console.log(props.uri)
+import { uploadPost } from '../store/actions/UploadPost';
+import { useDispatch } from 'react-redux';
+const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array})=>{
+   const dispatch = useDispatch()
     return(
         <View style={styles.header}>
             <TouchableOpacity style={
@@ -16,7 +18,8 @@ const HeaderAlbum = (props)=>{
                }
            }
            onPress={()=>{
-               props.navigation.goBack();
+               console.log("Premuto")
+               navigate.navigate({routeName:routeNameBack});
            }}
            >
 <Ionicons name="ios-close-sharp" size={24} color="black" style={{marginLeft:10}} /> 
@@ -32,9 +35,12 @@ const HeaderAlbum = (props)=>{
                }
            }
            onPress={()=>{
-            props.navigation.navigate({routeName:"UploadPost",
+               if(array!=null) {
+                dispatch(uploadPost(array[0],array[1],array[2]))
+               }
+            navigate.navigate({routeName:routeNameContinua,
             params:{
-                uri:props.uri
+                uri:uri
             }});
         }}
            >
@@ -45,7 +51,7 @@ const HeaderAlbum = (props)=>{
             ,fontStyle:"italic",
             fontWeight:"bold"
            
-            }}>AVANTI</Text>
+            }}>{label}</Text>
             </TouchableOpacity>
 
             
@@ -65,7 +71,9 @@ const styles= StyleSheet.create({
         alignItems : 'center',
         justifyContent  : 'space-between',
         color:"white",   
-        paddingTop:20
+        paddingTop:20,
+        marginTop:10,
+        backgroundColor:"#FFF"
        
        
     },

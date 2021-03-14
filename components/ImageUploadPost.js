@@ -8,7 +8,7 @@ const ImagePostUpload = (props)=>{
     return (
         <View style={{flexDirection:"column",justifyContent:"center" ,alignItems:"center"}}>
 
-          <ImageBackground source={{uri:props.uri}} repeat style={styles.video} >
+          <ImageBackground source={{uri:props.uri}} repeat style={styles.video} resizeMode={"contain"}>
    
             </ImageBackground>
      

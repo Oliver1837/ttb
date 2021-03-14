@@ -1,6 +1,6 @@
 import React from 'react'
-import {View , Text, StyleSheet,Image ,TouchableOpacity, Dimensions} from 'react-native'
-import { GRIDPOSTS, POSTS } from '../data/dummy-data'
+import {View , Text, StyleSheet,Image ,TouchableOpacity, Dimensions, FlatList} from 'react-native'
+import { useSelector } from 'react-redux'
 import Post from '../model/Post'
 
 const DeviceWidth = Dimensions.get('window').width
@@ -8,17 +8,88 @@ const DeviceWidth = Dimensions.get('window').width
 
 
 const GridEnzo = (props)=>{
-
-
+    //const postSelector = useSelector(state => state.post);
+    //const GRIDPOSTS =   postSelector.post
+    const postSelector = useSelector(state => state.post)
     const grid = props.grid
     const isSearch = props.isSearch;
-
-
+    const GRIDPOSTS =   postSelector.gridPost
+    const POSTS = postSelector.posts
     const gridPosts = GRIDPOSTS.filter(gp=> gp.idGrid===grid.idGrid);
-    if(grid.tipo===0){
+    console.log(gridPosts.length)
+    if(grid.isComplete===false){
+      return(
+
+        <FlatList
+        data={gridPosts}
+        numColumns={3}
+        renderItem={({item})=>{
+       
+        return (
+<View
+        style={{
+         margin:0.4,
+         
+          }}>
+        <TouchableOpacity 
+         onPress={()=>{
+          
+          props.navigation.navigate({
+            routeName: isSearch ? 'PostProfile' : 'Post',
+        
+            params: {
+                post : posts[1],
+                isTwoHand : false
+
+              }});
+       
+
+   }}>
+        <ImageBackground
+         style={styles.imageThumbnail}
+         source={{uri:item.url} }
+         resizeMode='cover'
+      >
+        <View style={
+          {
+            height:"100%",
+            width:"100%",
+            flexDirection:"row-reverse",
+            marginTop:150,
+          }
+        }>
+          
+        <FontAwesome name="dollar" size={20} color="white"  style={{
+          marginRight:10,
+          marginTop:4
+        }}></FontAwesome>
+        <Text style={
+          {
+            fontSize:20,
+            fontWeight:"bold",
+            color:"#fff",
+
+          }
+        }>{prezzo}</Text>
+        </View>
+        
+
+
+      </ImageBackground>
+      
+        </TouchableOpacity>
+   </View>
+          )
+      }}
+        />
+
+      )
+    }else
+    if(grid.tipo===0 && grid.isComplete===true){
       var posts =  [];
       var j = 0;
       for(var i = 0 ; i < 6; i++){
+        console.log(gridPosts[j])
         if(j ===gridPosts.length){
              j=0;
         }
@@ -87,18 +158,18 @@ const GridEnzo = (props)=>{
       </View>
         </View>);
 
-    }else if(grid.tipo===1){
+    }else if(grid.tipo===1 && grid.isComplete===true){
       var posts =  [];
       var j = 0;
       for(var i = 0 ; i < 3; i++){
-        if(j ===gridPosts.length){
+        if(j ==gridPosts.length){
              j=0;
         }
-        if(i === gridPosts[j].posizione ){
+      if(i === gridPosts[j].posizione ){
 
-          posts[i] = POSTS.find(p => p.idPost===gridPosts[j].idPost);
-          j++;
-        }else{
+        posts[i] = POSTS.find(p => p.idPost===gridPosts[j].idPost);
+        j++;
+      }else{
           posts[i] =  new Post('', '',0,0,"0",[],"",false,true)
 
         }
@@ -117,13 +188,13 @@ const GridEnzo = (props)=>{
           
               >
               <Image
-style={{width:(Dimensions.get('window').width/3-1), height:(Dimensions.get('window').height/4 ), backgroundColor: 'skyblue', margin:1,}}             
+style={{width:(Dimensions.get('window').width/3-1), height:(Dimensions.get('window').height/4 ),  margin:1,}}             
                resizeMode='cover'
                source={{uri:posts[0].urlPost}}
             />
                   
               <Image
-style={{width:(Dimensions.get('window').width/3-1), height:(Dimensions.get('window').height/4 ), backgroundColor: 'skyblue', margin:1,}}             
+style={{width:(Dimensions.get('window').width/3-1), height:(Dimensions.get('window').height/4 ),margin:1,}}             
                resizeMode='cover'
                source={{uri:posts[1].urlPost}}
             />
@@ -141,7 +212,7 @@ style={{width:(Dimensions.get('window').width/3-1), height:(Dimensions.get('wind
                   style={{
                     margin:1,
                     width:((Dimensions.get('window').width/3 )* 2)
-                    ,height:(Dimensions.get('window').height/2  +2 ), backgroundColor: 'steelblue'}}
+                    ,height:(Dimensions.get('window').height/2  +2 ), }}
                     source={{uri:posts[2].urlPost}}
                 resizeMode='cover'
             />
@@ -151,7 +222,7 @@ style={{width:(Dimensions.get('window').width/3-1), height:(Dimensions.get('wind
 
        </View>
         );
-    }else if(grid.tipo===2){
+    }else if(grid.tipo===2 && grid.isComplete===true){
       var posts =  [];
       var j = 0;
       for(var i = 0 ; i < 3; i++){

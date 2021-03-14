@@ -1,19 +1,27 @@
 import React from 'react'
-import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image} from 'react-native'
-import {Ionicons} from '@expo/vector-icons'
+import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image,Alert} from 'react-native'
+import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 import { TAGS,TWOHAND,USERS } from '../data/dummy-data';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLike, togglePreferred } from '../store/actions/User';
+import { addCart } from "../store/actions/Cart";
 const {width, height} = Dimensions.get('window');
 
-const Post = (props)=>{
-    const isTwoHand = props.isTwoHand;
-    const post = props.post
+const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
+   
     var Tags = TAGS
-    Tags= Tags.filter(tag=> post.nameTag.filter(t => t=== tag.nameTag).length>0)
-    const user = USERS.find(u => post.userId === u.idUser);
+   // Tags= Tags.filter(tag=> post.nameTag.filter(t => t=== tag.nameTag).length>0)
+    const user = USERS.find(u =>  post.userId === u.idUser);
+    
     let price ;
     const userSelector = useSelector(state=> state.user)
+    const cartSelector = useSelector(state=> state.cart)
+   let isCart = -1;
+    /*if(cartSelector.cart.length>0){
+      const cart = cartSelector.cart.find(c=> c.idUser === userSelector.user.userId)
+      isCart = cart.post.findIndex(p => p.postId === post.postId)
+     
+    }*/
     const like = userSelector.likes
     const preferred = userSelector.preferred
     const index = like.findIndex(l => l=== post.idPost)
@@ -24,10 +32,9 @@ const Post = (props)=>{
        price = TWOHAND.find(tw=> tw.idPost===post.idPost).prezzo;
 
     }
-   // console.log(user)
     return (
         <View>
-          <ImageBackground source={{uri:post.urlPost}} repeat style={styles.video} />
+          <ImageBackground source={{uri:post.urlPost}} repeat style={styles.video} resizeMode={"contain"} resizeMethod="scale"/>
           <View style={styles.mainContainer}>
             <View style={styles.innerLeft}>
               <View style={styles.dataContainer}>
@@ -42,26 +49,8 @@ const Post = (props)=>{
                   color:"#fff",
                   fontSize:16,
                   marginTop:10
-                }}>TipTo#</Text>
-                <FlatList
-                  style={{ marginBottom: 15}}
-                  data={Tags}
-                 numColumns={3}
-                     renderItem={(itemData)=>{
-                      return(<View style={{
-                     flexDirection:'row',
-                 padding:4,
-                      borderColor:"white",
-                     borderWidth:1,
-                     alignItems:"center",
-          borderRadius:25,
-          margin:2
-        }}>
-          <Image source={{uri:itemData.item.urlTag}} style={{height:25,width:25,padding:2}}/>
-          <Text  style={{color: '#fff', fontWeight: 'bold', textAlign:"center",padding:2}}>{itemData.item.nameTag}</Text></View>)
-       }}
-                  
-                  />
+                }}>TipTo {post.nameTag.map( nt=> "#"+nt+" ")}</Text>
+                
                   </View>
                       <View style={styles.music}>
                 
@@ -81,7 +70,18 @@ const Post = (props)=>{
            />
            </TouchableOpacity>
             <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
-            <Ionicons name="ios-chatbubbles" size={25} color="#fff"/>
+            <TouchableOpacity onPress={
+            ()=> {
+              console.log(post.idPost)
+              navigation.navigate({routeName:"Comment",params:{
+              
+                postId: post.idPost
+  
+              }
+            })
+            }}>
+             <Ionicons name="ios-chatbubbles" size={25} color="#fff"/>
+          </TouchableOpacity>
             <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
             <TouchableOpacity onPress={
         ()=>{
@@ -94,6 +94,7 @@ const Post = (props)=>{
             <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
             <Ionicons name="ios-paper-plane" size={25} color="#fff" />
             <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
+            {me === true ?<MaterialCommunityIcons name="settings-helper" size={24} color="white" /> :null}
             {isTwoHand ? 
             <View>
              <Text style={{
@@ -107,7 +108,7 @@ const Post = (props)=>{
               borderRadius:10,
               borderWidth:1,
               borderWidth:2,
-              backgroundColor:props.follow?"black":"#0095f6",
+              backgroundColor:isCart>=0 ?"red": "#0095f6",
               height:40,
               margin:1,
               shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -115,9 +116,27 @@ const Post = (props)=>{
               elevation: 20,
               shadowRadius: 100 ,
               shadowOffset : { width: 1, height: 13},
-              borderColor:props.follow?"black":"#0095f6"
+              borderColor:isCart>=0 ?"red": "#0095f6"
             }}
-            onPress={props.onAddCart}
+            onPress={
+              ()=>{
+                Alert.alert(
+                  "Aggiungi al carrello",
+                  "Sei sicuro di aggiungere l'articolo al Carrello",
+                  [
+                    {
+                      text: "NO",
+                      onPress: () => console.log("Cancel Pressed"),
+                      style: "cancel"
+                    },
+                    { text: "SI", onPress: () => onAddCart() }
+                  ],
+                  { cancelable: false }
+                );
+              }
+              
+              
+              }
             >
               <Text style={{
                 color:"white",
@@ -128,7 +147,7 @@ const Post = (props)=>{
                 ,
                 padding:5
     
-              }}>BUY</Text>
+              }}>{isCart>=0 ?"RIMUOVI": "COMPRA"}</Text>
             </TouchableOpacity>
             </View>
             
