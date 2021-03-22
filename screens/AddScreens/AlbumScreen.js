@@ -65,13 +65,12 @@ const AlbumScreen=(props)=> {
       "width": 0,})//Elemento selezionato 
       const[fileName,setFileName]= useState("")
       const [albums, setAlbums] = useState([])
-      const [albumPicker, setAlbumPicker] = useState("Lightroom")
-     //const [albumPicker, setAlbumPicker] = useState("Camera")
+     // const [albumPicker, setAlbumPicker] = useState("Lightroom")
+     const [albumPicker, setAlbumPicker] = useState("Camera")
       const [resize,setResize] = useState(false)
       useEffect(()=>{
         async function getPhotoAlbum () {
           let albums = await MediaLibrary.getAlbumsAsync()
-          console.log(albums)
           setAlbumPicker(albums[1].title)
           const album = await MediaLibrary.getAlbumAsync(albumPicker)
         
@@ -84,13 +83,9 @@ const AlbumScreen=(props)=> {
             
           }))
         albums = albums.filter(a=> a.assetCount>1  )
-        console.log(albums)
         setAlbumPicker(album.title)
-        console.log(albums.map(a=> a.assetCount))
         setAlbums(albums.map(a => a.title))
-        console.log(array)
         if(array.length>0){
-          console.log(array)
         setPhotos(array)
         
         setFirst(array[0])
@@ -106,7 +101,6 @@ const AlbumScreen=(props)=> {
        {nativeEvent:{scale: scaleT > 1.000 ? scaleT.setValue(1) : scaleT}}
       ],{useNativeDriver:true})
       const onPinchEventChange= (event)=>{
-        console.log(event.nativeEvent)
       }
       return (
         <View

@@ -5,15 +5,10 @@ import {  POSTS} from '../data/dummy-data';
 import Button from './UI/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTagFollow } from '../store/actions/User';
-const CardSearch = props =>{
-console.log(props.url)
-
-let  posts = POSTS;
+const CardSearch = ({title,url,navigation,posts}) =>{
 const preferredTag = useSelector(state => state.user.preferredTag)
-console.log(preferredTag)
-var isPreferred = preferredTag.findIndex(tag=> tag=== props.title);
-console.log(isPreferred)
-posts = posts.filter(p=> p.nameTag.filter(t => t=== props.title).length>0 )
+var isPreferred = preferredTag.findIndex(tag=> tag=== title);
+posts = posts.filter(p=> p.nameTag.filter(t => t=== title).length>0 )
       
 const dispatch= useDispatch()
 
@@ -23,13 +18,13 @@ return (
     <View style={styles.tips}>
         <View style={styles.tipContaneir}> 
         <View style={styles.tipsBoh}>
-          <Image   source={{ uri:props.url}}
+          <Image   source={{ uri:url}}
                   style={styles.tipsImage}  resizeMode='cover'
                   
                   />
 
         </View>
-        <Text style={styles.tipsTitle}>{props.title}</Text>
+        <Text style={styles.tipsTitle}>{title}</Text>
         </View> 
         <TouchableOpacity style={{
           justifyContent:"center",
@@ -48,7 +43,7 @@ return (
           borderColor:isPreferred <  0 ?"#0095f6":"black"
         }}
         onPress={()=>{
-           dispatch(toggleTagFollow(props.title))
+           dispatch(toggleTagFollow(title))
         }}
         >
           <Text style={{
@@ -76,7 +71,7 @@ return (
       <TouchableOpacity 
       onPress={()=>{
        
-       props.navigation.navigate({
+       navigation.navigate({
            routeName: 'Post',
        
            params: {

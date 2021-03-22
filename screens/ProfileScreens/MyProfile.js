@@ -10,16 +10,17 @@ import { Ionicons } from '@expo/vector-icons';
 import { GRIDS, POSTS, TWOHAND, USERS } from '../../data/dummy-data';
 import HeaderCart from '../../components/HeaderCart';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import ListPostPreview from '../../components/ListPostPreview';
+import ListTwoHandPreview from '../../components/ListTwoHandPreview';
 const MyProfile = (props)=> {
   const userSelector = useSelector(state=> state.user)
   const postSelector = useSelector(state => state.post)
   const user = userSelector.user;
-  console.log(user.idUser)
-  console.post
   const posts = postSelector.posts.filter(p => p.userId === user.idUser );
-
+  const thsSelector = useSelector(state=> state.post.ths);
+  const ths = thsSelector.filter(p => p.idUser === user.idUser )
   const postsNormal = posts.filter(p=> p.isGrid===true)
-  
+  console.log(ths)
   const preferred = userSelector.preferred
   return (
     <View style={styles.screen}>
@@ -149,49 +150,16 @@ style={styles.container}
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
-               <FlatList
-             data={postsNormal }
-            numColumns={3}
-            keyExtractor={(item, index) => item.idPost}
-            renderItem={({item})=>{
-              console.log(item)
-              return (
-                <View
-                style={{
-                 margin:0.4,
-                 
-                  }}>
-                <TouchableOpacity 
-                 onPress={()=>{
-                  
-                  props.navigation.navigate({
-                      routeName:'PostMyProfile',
-                  
-                      params: {
-                          post : item,
-                          isTwoHand : false
-          
-                        }});
-               
+                <ListPostPreview posts={postsNormal} navigation={props.navigation} routeName='Post' key="1"/>
   
-           }}>
-                <ImageBackground
-                 style={styles.imagePosts}
-                 source={{uri:item.urlPost} }
-                 resizeMode='cover'/>
-              
-                </TouchableOpacity>
-           </View>
-                )
-            }}
-            />
            </Tab>
            <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
-            
+             <ListTwoHandPreview routeName="Post" ths={ths} navigation={props.navigation}/>
            </Tab>
+          
            <Tab   heading="SALVATI" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}

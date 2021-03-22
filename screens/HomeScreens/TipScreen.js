@@ -6,11 +6,15 @@ import { Ionicons } from '@expo/vector-icons';
 import ListPostPreview from '../../components/ListPostPreview';
 import { POSTS, TWOHAND } from '../../data/dummy-data';
 import ListTwoHandPreview from '../../components/ListTwoHandPreview';
+import { useSelector } from 'react-redux';
 
-const TipScreen = props =>{
-    const tag = props.navigation.getParam("tag");
-    const post = props.navigation.getParam("posts")
-    const ths = TWOHAND.filter(t =>  POSTS.filter( p=> p.idPost === t.idPost && (p.nameTag.includes(tag.nameTag) === true) ).length>0)
+const TipScreen = (props) =>{
+    const tagName = props.navigation.getParam("tag");
+    const tags = useSelector(state => state.post.tags)
+    const tag = tags.find(t=> t.nameTag === tagName)
+    let posts = useSelector(state => state.post.posts)
+    posts = posts.filter( p=> p.nameTag.includes(tag.nameTag) === true) 
+    const ths = TWOHAND.filter(t =>  posts.filter( p=> p.idPost === t.idPost && (p.nameTag.includes(tag.nameTag) === true) ).length>0)
 
     return (
       <View style={{ 
@@ -83,7 +87,7 @@ const TipScreen = props =>{
         </View>
         <Text style={{
           fontSize:18
-        }}>Numero di post {post.length}</Text>
+        }}>Numero di post {posts.length}</Text>
         </View>
  
        
@@ -96,13 +100,13 @@ const TipScreen = props =>{
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
-             <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="1"/>
+             <ListPostPreview posts={posts} navigation={props.navigation} routeName='PostProfile' key="1"/>
            </Tab>
            <Tab   heading="RECENTI" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
-              <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="1"/>
+              <ListPostPreview posts={posts} navigation={props.navigation} routeName='PostProfile' key="1"/>
            </Tab>
            <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	

@@ -13,7 +13,7 @@ import PostProfileScreen from '../screens/SearchScreens/PostProfileScreen';
 import TipScreen from '../screens/SearchScreens/TipScreen';
 import PhotoPickerScreen from '../screens/AddScreens/PhotoPickerScreen';
 import LoadPostScreen from '../screens/AddScreens/LoadPostScreen';
-
+import TipFeedScreen from '../screens/HomeScreens/TipScreen';
 
 import UploadPost from '../screens/AddScreens/UploadPost';
 import MyProfile from '../screens/ProfileScreens/MyProfile';
@@ -96,7 +96,14 @@ const FeedNavigator = createStackNavigator({
          // header:null
       
         }},
-      Comment : {screen:CommentScreen}
+      Comment : {screen:CommentScreen},
+      Tip : {screen:TipFeedScreen,    navigationOptions:{
+          
+        title:"TipToBe",
+        headerTitleAlign:"center",
+        headerBackTitle:""
+    
+      }},
   });
   const SearchNavigator = createStackNavigator({
     Search:{ screen:SearchScreen,
@@ -136,6 +143,7 @@ const FeedNavigator = createStackNavigator({
     
       }},
       Comment : {screen:CommentScreen}
+      ,Carrello : CartScreen,
   
   });
   const AlbumNavigator = createStackNavigator({

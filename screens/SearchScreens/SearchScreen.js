@@ -17,13 +17,14 @@ const SearchScreen = (props) =>{
   const  [isSearch,setIsSearch] = useState(false);
   const  [users, setUsers] = useState([])
   const post = useSelector(state => state.post);
-
+  const posts = useSelector(state => state.post.posts);
+  const tagsUpload = useSelector(state=> state.post.tags)
   const[pressSearchShow,setPressSearchShow] = useState(true)
   function search(val='') {
     console.log(tags)
     setViewTags(false);
     if(val!=''){
-       setTags( TAGS.filter(t=> t.nameTag.includes(val)===true));
+       setTags( tagsUpload.filter(t=> t.nameTag.includes(val)===true));
        setUsers( USERS.filter(u=> u.username.includes(val)===true));
     console.log(tags)
   }else{
@@ -38,7 +39,7 @@ const SearchScreen = (props) =>{
   function showSearch(val){
     setPressSearchShow(val)
   }
-  const macro = MACRO
+  const macro = MACRO.sort();
 return(
 
       <View style={{backgroundColor:"#FFF",minHeight:"100%",maxHeight:"100%"}}>
@@ -50,7 +51,7 @@ return(
  <MacroList macros={macro} navigation={props.navigation}/>
     
         <FlatList
-      data={TAGS}
+      data={tagsUpload}
       
       renderItem={
       ({item}) =>  (
@@ -66,11 +67,11 @@ return(
                  posts: posts
                }});
               }}>
-          <CardSearch title={item.nameTag} url={item.urlTag} navigation ={props.navigation} />
+          <CardSearch title={item.nameTag} url={item.urlTag} navigation ={props.navigation}  posts={posts}/>
           </TouchableOpacity>
         )
       }
-      style={{width:'100%',height:'88%'}}/>
+      style={{width:'100%',maxHeight:'86%',minHeight:"86%"}}/>
       
       </View>
       }

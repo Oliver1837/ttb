@@ -38,18 +38,50 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
           <View style={styles.mainContainer}>
             <View style={styles.innerLeft}>
               <View style={styles.dataContainer}>
+                <TouchableOpacity onPress={()=>{
+                  navigation.navigate({
+                    routeName: 'Profile',
+                
+                    params: {
+                        userId: user.idUser,
+        
+                      }});
+                }}>
                 <Text style={styles.title}>@{user.username}</Text>
+                </TouchableOpacity>
                 <Text style={styles.description} numberOfLines={4}>
                  {post.descrizione}
                 </Text>
                 <View style={{
                   flexDirection:"row"
                 }}>
-                <Text style={{
+                <View style={{
+                  color:"#fff",
+                  fontSize:16,
+                  marginTop:10,
+                  flexDirection:"row"
+                }}><Text style={{
                   color:"#fff",
                   fontSize:16,
                   marginTop:10
-                }}>TipTo {post.nameTag.map( nt=> "#"+nt+" ")}</Text>
+                }}>TipTo</Text> 
+                {post.nameTag.map( nt=> {return ( <TouchableOpacity onPress={
+                  ()=>{
+                    navigation.navigate({
+                      routeName: 'Tip',
+                  
+                      params: {
+                          tag: nt, 
+                        }});
+                  }
+                }><Text style={{
+                  color:"#fff",
+                  fontSize:16,
+                  marginTop:10
+                }}
+                >#{nt}</Text></TouchableOpacity>
+                )})}
+                </View>
                 
                   </View>
                       <View style={styles.music}>

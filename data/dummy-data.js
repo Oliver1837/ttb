@@ -15,7 +15,7 @@ export const POSTS = [
     new Post('post10',"https://images.pexels.com/photos/2689401/pexels-photo-2689401.jpeg?cs=srgb&dl=pexels-dazzle-jam-2689401.jpg&fm=jpg",2,0,"user6",["Watch","Dress"],"Contenuto Post 1",false,true),
     new Post('post1', 'https://images.pexels.com/photos/6731908/pexels-photo-6731908.jpeg?cs=srgb&dl=pexels-thirdman-6731908.jpg&fm=jpg',0,0,"user5",["Arte","Pennelli","Pittura"],"Contenuto TwoHand 1",false,true),
     new Post('post2', 'https://images.pexels.com/photos/4490130/pexels-photo-4490130.jpeg?cs=srgb&dl=pexels-dominika-roseclay-4490130.jpg&fm=jpg',0,0,"user5",["Arte","Quadro"],"Contenuto user TwoHand 2",false,true),
-     new Post('post13', "https://images.pexels.com/photos/2825749/pexels-photo-2825749.jpeg?cs=srgb&dl=pexels-valeriia-miller-2825749.jpg&fm=jpg",0,0,"user5",["Arte","Fiori","Primavera"],"Contenuto user5 Post 1",true,false),
+    new Post('post13', "https://images.pexels.com/photos/2825749/pexels-photo-2825749.jpeg?cs=srgb&dl=pexels-valeriia-miller-2825749.jpg&fm=jpg",0,0,"user5",["Arte","Fiori","Primavera"],"Contenuto user5 Post 1",true,false),
     new Post('post14', "https://images.pexels.com/photos/3685523/pexels-photo-3685523.jpeg?cs=srgb&dl=pexels-valeriia-miller-3685523.jpg&fm=jpg",1,0,"user5",["Bellezza","Fashion","Fiori"],"Contenuto user5 Post 2",true,false),
     new Post('post15', "https://images.pexels.com/photos/5591722/pexels-photo-5591722.jpeg?cs=srgb&dl=pexels-daniela-constantini-5591722.jpg&fm=jpg",0,0,"user5",["Fotografia","Vintage","Libri"],"Contenuto user 5  Post 3",true,false),
     new Post('post16', "https://images.pexels.com/photos/4068151/pexels-photo-4068151.jpeg?cs=srgb&dl=pexels-lisa-fotios-4068151.jpg&fm=jpg",1,0,"user5",["Fiori","Primavera","Piante"],"Contenuto user 5 Post 4",true,false),
@@ -98,7 +98,7 @@ export const COMMENT=[
   
   
   ]
-export const MACRO = ["2HAND","Viaggi","Cibo","Arte","Bellezza","Musica","Sport"]
+export const MACRO = ["2HAND","Viaggi","Cibo","Arte","Bellezza","Musica","Sport","Elettronica","Casa"]
 export const Dizionario = [
     new DizionarioMacro("Viaggi",["Aereo","Viaggio","Albergo","Hotel"]),
     new DizionarioMacro("Cibo",["Cibo","Pasta","Sugo","Chef","Cucina"]),

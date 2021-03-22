@@ -12,7 +12,7 @@ const ProfileScreen = (props)=> {
    const userId= props.navigation.getParam("userId")
 
    const user = USERS.find(u => userId === u.idUser);
-   const posts = POSTS.filter(p => p.userId === user.idUser);
+   const posts = POSTS.filter(p => p.userId === user.idUser && p.isGrid===true);
    const ths = TWOHAND.filter(th => th.idUser===user.idUser)
    const userSelector = useSelector(state => state.user);
    const follow = userSelector.follow.findIndex(f=> f === userId);

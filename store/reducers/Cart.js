@@ -3,6 +3,7 @@ import { ADD_CART, CLEAR_CART, REMOVE_CART } from "../actions/Cart";
 
 const initialState = {
     cart:[],
+    number:0
   
   };
   export default (state = initialState, action) => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import {View,Text,StyleSheet, TextInput,TouchableOpacity} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { uploadPost } from '../store/actions/UploadPost';
+import { uploadPost, uploadTwoHand } from '../store/actions/UploadPost';
 import { useDispatch } from 'react-redux';
-const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array})=>{
+const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array,isTh})=>{
    const dispatch = useDispatch()
     return(
         <View style={styles.header}>
@@ -35,8 +35,10 @@ const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array})
                }
            }
            onPress={()=>{
-               if(array!=null) {
+               if(array!=null && isTh===false) {
                 dispatch(uploadPost(array[0],array[1],array[2]))
+               }else if(isTh && array!=null){
+                dispatch(uploadTwoHand(array[0],array[1],array[2],array[3],array[4],array[5],array[6]))
                }
             navigate.navigate({routeName:routeNameContinua,
             params:{
