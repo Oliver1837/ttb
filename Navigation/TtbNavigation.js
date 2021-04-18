@@ -26,10 +26,11 @@ import GridScreen from '../screens/AddScreens/GridSelect';
 import SelectPositionScreen from '../screens/AddScreens/SelectPositionScreen';
 import StartupScreen from '../screens/StartupScreen';
 import AuthNavigator from '../Navigation/Auth'
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import CommentScreen from '../screens/CommentScreen'
 import MacroTipsScreen from '../screens/SearchScreens/MacroTips';
-
+import Header from '../components/Header'
+import { useNavigation } from '@react-navigation/core';
 class Notifica extends React.Component{
   constructor(props){
     super(props)
@@ -69,18 +70,18 @@ class Notifica extends React.Component{
 const FeedNavigator = createStackNavigator({
     Feed:{ screen:FeedScreen,
     navigationOptions:{
-      
+      title:"TipToBe",
       headerTransparent:true,
      
-      title:"TipToBe",
       headerTintColor:"#FFF",
       headerTitleAlign:"center"
-  
+     
+      
     }},Carrello : CartScreen,
     Profile:{screen:ProfileScreen,
       navigationOptions:{
         
-        title:"TipToBe",
+        title:null,
         headerTitleAlign:"center",
         headerBackTitle:""
        // header:null
@@ -88,12 +89,12 @@ const FeedNavigator = createStackNavigator({
       }},
     Post : { screen:PostScreen,
         navigationOptions:{
-          
           headerTransparent:true,
-          title:"TipToBe",
+          
           headerTitleAlign:"center",
-          headerBackTitle:""
-         // header:null
+          headerBackTitle:"",
+          headerTintColor:"#FFF",
+     
       
         }},
       Comment : {screen:CommentScreen},
@@ -228,9 +229,10 @@ const FeedNavigator = createStackNavigator({
         
         tabBarIcon: () => {
             return (
-              <Ionicons name={Platform.OS ==="android" ? "md-home" :"ios-home"} size={25} color="black" />
+            <Image source={require('../assets/icons/home.png')} style={{height:25,width:25}}/>
             );
-          }
+          },
+          
   
     },
   
@@ -244,7 +246,7 @@ const FeedNavigator = createStackNavigator({
         
       tabBarIcon: () => {
           return (
-            <Ionicons name={Platform.OS ==="android" ? "md-search-sharp" :"ios-search-sharp"} size={25} color="black" />
+             <Image source={require('../assets/icons/search.png')} style={{width:25,height:25}}/>
           );
         }
 

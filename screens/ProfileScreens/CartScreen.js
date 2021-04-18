@@ -43,17 +43,8 @@ console.log(cart.cart)
       }}
       renderItem={
       ({item}) =>  (
-        <TouchableOpacity 
-        onPress={()=>{
-         
-         props.navigation.navigate({
-             routeName: 'Tip',
-         
-             params: {
-                 tag: item, 
-               }});}}>
+        
           <CardCart title={item.user.username} url={item.user.urlPhoto} navigation ={props.navigation} post ={item.post} total = {item.total}/>
-        </TouchableOpacity>
         )
       }
       style={{width:'100%',height:'90%' ,backgroundColor:"#fff"}}>

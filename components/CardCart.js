@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View ,Image, FlatList, TouchableOpacity, ImageBackground} from 'react-native';
 import { } from 'native-base';
-import {  POSTS, TWOHAND} from '../data/dummy-data';
+import {  POSTS, TWOHAND, USERS} from '../data/dummy-data';
 import Button from './UI/Button';
 import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
+import { addCart, removeCart } from '../store/actions/Cart';
+
 const CardCart = props =>{
 console.log(props.url)
 
 const  posts =props.post;
+
 const dispatch = useDispatch();
 
 return (
@@ -29,8 +32,9 @@ return (
 
 
     </View>
-    <View style={styles.tipsListImage}>
-    <FlatList 
+  
+        
+     <FlatList 
      horizontal={true}
      data={(posts)}
      renderItem={
@@ -51,7 +55,7 @@ console.log(price)
     
 
 }} style={styles.item}>
-     <ImageBackground style={styles.title} source={{uri:item.urlPost}} resizeMode='cover' >
+     <ImageBackground style={styles.title} imageStyle={{ borderRadius: 6}} source={{uri:item.urlPost}} resizeMode='cover' >
          <View
          style={{
 
@@ -63,19 +67,67 @@ console.log(price)
              color:"#fff",
              fontSize:18
          }}>{price}$</Text>
-       <Ionicons name="close-sharp" size={20} color="red" />
+         <TouchableOpacity onPress={()=>{
+                console.log(item.userId+ " "+item.idPost)
+                
+               //dispatch(removeCart(USERS.find(u => u.idUser===item.userId),item))
+
+         }}>     
+              <Ionicons name="close-sharp" size={20} color="red" />
+         </TouchableOpacity>
+ 
          </View>
      </ImageBackground>
      </TouchableOpacity>)
      }
     }
      keyExtractor={(item) => item.idPost}
-    
+    ListFooterComponent={()=> {
+        return(
+            <View style={{
+                width: 100
+                ,height:150,
+                borderRadius:10,
+                borderWidth:1,
+                margin:5,
+                borderStyle:"dashed",
+                borderColor:"grey",
+                alignItems:"center",
+                justifyContent:"center"
+            }}>
 
-    >
-    </FlatList>
+            <Ionicons name="add-outline" size={50} color="grey" />
 
 
+            </View>
+        )
+    }}
+
+    />
+   
+
+    <View style={{
+        flexDirection:"row",
+        justifyContent:"center",
+        alignItems:"center",
+        maxWidth:"100%",
+        minWidth:"100%",
+
+    }}>
+    <TouchableOpacity style={{
+        maxWidth:"95%",
+        minWidth:"95%",
+        justifyContent:"center",
+        
+        alignItems:"center",
+        backgroundColor:"black",
+        borderRadius:20,
+        height:40}}>
+    <Text style={{
+        color:"#fff",
+        fontWeight:"bold"
+    }}>ACQUISTA</Text>
+    </TouchableOpacity>
     </View>
 </View>
 
@@ -104,7 +156,7 @@ const styles = StyleSheet.create({
 
     card:{
         width:'100%',
-        height: 240,
+        height: 280,
         alignItems:'flex-start',
         justifyContent:'flex-start',
         backgroundColor:'white',
@@ -171,8 +223,8 @@ const styles = StyleSheet.create({
         borderRadius:10,
       },
       title: {
-                width:'100%'
-        ,height:140,
+        width:'100%'
+        ,height:150,
         borderRadius:10,
       },
 

@@ -2,6 +2,7 @@ import React from 'react'
 import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image} from 'react-native'
 import GestureRecognizer from 'react-native-swipe-gestures';
 import { useDispatch } from 'react-redux';
+import IconCart from '../../components/IconCart';
 import Post from '../../components/Post';
 import { TWOHAND, USERS } from '../../data/dummy-data';
 import { addCart, removeCart } from '../../store/actions/Cart';
@@ -51,4 +52,17 @@ const PostProfileScreen = (props)=>{
       </GestureRecognizer>
       );
 }
+PostProfileScreen.navigationOptions = navData => {
+  var isTw = navData.navigation.getParam("isTwoHand")
+  if(isTw){
+  return {
+    
+
+    headerRight: ()=>{ return (
+      <IconCart navigation={navData.navigation}/>
+    )}
+      
+  };
+}
+};
 export default PostProfileScreen;

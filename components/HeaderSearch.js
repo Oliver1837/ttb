@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View,Text,StyleSheet, TextInput,TouchableOpacity} from 'react-native';
+import {View,Text,StyleSheet, TextInput,TouchableOpacity, Image} from 'react-native';
 import { AntDesign ,Ionicons} from '@expo/vector-icons';
 const HeaderSearch = ({search,showSearch})=>{
     const[searchText ,setSearchText] = useState('')
@@ -8,7 +8,7 @@ const HeaderSearch = ({search,showSearch})=>{
 
     <View style={styles.header}>
     <View style={styles.searchSection}>
-    <AntDesign style={styles.icon}  name="search1" size={24} color="black" />
+    <Image source={require('../assets/icons/search.png')} style={{width:25,height:25}}/>
     
 {pressSearch?
 <View  style={styles.input}>
@@ -40,7 +40,7 @@ const HeaderSearch = ({search,showSearch})=>{
 
 
 }}>
-<Text>Cerca i tips</Text>
+<Text>Search</Text>
 </TouchableOpacity>}
 
 
@@ -86,15 +86,16 @@ const styles= StyleSheet.create({
         paddingTop: 10,
         paddingRight: 10,
         paddingBottom: 10,
-        paddingLeft: 0,
+        paddingLeft: 10,
         backgroundColor: '#fff',
         color: 'black',
     
       
         fontSize:15,
         flexDirection:"row",
-        borderColor:1,
-        borderWidth:1
+        borderColor:"#FF4343",
+        borderWidth:1,
+        borderRadius:25
     },
     textInput: {
         flex: 1,

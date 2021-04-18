@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import ListPostPreview from '../../components/ListPostPreview';
 import { POSTS, TWOHAND } from '../../data/dummy-data';
 import ListTwoHandPreview from '../../components/ListTwoHandPreview';
+import IconCart from '../../components/IconCart';
 
 const TipScreen = props =>{
     const tag = props.navigation.getParam("tag");
@@ -125,14 +126,7 @@ TipScreen.navigationOptions = navData => {
   
 
     headerRight: ()=>{ return (
-      <TouchableOpacity style={{
-        marginRight:5
-      }} onPress={()=>{ 
-
-        navData.navigation.navigate("Carrello")
-      }}>
-         <Ionicons name="cart" size={30} color="black" />      
-</TouchableOpacity>
+      <IconCart navigation={navData.navigation} isBlack={true}/>
     )}
       
   };

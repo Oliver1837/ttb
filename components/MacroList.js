@@ -25,7 +25,7 @@ export default function MacroList({macros,navigation}){
         style={{
           justifyContent:"center",
           alignItems:'center',
-          borderRadius:10,
+          borderRadius:25,
           borderWidth:1,
           borderWidth:2,
           height:40,

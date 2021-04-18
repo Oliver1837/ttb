@@ -14,6 +14,7 @@ import PostPreview from '../../components/PostPreview';
 import ListPostPreview from '../../components/ListPostPreview';
 import TwoHandPreview from '../../components/TwoHandPreview';
 import ListTwoHandPreview from '../../components/ListTwoHandPreview';
+import IconCart from '../../components/IconCart';
 const ProfileScreen = (props)=> {
    const userId= props.navigation.getParam("userId")
 
@@ -63,16 +64,15 @@ style={styles.container}
     
    }}>
      <Rating
-  type='star'
+  type='custom'
   ratingCount={5}
-  imageSize={20}
+  imageSize={18}
   onFinishRating={()=>{return 5}}
   startingValue={4}
-  selectedColor="black"
-  
+  ratingColor="black"
   style={{
     marginRight:95,
-   
+    
   }}
 /><Text style={{
   fontWeight:"bold"
@@ -87,10 +87,10 @@ style={styles.container}
        <TouchableOpacity style={{
           justifyContent:"center",
           alignItems:'center',
-          borderRadius:10,
+          borderRadius:25,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:follow>=0?"black":"#0095f6",
+          backgroundColor:follow>=0?"#FF4343":"#ff9c9c",
           height:40,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -98,7 +98,7 @@ style={styles.container}
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:follow>=0?"black":"#0095f6",
+          borderColor:follow>=0?"#FF4343":"#ff9c9c",
           width:100,
           flexDirection:"row"
         }}
@@ -118,10 +118,10 @@ style={styles.container}
       <TouchableOpacity style={{
           justifyContent:"center",
           alignItems:'center',
-          borderRadius:10,
+          borderRadius:25,
           borderWidth:1,
-          borderWidth:2,
-          backgroundColor:"black",
+    
+          backgroundColor:"#fff",
           height:40,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -129,12 +129,12 @@ style={styles.container}
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"black",
+          borderColor:"#FF4343",
           width:100
         }}
         onPress={props.toggleTag}
         >
-          <MaterialIcons name="email" size={24} color="white" />
+         <Image source={require('../../assets/icons/message.png')} style={{height:20,width:30,tintColor:"#FF4343"}}/>
         </TouchableOpacity>
 
      </View>
@@ -147,18 +147,21 @@ style={styles.container}
 
      <Container style={styles.tabs}>
       
-      <Tabs tabBarUnderlineStyle={{backgroundColor:'black' , height:1}}>
+      <Tabs tabBarUnderlineStyle={{backgroundColor:'#FF4343' , height:3,}} tabContainerStyle={{borderBottomColor:"#ff9c9c",borderBottomWidth:1}}
+      
+      
+      >
       <Tab  heading="GRID" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black'}}>
+           activeTextStyle={{color:'black',fontWeight:"bold"}}>
                 <ListPostPreview posts={postsNormal} navigation={props.navigation} routeName='Post' key="1"/>
   
            </Tab>
            <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black'}}>
+           activeTextStyle={{color:'black',fontWeight:"bold"}}>
              <ListTwoHandPreview routeName="Post" ths={ths} navigation={props.navigation}/>
            </Tab>
           
@@ -174,14 +177,19 @@ ProfileScreen.navigationOptions = navData => {
   
 
     headerRight: ()=>{ return (
-      <TouchableOpacity style={{
-        marginRight:5
-      }} onPress={()=>{
-        navData.navigation.navigate("Carrello")
-      }}>
-         <Ionicons name="cart" size={30} color="black" />      
-</TouchableOpacity>
-    )}
+      <IconCart navigation={navData.navigation} isBlack={true}/>
+    )},
+    headerTitle:()=>{
+      return(<Image source={require('../../assets/logo.png')} style={{height:25,width:65}}/>)
+    },
+    headerLeft: ()=>(
+      <TouchableOpacity 
+      onPress={() => navData.navigation.goBack(null)}
+      >
+      <Image source={require('../../assets/icons/back.png')} style={{height:18,width:14,marginLeft:5}}/>
+      </TouchableOpacity>
+   )
+    
       
   };
 };

@@ -12,6 +12,7 @@ import HeaderCart from '../../components/HeaderCart';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ListPostPreview from '../../components/ListPostPreview';
 import ListTwoHandPreview from '../../components/ListTwoHandPreview';
+import IconCart from '../../components/IconCart';
 const MyProfile = (props)=> {
   const userSelector = useSelector(state=> state.user)
   const postSelector = useSelector(state => state.post)
@@ -253,13 +254,7 @@ MyProfile.navigationOptions = navData => {
     headerTitle: 'TipToBe',
 
     headerRight: ()=>{ return (
-      <TouchableOpacity style={{
-        marginRight:5
-      }} onPress={()=>{
-        navData.navigation.navigate("Carrello")
-      }}>
-        <Ionicons name="cart" size={30} color="black" />      
-</TouchableOpacity>
+      <IconCart navigation={navData.navigation} isBlack={true}/>
     )},headerTitleAlign:"center"
       
   };
@@ -298,12 +293,12 @@ const styles = StyleSheet.create({
 
 imageThumbnail: {
     margin:0.2,
-    width:(Dimensions.get('window').width/3   - 1)
-    ,height:(Dimensions.get('window').height/4 ),
+    width:150
+    ,height:150,
   },
   imagePosts: {
     margin:0.2,
-    width:(Dimensions.get('window').width/3   - 1)
-    ,height:(Dimensions.get('window').width/3   - 1),
+    width:150
+    ,height:150,
   },
 });

@@ -1,9 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react'
-import {View , Text, StyleSheet, TouchableOpacity,Dimensions,FlatList} from 'react-native'
+import {View , Text, StyleSheet, TouchableOpacity,Dimensions,FlatList,Image} from 'react-native'
 import { enableScreens } from 'react-native-screens';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import { useSelector } from 'react-redux';
+import Header from '../../components/Header';
+import IconCart from '../../components/IconCart';
 import Post from '../../components/Post';
 import Button from '../../components/UI/Button'
 enableScreens();
@@ -26,9 +28,10 @@ const FeedScreen = props =>{
         <View  style={{ 
           flex: 1,
           backgroundColor: 'white',
-          alignItems: 'center',
-          justifyContent: 'center',
+          
         }}>
+          
+          
       <FlatList
         data={posts}
         ListEmptyComponent={()=>{
@@ -98,19 +101,16 @@ const FeedScreen = props =>{
 
 }
 FeedScreen.navigationOptions = navData => {
+  console.log(navData)
   return {
   
-
     headerRight: ()=>{ return (
-      <TouchableOpacity style={{
-        marginRight:5
-      }} onPress={()=>{ 
-
-        navData.navigation.navigate("Carrello")
-      }}>
-         <Ionicons name="cart" size={30} color="white" />      
-</TouchableOpacity>
+      <IconCart navigation={navData.navigation} />
     )}
+      ,
+      headerTitle:()=>{
+        return(<Image source={require('../../assets/logofeed.png')} style={{height:25,width:65}}/>)
+      }
       
   };
 };

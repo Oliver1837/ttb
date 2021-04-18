@@ -31,15 +31,13 @@ function TwoHandPreview({post,navigation,routeName,price}){
                 {
                   height:"100%",
                   width:"100%",
-                  flexDirection:"row-reverse",
+                  flexDirection:"row",
                   marginTop:100,
+                  marginLeft:5
                 }
               }>
                 
-              <FontAwesome name="dollar" size={20} color="white"  style={{
-                marginRight:10,
-                marginTop:4
-              }}></FontAwesome>
+              
               <Text style={
                 {
                   fontSize:20,
@@ -47,7 +45,7 @@ function TwoHandPreview({post,navigation,routeName,price}){
                   color:"#fff",
 
                 }
-              }>{price}</Text>
+              }>{price + "$"}</Text>
               </View>
               
       

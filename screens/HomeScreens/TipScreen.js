@@ -7,6 +7,7 @@ import ListPostPreview from '../../components/ListPostPreview';
 import { POSTS, TWOHAND } from '../../data/dummy-data';
 import ListTwoHandPreview from '../../components/ListTwoHandPreview';
 import { useSelector } from 'react-redux';
+import IconCart from '../../components/IconCart';
 
 const TipScreen = (props) =>{
     const tagName = props.navigation.getParam("tag");
@@ -128,15 +129,8 @@ TipScreen.navigationOptions = navData => {
   return {
   
 
-    headerRight: ()=>{ return (
-      <TouchableOpacity style={{
-        marginRight:5
-      }} onPress={()=>{ 
-
-        navData.navigation.navigate("Carrello")
-      }}>
-         <Ionicons name="cart" size={30} color="black" />      
-</TouchableOpacity>
+    headerRight: (navData)=>{ return (
+      <IconCart navigation={navData.navigation}/>
     )}
       
   };

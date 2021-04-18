@@ -29,10 +29,10 @@ return (
         <TouchableOpacity style={{
           justifyContent:"center",
           alignItems:'center',
-          borderRadius:10,
+          borderRadius:40,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:isPreferred <0 ?"#0095f6":"black",
+          backgroundColor:isPreferred <0 ?"#ff9c9c":"#ff4343",
           height:40,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -40,7 +40,9 @@ return (
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:isPreferred <  0 ?"#0095f6":"black"
+          borderColor:isPreferred <  0 ?"#ff9c9c":"#ff4343"
+          ,
+          width:100
         }}
         onPress={()=>{
            dispatch(toggleTagFollow(title))
@@ -150,12 +152,11 @@ const styles = StyleSheet.create({
     },
     tipsImage:{
        
-      borderRadius:25,
+      borderRadius:40,
   
-      height:50,
-      width:50,
-      borderWidth:2,
-      borderColor:"black"
+      height:60,
+      width:60,
+     
       
 
   },

@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react'
 import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image} from 'react-native'
 import { useDispatch } from 'react-redux';
+import IconCart from '../../components/IconCart';
 import Post from '../../components/Post';
 import { TWOHAND, USERS } from '../../data/dummy-data';
 import { addCart, removeCart } from '../../store/actions/Cart';
@@ -38,17 +39,12 @@ PostScreen.navigationOptions = navData => {
   var isTw = navData.navigation.getParam("isTwoHand")
   if(isTw){
   return {
-    
-
     headerRight: ()=>{ return (
-      <TouchableOpacity style={{
-        marginRight:5
-      }} onPress={()=>{
-      }}>
-         <Ionicons name="cart" size={30} color="white" />      
-</TouchableOpacity>
+      <IconCart navigation={navData.navigation} />
     )}
       
+
+  
   };
 }
 };

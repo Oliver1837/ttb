@@ -7,6 +7,7 @@ import { TAGS } from '../../data/dummy-data';
 import { uploadPost } from '../../store/actions/UploadPost';
 const Descrizione = props => {
     return (
+      
       <TextInput
     
         {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
@@ -16,19 +17,26 @@ const Descrizione = props => {
         maxLength={250}
         onSubmitEditing={Keyboard.dismiss}
       />
+     
     );
   };
   const TipsDescription = props => {
     return (
+      <View style={{flexDirection:"row",
+      display:"flex",
+      justifyContent:"flex-start",
+      width:"100%"}}>
+        <Text style={{maxHeight:"100%",textAlignVertical:"center"}}>TipTo#</Text>
       <TextInput
-    
+      style={{borderWidth:1}}
         {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
-        placeholder={"TipTo#"}
+        placeholder={"Scrivi i tuoi tips"}
         placeholderTextColor="gray"
         editable
         maxLength={250}
         onSubmitEditing={Keyboard.dismiss}
       />
+       </View>
     );
   };
 const  UploadPost =(props)=> {
@@ -55,16 +63,17 @@ const  UploadPost =(props)=> {
       backgroundColor:"#fff"
   }}>   
       <HeaderAlbum label={"PUBBLICA"} routeNameBack="CheckPhotoAlbum" navigate={props.navigation} routeNameContinua="Profile" array={[uriPhoto,tips,descrizione,prezzo,taglia,marca,condizione]}  isTh={isTh}/>
+     
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
           justifyContent: 'center',
           alignContent: 'center',
           flexDirection:"column",
-          
+          height:"100%"
        
         }}>
-      <KeyboardAvoidingView enabled>
+       <KeyboardAvoidingView enabled>
     <View style={{
         height:"100%",
         minHeight:"100%",
@@ -112,8 +121,8 @@ const  UploadPost =(props)=> {
       <TipsDescription
        style={{
           
-        width:"100%",
-        
+        maxWidth:"90%",
+      
       }}
         multiline
         numberOfLines={4}
@@ -216,6 +225,27 @@ const  UploadPost =(props)=> {
         margin:5
 
       }}>  
+        <Text>Colore:</Text>
+        <Input style={{
+             minWidth:120,
+             maxWidth:120,
+             borderBottomWidth:1,
+             height:25,
+             minHeight:25,
+             minHeight:25
+           }}
+           onChangeText={text => onChangeMarca(text)}
+           value={marca}
+           />
+      </View>
+      <View style={{
+        flexDirection:"row",     
+        maxWidth:"90%",
+        minWidth:"90%",
+        justifyContent:"space-between",
+        margin:5
+
+      }}>  
         <Text>Prezzo:</Text>
            <Input style={{
               minWidth:40,
@@ -232,8 +262,8 @@ const  UploadPost =(props)=> {
       </View>
       : null}
     </View>
-   
     </KeyboardAvoidingView>
+    
     </ScrollView>
     </View>
  

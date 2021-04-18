@@ -8,19 +8,19 @@ function information_profile({user,lenght}) {
      }}>
           
          <View>
-           <Text style={styles.textData}>Tips</Text>
+           <Text style={styles.text}>Tips</Text>
            <Text style={styles.textData}>{lenght}</Text>
 
          </View>
          
          <View>
-           <Text style={styles.textData}>Following</Text>
+           <Text style={styles.text}>Following</Text>
            <Text style={styles.textData}>{user.nFollowing}</Text>
 
          </View>
          
          <View>
-           <Text style={styles.textData}>Follower</Text>
+           <Text style={styles.text}>Follower</Text>
            <Text style={styles.textData}>{user.nFollower}</Text>
 
          </View>
@@ -33,9 +33,16 @@ const styles = StyleSheet.create({
     textData:{
         fontWeight:"bold",
         fontSize:16,
-        margin:4,
+        margin:1,
         textAlign:"center"
   
     },
+    text:{
+    
+      fontSize:16,
+      margin:4,
+      textAlign:"center"
+
+  },
 
 })

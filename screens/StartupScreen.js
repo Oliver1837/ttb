@@ -3,6 +3,7 @@ import {
   View,
   ActivityIndicator,
   StyleSheet,
+  Image
 
 } from 'react-native';
 import { useDispatch } from 'react-redux';
@@ -35,7 +36,7 @@ const StartupScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <ActivityIndicator size="large" color="black" />
+      <Image source={require('../assets/logo.png')} style={{height:100,width:120}}/>
     </View>
   );
 };

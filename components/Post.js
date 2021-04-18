@@ -1,14 +1,14 @@
 import React from 'react'
 import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image,Alert} from 'react-native'
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
-import { TAGS,TWOHAND,USERS } from '../data/dummy-data';
+import { POSTS, TAGS,TWOHAND,USERS } from '../data/dummy-data';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLike, togglePreferred } from '../store/actions/User';
-import { addCart } from "../store/actions/Cart";
+import { useState } from 'react';
 const {width, height} = Dimensions.get('window');
 
 const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
-   
+ //  const [isAdd,setIsAdd] = useState(false)
     var Tags = TAGS
    // Tags= Tags.filter(tag=> post.nameTag.filter(t => t=== tag.nameTag).length>0)
     const user = USERS.find(u =>  post.userId === u.idUser);
@@ -16,12 +16,25 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
     let price ;
     const userSelector = useSelector(state=> state.user)
     const cartSelector = useSelector(state=> state.cart)
-   let isCart = -1;
-    /*if(cartSelector.cart.length>0){
+   var isCart = 0;
+   var idCartPost = 0
+   let isAdd=false
+    if(cartSelector.cart.length>0){
       const cart = cartSelector.cart.find(c=> c.idUser === userSelector.user.userId)
-      isCart = cart.post.findIndex(p => p.postId === post.postId)
+     // idCartPost = cart.post.find(p => p.postId === ).idPost
+      const ps = cart.post
+      console.log(ps[0].idPost)
+
      
-    }*/
+    for(var i= 0; i< ps.length ;i++){
+      console.log(ps[i].idPost)
+       if(ps[i].idPost === post.idPost) {
+       isAdd= (true)
+        console.log("ENTRO")
+      } }
+     
+    }
+    console.log("Post ID:",post.idPost)
     const like = userSelector.likes
     const preferred = userSelector.preferred
     const index = like.findIndex(l => l=== post.idPost)
@@ -98,8 +111,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
           dispatch(toggleLike(post.idPost))
         }
            }>
-            <Ionicons name="ios-heart" size={25}  color={index >=0 ?"red" :"#fff"}
-           />
+            <Image source={require('../assets/icons/heart.png')} style={{height:26,width:30,tintColor:index>=0 ?"#FF4343":"#FFF",}} />
            </TouchableOpacity>
             <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
             <TouchableOpacity onPress={
@@ -112,7 +124,9 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
               }
             })
             }}>
-             <Ionicons name="ios-chatbubbles" size={25} color="#fff"/>
+              
+              <Image source={require('../assets/icons/comment.png')} style={{height:30,width:30,tintColor:"#FFF",}} />
+
           </TouchableOpacity>
             <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
             <TouchableOpacity onPress={
@@ -121,10 +135,11 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
           dispatch(togglePreferred(post))
         }
            }>
-            <Ionicons name="ios-bookmark" size={25} color={indexPreferedd >=0 ?"red" :"#fff" }/>
+                <Image source={require('../assets/icons/save.png')} style={{height:30,width:20,tintColor:indexPreferedd >=0 ?"#FF4343":"#FFF",}} />
+
             </TouchableOpacity>
             <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
-            <Ionicons name="ios-paper-plane" size={25} color="#fff" />
+            <Image source={require('../assets/icons/share.png')} style={{height:30,width:31,tintColor:"#FFF",}} />
             <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
             {me === true ?<MaterialCommunityIcons name="settings-helper" size={24} color="white" /> :null}
             {isTwoHand ? 
@@ -140,7 +155,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
               borderRadius:10,
               borderWidth:1,
               borderWidth:2,
-              backgroundColor:isCart>=0 ?"red": "#0095f6",
+              backgroundColor:isAdd?"red": "black",
               height:40,
               margin:1,
               shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -148,13 +163,24 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
               elevation: 20,
               shadowRadius: 100 ,
               shadowOffset : { width: 1, height: 13},
-              borderColor:isCart>=0 ?"red": "#0095f6"
+              borderColor:isAdd?"red": "white"
             }}
             onPress={
               ()=>{
-                Alert.alert(
-                  "Aggiungi al carrello",
-                  "Sei sicuro di aggiungere l'articolo al Carrello",
+               if(isAdd===true){
+                Alert.alert( "Rimuovi dal carrello","Sei sicuro di rimuovere l'articolo dal Carrello?",
+                [
+                  {
+                    text: "NO",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                  },
+                  { text: "SI", onPress: () =>  onRemoveCart() }
+                ],
+                { cancelable: false }
+              )
+
+               }else{ Alert.alert( "Aggiungi al carrello","Sei sicuro di aggiungere l'articolo dal Carrello?",
                   [
                     {
                       text: "NO",
@@ -164,7 +190,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
                     { text: "SI", onPress: () => onAddCart() }
                   ],
                   { cancelable: false }
-                );
+                );}
               }
               
               
@@ -179,7 +205,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
                 ,
                 padding:5
     
-              }}>{isCart>=0 ?"RIMUOVI": "COMPRA"}</Text>
+              }}>{isAdd?"RIMUOVI": "COMPRA"}</Text>
             </TouchableOpacity>
             </View>
             

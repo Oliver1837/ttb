@@ -1,27 +1,42 @@
 import React, { useEffect, useState } from 'react'
 import { ScrollView } from 'react-native'
+import IconCart from '../../components/IconCart'
 import ListPostPreview from '../../components/ListPostPreview'
 import ListTwoHandPreview from '../../components/ListTwoHandPreview'
 import {Dizionario, POSTS,TWOHAND} from '../../data/dummy-data'
 import DizionarioMacro from '../../model/DizionarioMacro'
 
-const MacroTipsScreen =(props) =>{
+const MacroTipsScreen =({navigation}) =>{
     
-    const th = props.navigation.getParam("th")
-    const macro = props.navigation.getParam("macro")
+    const th = navigation.getParam("th")
+    const macro = navigation.getParam("macro")
     let posts = POSTS
     if(th===false){
     posts = POSTS.filter(p => p.isTwoHand===false )
   
     return (
     
-    <ListPostPreview posts = {posts} navigation={props.navigation} routeName="Post" key={1} macro={macro} isMacroList={true}/>
+    <ListPostPreview posts = {posts} navigation={navigation} routeName="Post" key={1} macro={macro} isMacroList={true}/>
 
     )
     }else{
+        
         const ths = TWOHAND;
-        return (  <ListTwoHandPreview ths= {ths} navigation={props.navigation} routeName="Post"/>)
+        return (  <ListTwoHandPreview ths= {ths} navigation={navigation} routeName="Post"/>)
     }   
 }
+MacroTipsScreen.navigationOptions = navData => {
+    //var isTw = navData.navigation.getParam("isTwoHand")
+  
+    return {
+      
+  
+      headerRight: ()=>{ return (
+        <IconCart navigation={navData.navigation} isBlack={true}/>
+      )}
+        
+    };
+
+  };
 export default MacroTipsScreen;
 

@@ -16,33 +16,33 @@ const initialState = {
             if(cart.length===0){
                 var posts = []
                 var carrello = new Carrello(user ,posts.concat(action.post) ,action.price);
-                return {...state,cart:cart.concat(carrello)}
+                return {...state,cart:cart.concat(carrello),number:state.number+1}
             } else{
+                console.log(cart)
                 var price = action.price
                 var indexCart = cart.findIndex(c => c.user === user );
                 if(indexCart>=0){
                     var updateCart = cart.find(c => c.user ===user);
                     if(updateCart.post.findIndex(p => p === action.post)>=0){
-                        return {...state , cart : cart}
+                        return {...state , cart : cart,number:state.number+1}
                     }
                     var post =updateCart.post.concat(action.post)
                     updateCart.post = post
                     updateCart.total = updateCart.total +action.price;
                     cart[indexCart] = updateCart;
-                    return {...state , cart : cart}
+                    return {...state , cart : cart,number:state.number+1}
                 }else{
                     console.log("NON Esiste");
 
                     var posts = []
                     var carrello = new Carrello(user ,posts.concat(action.post),action.price );                                       
-                     return {...state , cart : cart.concat(carrello)}
+                     return {...state , cart : cart.concat(carrello),number:state.number+1}
                 }
                 }
 
         }
-        case REMOVE_CART:{  return state
-        }
-          /*  console.log("Remove Reducer")
+        case REMOVE_CART:{  
+         console.log("Remove Reducer")
             const user = action.user
             const cart = [...state.cart]
             if(cart.length===0){
@@ -51,16 +51,19 @@ const initialState = {
               //  var price = action.price
               
                 var indexCart = cart.findIndex(c => c.user === user );
+                console.log(indexCart)
                 if(indexCart>=0){
                     var updateCart = cart.find(c => c.user ===user);
                     var indexPost = updateCart.post.findIndex(p => p === action.post)>=0
                     if(indexPost>=0){
                          updateCart.post.splice(indexPost,1)
                         if(updateCart.post.lenght>0){
-                            return {...state , cart : updateCart}
+                            return {...state , cart : updateCart,number:state.number-1}
                         }else{
-                            //updateCart.splice(indexCart,1)
-                            return {...state , cart : updateCart}
+                            let newCart = cart.splice(indexCart,0)
+                            console.log(newCart)
+
+                            return {...state , cart : newCart,number:state.number-1}
                         }
                       
                     }else{
@@ -72,8 +75,8 @@ const initialState = {
                     return state
                 }
                 }
-            } */
-        case CLEAR_CART:
+            } 
+            case CLEAR_CART:
             return state
 
         default :return state;
