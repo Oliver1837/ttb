@@ -1,7 +1,7 @@
 import React from 'react'
 import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image} from 'react-native'
 import GestureRecognizer from 'react-native-swipe-gestures';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import IconCart from '../../components/IconCart';
 import Post from '../../components/Post';
 import { TWOHAND, USERS } from '../../data/dummy-data';
@@ -13,11 +13,12 @@ const PostScreen = (props)=>{
     const post = props.navigation.getParam("post")
     const user = USERS.find(u=> u.idUser===post.userId);
     const isTwoHand =props.navigation.getParam("isTwoHand")
+    let postUseSelector = useSelector(state=> state.post)
     const dispatch = useDispatch()
     var price = 0;
     if(isTwoHand===true){
 
-      var tw = TWOHAND.find(tw=> tw.idPost===post.idPost);
+      var tw = postUseSelector.ths.find(tw=> tw.idPost===post.idPost);
       price = tw.prezzo
    }
    

@@ -19,31 +19,41 @@ export default (state = initialState, action) => {
       case  UPLOAD_PHOTO_GRID: {
       console.log(action.tips)
       const id = "post" + Math.random();
-      let subString= getSubStringTag(action.tips)
+      let subString= getSubStringTag(action.tips.replace(new RegExp(' ', 'g'),""))
+      console.log(subString)
       let ts = state.tags;
-      if(ts.findIndex(t=> t.nameTag===subString)<0){
-        var tag = new Tag(subString, action.uri)
+
+        
+     for(var i = 0; i<subString.length; i++){
+      if(ts.findIndex(t=> t.nameTag===subString[i])<0){
+        var tag = new Tag(subString[i], action.uri)
         ts=  ts.concat(tag)
 
       }
+     }
 
-
-      const post =  new Post(id, action.uri,0,0,"user10",[subString],action.descrizione,true,false);
+      const post =  new Post(id, action.uri,0,0,"user10",subString,action.descrizione,true,false);
    
       return {...state , posts : state.posts.concat(post),tags :ts}
     }
       case  UPLOAD_PHOTO_TWO_HAND: {
       const id = "post" + Math.random();
       let subString= getSubStringTag(action.tips)
+      console.log(subString)
       let ts = state.tags;
-      if(ts.findIndex(t=> t.nameTag===subString)<0){
-        var tag = new Tag(subString, action.uri)
+
+        
+     for(var i = 0; i<subString.length; i++){
+      if(ts.findIndex(t=> t.nameTag===subString[i])<0){
+        var tag = new Tag(subString[i], action.uri)
         ts=  ts.concat(tag)
 
       }
-      const post =  new Post(id, action.uri,0,0,"user10",[subString],action.descrizione,false,true);
+     }
+    
+      const post =  new Post(id, action.uri,0,0,"user10",subString,action.descrizione,false,true);
       const idTh = "twohand" + Math.random();
-      const th = new TwoHand(idTh,id,action.prezzo,"user10")
+      const th = new TwoHand(idTh,id,action.prezzo.replace("$",""),"user10")
       console.log(th)
       return {...state , posts : state.posts.concat(post),tags :ts,ths:state.ths.concat(th)}
 
@@ -55,7 +65,24 @@ export default (state = initialState, action) => {
 function getSubStringTag(string){
     var start = string.indexOf("#")
     var end = string.length
-    return string.substring(start+1,end);
+    var words = []
+    let word= ""
+    for(var i = 0;i<=end ; i++ ){
+      var char = string.charAt(i)
+      if(char!='#' && i!=end){
+        word = word + char;
+       
+      }else if((char==='#' || i===end)&& word!==""){
+      
+        start= i;
+        words= words.concat(word)
+        word=""
+
+      }
+
+    }
+    
+    return words;
 }
   
   

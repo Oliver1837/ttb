@@ -1,6 +1,6 @@
 class Post{
 
-    constructor(idPost,urlPost,nLike,nComment,userId,nameTag=[],descrizione,isGrid,isTwoHand){
+    constructor(idPost,urlPost,nLike,nComment,userId,nameTag,descrizione,isGrid,isTwoHand){
         this.idPost= idPost;
         this.urlPost=urlPost;
         this.nLike= nLike;

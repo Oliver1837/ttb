@@ -70,10 +70,10 @@ console.log(price)
          <TouchableOpacity onPress={()=>{
                 console.log(item.userId+ " "+item.idPost)
                 
-               //dispatch(removeCart(USERS.find(u => u.idUser===item.userId),item))
+               dispatch(removeCart(USERS.find(u => u.idUser===item.userId),item))
 
          }}>     
-              <Ionicons name="close-sharp" size={20} color="red" />
+              <Ionicons name="close-sharp" size={20} color="#fff" />
          </TouchableOpacity>
  
          </View>
@@ -91,12 +91,12 @@ console.log(price)
                 borderWidth:1,
                 margin:5,
                 borderStyle:"dashed",
-                borderColor:"grey",
+                borderColor:"#ff4343",
                 alignItems:"center",
                 justifyContent:"center"
             }}>
 
-            <Ionicons name="add-outline" size={50} color="grey" />
+            <Ionicons name="add-outline" size={50} color="#ff4343" />
 
 
             </View>
@@ -120,7 +120,7 @@ console.log(price)
         justifyContent:"center",
         
         alignItems:"center",
-        backgroundColor:"black",
+        backgroundColor:"#ff4343",
         borderRadius:20,
         height:40}}>
     <Text style={{

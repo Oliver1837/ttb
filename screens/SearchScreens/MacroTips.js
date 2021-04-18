@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ScrollView } from 'react-native'
+import { useSelector } from 'react-redux'
 import IconCart from '../../components/IconCart'
 import ListPostPreview from '../../components/ListPostPreview'
 import ListTwoHandPreview from '../../components/ListTwoHandPreview'
@@ -10,7 +11,8 @@ const MacroTipsScreen =({navigation}) =>{
     
     const th = navigation.getParam("th")
     const macro = navigation.getParam("macro")
-    let posts = POSTS
+    let postUseSelector = useSelector(state=> state.post)
+    let posts = postUseSelector.posts
     if(th===false){
     posts = POSTS.filter(p => p.isTwoHand===false )
   
@@ -21,7 +23,7 @@ const MacroTipsScreen =({navigation}) =>{
     )
     }else{
         
-        const ths = TWOHAND;
+        const ths = postUseSelector.ths;
         return (  <ListTwoHandPreview ths= {ths} navigation={navigation} routeName="Post"/>)
     }   
 }

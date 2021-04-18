@@ -1,7 +1,7 @@
 import React from 'react'
 import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image} from 'react-native'
 import GestureRecognizer from 'react-native-swipe-gestures';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import IconCart from '../../components/IconCart';
 import Post from '../../components/Post';
 import { TWOHAND, USERS } from '../../data/dummy-data';
@@ -13,6 +13,7 @@ const PostProfileScreen = (props)=>{
     const post = props.navigation.getParam("post")
     const isTwoHand = props.navigation.getParam("isTwoHand")
     const user = USERS.find(u=> u.idUser===post.userId);
+    let postUseSelector = useSelector(state=> state.post)
 
     const config = {
       velocityThreshold: 0.3,
@@ -22,7 +23,7 @@ const PostProfileScreen = (props)=>{
     var price = 0;
     if(isTwoHand===true){
 
-      var tw = TWOHAND.find(tw=> tw.idPost===post.idPost);
+      var tw = postUseSelector.ths.find(tw=> tw.idPost===post.idPost);
       price = tw.prezzo
    }
 
@@ -57,10 +58,20 @@ PostProfileScreen.navigationOptions = navData => {
   if(isTw){
   return {
     
-
     headerRight: ()=>{ return (
-      <IconCart navigation={navData.navigation}/>
-    )}
+      <IconCart navigation={navData.navigation} isBlack={true}/>
+    )},
+    headerTitle:()=>{
+      return(<Image source={require('../../assets/logo.png')} style={{height:25,width:65}}/>)
+    },
+    headerLeft: ()=>(
+      <TouchableOpacity 
+      onPress={() => navData.navigation.goBack(null)}
+      >
+      <Image source={require('../../assets/icons/back.png')} style={{height:18,width:14,marginLeft:5}}/>
+      </TouchableOpacity>
+   )
+    
       
   };
 }

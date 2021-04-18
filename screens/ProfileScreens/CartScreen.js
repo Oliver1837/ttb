@@ -37,7 +37,7 @@ console.log(cart.cart)
               fontWeight:'bold',
               
             }}>Inizia a seguire qualche tips e aggiungi al carrello i 2HAND  </Text>
-            <Button  title="INZIA" follow={true}/>
+           
           </View>
         );
       }}

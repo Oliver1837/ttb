@@ -1,6 +1,7 @@
 import { Button, Icon, Input, Left, List, ListItem, Right } from 'native-base';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TextInput, View ,TouchableOpacity, Switch,ScrollView, Keyboard, KeyboardAvoidingView} from 'react-native';
+import { Image, StyleSheet, Text, TextInput, View ,TouchableOpacity, Switch,ScrollView,KeyboardAvoidingView,
+  Keyboard,} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import HeaderAlbum from '../../components/HeaderAlbum';
 import { TAGS } from '../../data/dummy-data';
@@ -57,20 +58,15 @@ const  UploadPost =(props)=> {
     console.log(props.navigation.getParam("uri"))
     const uriPhoto = props.navigation.getParam("uri");
   return (
-    <View  style={{
-      minHeight:"100%",
-      
-      backgroundColor:"#fff"
-  }}>   
+    <View style={{flex: 1, backgroundColor: '#FFF'}}>   
       <HeaderAlbum label={"PUBBLICA"} routeNameBack="CheckPhotoAlbum" navigate={props.navigation} routeNameContinua="Profile" array={[uriPhoto,tips,descrizione,prezzo,taglia,marca,condizione]}  isTh={isTh}/>
      
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
           justifyContent: 'center',
-          alignContent: 'center',
+         
           flexDirection:"column",
-          height:"100%"
        
         }}>
        <KeyboardAvoidingView enabled>
@@ -121,8 +117,8 @@ const  UploadPost =(props)=> {
       <TipsDescription
        style={{
           
-        maxWidth:"90%",
-      
+        maxWidth:"60%",
+        marginLeft:25
       }}
         multiline
         numberOfLines={4}
@@ -142,9 +138,9 @@ const  UploadPost =(props)=> {
       }}>  
         <Text>2HAND</Text>
             <Switch
-        trackColor={{ false: '#767577', true: '#81b0ff' }}
-        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-        ios_backgroundColor="#3e3e3e"
+        trackColor={{ false: '#FF9C9C', true: '#ff4343' }}
+        thumbColor={isEnabled ? '#FFF' : '#FFF'}
+        ios_backgroundColor="#FF9C9C"
         onValueChange={toggleSwitch}
         value={isEnabled}
       />
@@ -300,7 +296,7 @@ const styles = StyleSheet.create({
     width:"90%",
     minHeight:150
   },
-  containerTip: {
+   containerTip: {
   
     backgroundColor: '#fff',
     flexDirection:"row",

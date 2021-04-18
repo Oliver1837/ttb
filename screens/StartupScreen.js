@@ -36,7 +36,7 @@ const StartupScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <Image source={require('../assets/logo.png')} style={{height:100,width:120}}/>
+      <Image source={require('../assets/logo.png')} style={{width:135}}/>
     </View>
   );
 };

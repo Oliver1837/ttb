@@ -7,11 +7,13 @@ import ListPostPreview from '../../components/ListPostPreview';
 import { POSTS, TWOHAND } from '../../data/dummy-data';
 import ListTwoHandPreview from '../../components/ListTwoHandPreview';
 import IconCart from '../../components/IconCart';
+import { useSelector } from 'react-redux';
 
 const TipScreen = props =>{
     const tag = props.navigation.getParam("tag");
     const post = props.navigation.getParam("posts")
-    const ths = TWOHAND.filter(t =>  POSTS.filter( p=> p.idPost === t.idPost && (p.nameTag.includes(tag.nameTag) === true) ).length>0)
+    const postSelector = useSelector(state=> state.post)
+    const ths = postSelector.ths.filter(t =>  postSelector.posts.filter( p=> p.idPost === t.idPost && (p.nameTag.includes(tag.nameTag) === true) ).length>0)
 
     return (
       <View style={{ 
@@ -32,8 +34,6 @@ const TipScreen = props =>{
               height:80,
               width:80,
               borderRadius:40,
-              borderColor:"black",
-              borderWidth:2,
               padding:15
           }}
         source={{uri:tag.urlTag}}
@@ -52,18 +52,19 @@ const TipScreen = props =>{
             <TouchableOpacity style={{
           justifyContent:"center",
           alignItems:'center',
-          borderRadius:10,
+          borderRadius:25,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:"#0095f6",
-          height:40,
+          backgroundColor:"#ff9c9c",
+          height:50,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
           shadowOpacity: 0.9,
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"#0095f6"
+          borderColor:"#ff9c9c",
+          width:100
         }}
         onPress={()=>{
         //    dispatch(toggleTagFollow(props.title))
@@ -92,23 +93,26 @@ const TipScreen = props =>{
           </View>
           <Container style={styles.tabs}>
       
-      <Tabs tabBarUnderlineStyle={{backgroundColor:'black' , height:1}}>
-      <Tab  heading="POPOLARI" tabStyle={{backgroundColor:'white'}} 
+          <Tabs tabBarUnderlineStyle={{backgroundColor:'#FF4343' , height:3,}} tabContainerStyle={{borderBottomColor:"#ff9c9c",borderBottomWidth:1}}
+      
+      
+      >
+      <Tab  heading="POPOLARI"  tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black'}}>
+           activeTextStyle={{color:'black',fontWeight:"bold"}}>
              <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="1"/>
            </Tab>
-           <Tab   heading="RECENTI" tabStyle={{backgroundColor:'white'}} 
+           <Tab   heading="RECENTI"tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black'}}>
+           activeTextStyle={{color:'black',fontWeight:"bold"}}>
               <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="1"/>
            </Tab>
-           <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
+           <Tab   heading="2HAND"tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black'}}>
+           activeTextStyle={{color:'black',fontWeight:"bold"}}>
               <ListTwoHandPreview routeName="PostProfile" ths={ths} navigation={props.navigation} />
 
            </Tab>
@@ -123,11 +127,20 @@ const TipScreen = props =>{
 }
 TipScreen.navigationOptions = navData => {
   return {
-  
-
     headerRight: ()=>{ return (
       <IconCart navigation={navData.navigation} isBlack={true}/>
-    )}
+    )},
+    headerTitle:()=>{
+      return(<Image source={require('../../assets/logo.png')} style={{height:25,width:65}}/>)
+    },
+    headerLeft: ()=>(
+      <TouchableOpacity 
+      onPress={() => navData.navigation.goBack(null)}
+      >
+      <Image source={require('../../assets/icons/back.png')} style={{height:18,width:14,marginLeft:5}}/>
+      </TouchableOpacity>
+   )
+    
       
   };
 };

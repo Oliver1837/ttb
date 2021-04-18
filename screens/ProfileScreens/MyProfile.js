@@ -158,7 +158,7 @@ style={styles.container}
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
-             <ListTwoHandPreview routeName="Post" ths={ths} navigation={props.navigation}/>
+             <ListTwoHandPreview routeName="PostMyProfile" ths={ths} navigation={props.navigation}/>
            </Tab>
           
            <Tab   heading="SALVATI" tabStyle={{backgroundColor:'white'}} 

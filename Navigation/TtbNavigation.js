@@ -222,18 +222,16 @@ const FeedNavigator = createStackNavigator({
     }} 
   });
   const TipToBeNavigator = createBottomTabNavigator({
-
     
     Feed : {screen : FeedNavigator,
       navigationOptions:{
         
-        tabBarIcon: () => {
+        tabBarIcon: ({ tintColor }) => {
             return (
-            <Image source={require('../assets/icons/home.png')} style={{height:25,width:25}}/>
+            <Image source={require('../assets/icons/home.png')} style={{height:25,width:25,tintColor:tintColor}}/>
             );
           },
           
-  
     },
   
     
@@ -244,9 +242,9 @@ const FeedNavigator = createStackNavigator({
     screen : SearchNavigator,
     navigationOptions:{
         
-      tabBarIcon: () => {
+      tabBarIcon: ({ tintColor }) => {
           return (
-             <Image source={require('../assets/icons/search.png')} style={{width:25,height:25}}/>
+             <Image source={require('../assets/icons/search.png')} style={{width:25,height:25,tintColor:tintColor}}/>
           );
         }
 
@@ -255,18 +253,18 @@ const FeedNavigator = createStackNavigator({
 Add :{
   screen : AddNavigation,
   navigationOptions:{
-    tabBarIcon: () => {
+    tabBarIcon: ({ tintColor }) => {
       return (
-        <Ionicons name={Platform.OS ==="android" ? "md-add" :"md-add"} size={25} color="black" />
+         <Image source={require('../assets/icons/add.png')} style={{width:25,height:25,tintColor:tintColor}}/>
       );
     },
     tabBarVisible:false
     
 },
 },Notifche : {screen:NotificationScreen,  navigationOptions:{
-  tabBarIcon: () => {
+  tabBarIcon: ({ tintColor }) => {
     return (
-    <Notifica/>
+       <Image source={require('../assets/icons/heart.png')} style={{width:28,height:25,tintColor:tintColor}}/>
     );
   },
  
@@ -274,14 +272,19 @@ Add :{
 },},
 Profile:{screen:ProfileNavigation,
   navigationOptions:{
-    tabBarIcon: () => {
+    tabBarIcon: ({ tintColor }) => {
       return (
-        <Ionicons name="md-person-circle-sharp" size={24} color="black" />
+         <Image source={require('../assets/icons/profile.png')} style={{width:27,height:30,tintColor:tintColor}}/>
       );
     },
     
 },
 }
+  }, {
+    tabBarOptions: {
+      activeTintColor: "#ff4343",
+      inactiveTintColor: "black"
+    }
   }
   );
   const MainNavigator = createSwitchNavigator({

@@ -19,6 +19,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
    var isCart = 0;
    var idCartPost = 0
    let isAdd=false
+   let postUseSelector = useSelector(state=> state.post)
     if(cartSelector.cart.length>0){
       const cart = cartSelector.cart.find(c=> c.idUser === userSelector.user.userId)
      // idCartPost = cart.post.find(p => p.postId === ).idPost
@@ -34,6 +35,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
       } }
      
     }
+    
     console.log("Post ID:",post.idPost)
     const like = userSelector.likes
     const preferred = userSelector.preferred
@@ -42,7 +44,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
     const dispatch = useDispatch()
     if(isTwoHand){
 
-       price = TWOHAND.find(tw=> tw.idPost===post.idPost).prezzo;
+       price = postUseSelector.ths.find(tw=> tw.idPost===post.idPost).prezzo;
 
     }
     return (
@@ -144,26 +146,24 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
             {me === true ?<MaterialCommunityIcons name="settings-helper" size={24} color="white" /> :null}
             {isTwoHand ? 
             <View>
-             <Text style={{
-               fontSize:18,
-               fontWeight:"bold",
-               color:"#FFF"
-             }}> {price}$</Text> 
+           
             <TouchableOpacity style={{
               justifyContent:"center",
               alignItems:'center',
-              borderRadius:10,
+              borderRadius:30,
               borderWidth:1,
               borderWidth:2,
-              backgroundColor:isAdd?"red": "black",
-              height:40,
+              backgroundColor:isAdd?"#ff9c9c": "#ff4343",
+              height:60,
               margin:1,
               shadowColor: 'rgba(0, 0, 0, 0.1)',
               shadowOpacity: 0.9,
               elevation: 20,
               shadowRadius: 100 ,
               shadowOffset : { width: 1, height: 13},
-              borderColor:isAdd?"red": "white"
+              borderColor:isAdd?"#ff9c9c": "#ff4343",
+              width:120,
+              marginRight:50
             }}
             onPress={
               ()=>{
@@ -196,6 +196,11 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
               
               }
             >
+              <Text style={{
+               fontSize:18,
+               fontWeight:"bold",
+               color:"#FFF"
+             }}> {price}$</Text> 
               <Text style={{
                 color:"white",
                 fontSize:15,

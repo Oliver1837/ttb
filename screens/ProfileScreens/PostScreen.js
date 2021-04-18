@@ -29,7 +29,7 @@ const PostScreen = (props)=>{
             width:width
         }}
         >
-        <Post post ={post} me={true}/>
+        <Post post ={post} me={true} isTwoHand="false"/>
         </GestureRecognizer>
       );
 }
