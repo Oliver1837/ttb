@@ -1,5 +1,6 @@
 export const UPLOAD_PHOTO_GRID ="UPLOAD_PHOTO_GRID"
 export const UPLOAD_PHOTO_TWO_HAND ="UPLOAD_PHOTO_TWO_HAND"
+export const DELETE_POST ="DELETE_POST"
 
 
 
@@ -11,6 +12,8 @@ return { type: UPLOAD_PHOTO_GRID, uri:uri,descrizione:descrizione ,userId:"user1
 export const uploadTwoHand = (uri,tips,descrizione,prezzo,taglia,marca,condizione) => {
     return { type: UPLOAD_PHOTO_TWO_HAND, uri:uri,descrizione:descrizione ,userId:"user10",condizione:condizione,prezzo:prezzo,taglia:taglia,tips:tips,marca:marca};
   };
-
+  export const deletePost = (idPost) => {
+    return { type: DELETE_POST, idPOst:idPost};
+  };
 
   

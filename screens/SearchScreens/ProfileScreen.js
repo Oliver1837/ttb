@@ -79,7 +79,7 @@ style={styles.container}
      <Container style={styles.tabs}>
       
       <Tabs tabBarUnderlineStyle={{backgroundColor:'black' , height:1}}>
-      <Tab  heading="GRID" tabStyle={{backgroundColor:'white'}} 
+      <Tab  heading="Grid" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
@@ -95,7 +95,7 @@ style={styles.container}
             />
   
            </Tab>
-           <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
+           <Tab   heading="2Hand" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}
            activeTextStyle={{color:'black'}}>
@@ -105,8 +105,8 @@ style={styles.container}
 
             keyExtractor={(item, index) => item.idTwoHand}
             renderItem={({item})=>{
-                const post = POSTS.find(p => p.idPost===item.idPost)
-               const url =  post.urlPost
+            const post = POSTS.find(p => p.idPost===item.idPost)
+            const url =  post.urlPost
               return (
 <View
               style={{

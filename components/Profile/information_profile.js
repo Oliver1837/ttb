@@ -28,26 +28,26 @@ function information_profile({user,lenght}) {
      }}>
           
          <View style={{marginRight:20}}>
-           <Text style={{ width:25,
+           <Text style={{ width:28,
            height:19, fontSize:14,fontFamily:"Manrope_500Medium"}}>Tips</Text>
            
            <Text style={styles.textData}>{lenght}</Text>
 
          </View>
-         
-         <View  style={{marginRight:20}}>
-           <Text style={{ width:62,
-           height:19, fontSize:14,fontFamily:"Manrope_500Medium"}}>Following</Text>
-           <Text style={styles.textData}>{user.nFollowing}</Text>
-
-         </View>
-         
+          
          <View   style={{marginRight:20}}>
            <Text style={{ width:56,
            height:19, fontSize:14,fontFamily:"Manrope_500Medium"}}>Follower</Text>
            <Text style={styles.textData}>{user.nFollower}</Text>
 
          </View>
+         <View  style={{marginRight:20}}>
+           <Text style={{ width:62,
+           height:19, fontSize:14,fontFamily:"Manrope_500Medium"}}>Following</Text>
+           <Text style={styles.textData}>{user.nFollowing}</Text>
+
+         </View>
+        
      </View>
     );
 }

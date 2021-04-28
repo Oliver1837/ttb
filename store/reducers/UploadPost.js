@@ -3,7 +3,7 @@ import { GRIDPOSTS, GRIDS, POSTS, TAGS, TWOHAND } from "../../data/dummy-data";
 import Post from "../../model/Post";
 import Tag from "../../model/Tag";
 import TwoHand from "../../model/TwoHand";
-import { UPLOAD_PHOTO_GRID,UPLOAD_PHOTO_TWO_HAND } from "../actions/UploadPost";
+import { UPLOAD_PHOTO_GRID,UPLOAD_PHOTO_TWO_HAND,deletePost, DELETE_POST } from "../actions/UploadPost";
 const initialState = {
     posts : POSTS,
     grid :GRIDS,
@@ -58,9 +58,17 @@ export default (state = initialState, action) => {
       return {...state , posts : state.posts.concat(post),tags :ts,ths:state.ths.concat(th)}
 
     }
+    case  DELETE_POST:{
+      const id = action.idPost;
+      console.log(id)
+      const posts = state.posts;
+      const indexPost = posts.findIndex(p=> p.idPost===id)
+      posts.splice(indexPost,1);
+      return {...state , posts : posts}
+    } 
         default :return state;
   
-    }
+  }
      
 function getSubStringTag(string){
     var start = string.indexOf("#")

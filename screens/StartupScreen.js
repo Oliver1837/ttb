@@ -30,8 +30,10 @@ const StartupScreen = props => {
       props.navigation.navigate('TipToBeHome');
      // dispatch(authActions.authenticate( token, userName));
     };
-
-    tryLogin();
+setTimeout(()=>{
+  tryLogin();
+},6000)
+   
   }, [dispatch]);
 
   return (

@@ -54,6 +54,7 @@ const  UploadPost =(props)=> {
     const [prezzo,onChangePrezzo]= useState('');
     const [taglia,onChangeTaglia]= useState('');
     const [marca,onChangeMarca]= useState('');
+    const [colore,onChangeColore]= useState('');
   
     console.log(props.navigation.getParam("uri"))
     const uriPhoto = props.navigation.getParam("uri");
@@ -152,14 +153,13 @@ const  UploadPost =(props)=> {
         maxWidth:"90%",
         minWidth:"90%",
         justifyContent:"space-between",
-        margin:5
+        borderBottomWidth:0.25,        margin:5
 
       }}>  
-        <Text>Taglia:</Text>
+        <Text style={{fontSize:16}}>Taglia</Text>
         <Input style={{
-             minWidth:40,
-             maxWidth:40,
-             borderBottomWidth:1,
+              minWidth:120,
+              maxWidth:120,
              height:25,
              minHeight:25,
              minHeight:25
@@ -167,6 +167,7 @@ const  UploadPost =(props)=> {
            }}
            onChangeText={text => onChangeTaglia(text)}
            value={taglia}
+           placeholder="Taglia"
            />
       </View>
       <View style={{
@@ -174,13 +175,13 @@ const  UploadPost =(props)=> {
         maxWidth:"90%",
         minWidth:"90%",
         justifyContent:"space-between",
-        margin:5
-      }}>  
-        <Text>Condizione:</Text>
+        margin:5,
+        borderBottomWidth:0.25,      }}>  
+        <Text style={{fontSize:16}}>Condizione:</Text>
         <Input style={{
              minWidth:120,
              maxWidth:120,
-             borderBottomWidth:1,
+         
              height:25,
              minHeight:25,
              minHeight:25
@@ -189,7 +190,7 @@ const  UploadPost =(props)=> {
            }}
            onChangeText={text => onChangeCondizione(text)}
            value={condizione}
-           
+           placeholder="Condizione"
            />
       </View>
       <View style={{
@@ -197,20 +198,20 @@ const  UploadPost =(props)=> {
         maxWidth:"90%",
         minWidth:"90%",
         justifyContent:"space-between",
-        margin:5
+        borderBottomWidth:0.25,        margin:5
 
       }}>  
-        <Text>Marca:</Text>
+        <Text style={{fontSize:16}}>Marca</Text>
         <Input style={{
              minWidth:120,
              maxWidth:120,
-             borderBottomWidth:1,
              height:25,
              minHeight:25,
              minHeight:25
            }}
            onChangeText={text => onChangeMarca(text)}
            value={marca}
+           placeholder="Marca"
            />
       </View>
       <View style={{
@@ -218,20 +219,20 @@ const  UploadPost =(props)=> {
         maxWidth:"90%",
         minWidth:"90%",
         justifyContent:"space-between",
-        margin:5
-
+        margin:5,
+        borderBottomWidth:0.25,
       }}>  
-        <Text>Colore:</Text>
+        <Text style={{fontSize:16}}>Colore</Text>
         <Input style={{
              minWidth:120,
              maxWidth:120,
-             borderBottomWidth:1,
              height:25,
              minHeight:25,
              minHeight:25
            }}
-           onChangeText={text => onChangeMarca(text)}
-           value={marca}
+           onChangeText={text => onChangeColore(text)}
+           value={colore}
+           placeholder="Colore"
            />
       </View>
       <View style={{
@@ -239,20 +240,21 @@ const  UploadPost =(props)=> {
         maxWidth:"90%",
         minWidth:"90%",
         justifyContent:"space-between",
-        margin:5
-
+        margin:5,
+        borderBottomWidth:0.25,
       }}>  
-        <Text>Prezzo:</Text>
+        <Text style={{fontSize:16}}>Prezzo</Text>
            <Input style={{
-              minWidth:40,
-              maxWidth:40,
-              borderBottomWidth:1,
+              minWidth:120,
+              maxWidth:120,
+          
               height:25,
               minHeight:25,
               minHeight:25
            }}
            onChangeText={text => onChangePrezzo(text)}
            value={prezzo}
+           placeholder="Prezzo"
            />
       </View>
       </View>

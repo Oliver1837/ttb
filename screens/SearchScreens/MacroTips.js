@@ -18,7 +18,7 @@ const MacroTipsScreen =({navigation}) =>{
   
     return (
     
-    <ListPostPreview posts = {posts} navigation={navigation} routeName="Post" key={1} macro={macro} isMacroList={true}/>
+    <ListPostPreview posts = {posts} navigation={navigation} routeName="Post" key={1} macro={macro} isMacroList={true} />
 
     )
     }else{

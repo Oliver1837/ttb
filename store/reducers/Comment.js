@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
             case ADD_COMMENT:
                 console.log("Comment: "+action.content+ "\nUser id:  " +action.user + "\nPost id :" +action.postId)
                 
-                const c = new Comments(action.postId,Math.random().toString(),action.user,"",action.content);
+                const c = new Comments(action.postId,Math.random().toString(),action.user,new Date(),action.content);
                 return{...state,comment:state.comment.concat(
                     c
                 )};

@@ -40,9 +40,10 @@ export default function MacroList({macros,navigation}){
         }}
         onPress={()=>{
           let th =false
-          if(item==="2hand"){
+          if(item=="2hand"){
             th= true;
           }
+          console.log(th)
           navigation.navigate({routeName:"MacroTips"
           ,params :  {
             th : th,
@@ -58,8 +59,7 @@ export default function MacroList({macros,navigation}){
                   fontSize:12,
                   textAlign:"center",
                   fontWeight:"bold",
-                  textAlignVertical:"center"
-                 ,
+                
                   fontFamily:"Manrope_700Bold"
       
                 }}>{item}</Text>

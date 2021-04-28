@@ -59,10 +59,10 @@ PostProfileScreen.navigationOptions = navData => {
   return {
     
     headerRight: ()=>{ return (
-      <IconCart navigation={navData.navigation} isBlack={true}/>
+      <IconCart navigation={navData.navigation} isBlack={false}/>
     )},
     headerTitle:()=>{
-      return(<Image source={require('../../assets/logo.png')} style={{height:25,width:65}}/>)
+      return(<Image source={require('../../assets/logofeed.png')} style={{height:25,width:65}}/>)
     },
     headerLeft: ()=>(
       <TouchableOpacity 

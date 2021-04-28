@@ -4,7 +4,7 @@ import { Dizionario } from '../data/dummy-data';
 import PostPreview from './PostPreview';
 
 
-function ListPostPreview({posts,navigation,routeName,macro,isMacroList}) {
+function ListPostPreview({posts,navigation,routeName,macro,isMacroList,replace}) {
     let ps = []
 
     let d = Dizionario.find(d=> d.macro ===macro)
@@ -41,7 +41,7 @@ function ListPostPreview({posts,navigation,routeName,macro,isMacroList}) {
         keyExtractor={(item, index) => item.idGrid}
          renderItem={({item})=>{
          return (
-           <PostPreview key={item.idPost} post={item} navigation={navigation} routeName={routeName}  />
+           <PostPreview key={item.idPost} post={item} navigation={navigation} routeName={routeName}   />
            )
        }}
        />

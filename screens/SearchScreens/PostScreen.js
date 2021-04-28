@@ -61,8 +61,18 @@ PostScreen.navigationOptions = navData => {
 
     headerRight: ()=>{ return (
       <IconCart navigation={navData.navigation}/>
-    )}
-      
+    )},
+    
+    headerTitle:()=>{
+      return(<Image source={require('../../assets/logofeed.png')} style={{height:25,width:65}}/>)
+    },      
+    headerLeft: ()=>(
+      <TouchableOpacity 
+      onPress={() => navData.navigation.goBack(null)}
+      >
+      <Image source={require('../../assets/icons/back.png')} style={{height:18,width:14,marginLeft:5}}/>
+      </TouchableOpacity>
+   )
   };
 }
 };

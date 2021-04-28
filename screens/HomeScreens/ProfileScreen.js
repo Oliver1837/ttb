@@ -163,14 +163,14 @@ style={styles.container}
       
       
       >
-      <Tab  heading="GRID" tabStyle={{backgroundColor:'white'}} 
+      <Tab  heading="Grid" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
            activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
                 <ListPostPreview posts={postsNormal} navigation={props.navigation} routeName='Post' key="1"/>
   
            </Tab>
-           <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
+           <Tab   heading="2Hand" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
            activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>

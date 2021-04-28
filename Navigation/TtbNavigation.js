@@ -121,7 +121,7 @@ const FeedNavigator = createStackNavigator({
       headerTransparent:true,
       headerTintColor:"#fff",
       headerTitleAlign:"center",
-  
+      title:null
     }},
     Profile:ProfileScreen,
     PostProfile:{ screen:PostProfileScreen,

@@ -8,7 +8,7 @@ import { toggleTagFollow } from '../store/actions/User';
 const CardSearch = ({title,url,navigation,posts}) =>{
 const preferredTag = useSelector(state => state.user.preferredTag)
 var isPreferred = preferredTag.findIndex(tag=> tag=== title);
-posts = posts.filter(p=> p.nameTag.filter(t => t=== title).length>0 )
+posts = posts.filter(p=> p.nameTag.filter(t => t=== title).length>0 && p.isTwoHand===false )
       
 const dispatch= useDispatch()
 

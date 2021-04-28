@@ -52,8 +52,23 @@ export const POSTS = [
     new Post('post41', 'https://images.pexels.com/photos/952478/pexels-photo-952478.jpeg?cs=srgb&dl=pexels-lukas-952478.jpg&fm=jpg',0,0,"user3",["Cucina"],"Contenuto Post 1",false,true),
     new Post('post42', 'https://images.pexels.com/photos/6708895/pexels-photo-6708895.jpeg?cs=srgb&dl=pexels-rodnae-productions-6708895.jpg&fm=jpg',0,0,"user3",["Cucina"],"Contenuto Post 1",false,true),
     new Post('post43', 'https://images.pexels.com/photos/42257/flowerful-flowery-flowerly-42257.jpeg?cs=srgb&dl=pexels-jill-wellington-42257.jpg&fm=jpg',0,0,"user3",["Cucina"],"Contenuto Post 1",false,true),
-    new Post('post43', 'https://images.pexels.com/photos/3730953/pexels-photo-3730953.jpeg?cs=srgb&dl=pexels-ksenia-chernaya-3730953.jpg&fm=jpg',0,0,"user3",["Cucina"],"Contenuto Post 1",false,true),
-
+    new Post('post44', 'https://images.pexels.com/photos/3730953/pexels-photo-3730953.jpeg?cs=srgb&dl=pexels-ksenia-chernaya-3730953.jpg&fm=jpg',0,0,"user3",["Cucina"],"Contenuto Post 1",false,true),
+    /** utente 5 2hand*/ 
+    new Post('post45', 'https://images.pexels.com/photos/4937768/pexels-photo-4937768.jpeg?cs=srgb&dl=pexels-yaroslav-shuraev-4937768.jpg&fm=jpg',0,0,"user7",["Fashion",],"Contenuto Post 1",true,false),
+    new Post('post46', 'https://images.pexels.com/photos/3764430/pexels-photo-3764430.jpeg?cs=srgb&dl=pexels-chermiti-mohamed-3764430.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
+    new Post('post47', 'https://images.pexels.com/photos/2312223/pexels-photo-2312223.jpeg?cs=srgb&dl=pexels-wellington-cunha-2312223.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
+    new Post('post48', 'https://images.pexels.com/photos/4130226/pexels-photo-4130226.jpeg?cs=srgb&dl=pexels-elina-sazonova-4130226.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
+    new Post('post49', 'https://images.pexels.com/photos/4130226/pexels-photo-4130226.jpeg?cs=srgb&dl=pexels-elina-sazonova-4130226.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
+    new Post('post50', 'https://images.pexels.com/photos/1107969/pexels-photo-1107969.jpeg?cs=srgb&dl=pexels-stephan-seeber-1107969.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
+    new Post('post51', 'https://images.pexels.com/photos/1776906/pexels-photo-1776906.jpeg?cs=srgb&dl=pexels-dalila-dalprat-1776906.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
+   /** utente 5 2hand*/
+   new Post('post52', 'https://images.pexels.com/photos/3645369/pexels-photo-3645369.jpeg?cs=srgb&dl=pexels-neemias-seara-3645369.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",false,true),
+    new Post('post53', 'https://images.pexels.com/photos/3389419/pexels-photo-3389419.jpeg?cs=srgb&dl=pexels-elegance-nairobi-3389419.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",false,true),
+    new Post('post54', 'https://images.pexels.com/photos/2929281/pexels-photo-2929281.jpeg?cs=srgb&dl=pexels-jack-redgate-2929281.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",false,true),
+    new Post('post55', 'https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg?cs=srgb&dl=pexels-matheus-bertelli-2905238.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",false,true),
+    new Post('post56', 'https://images.pexels.com/photos/2929281/pexels-photo-2929281.jpeg?cs=srgb&dl=pexels-jack-redgate-2929281.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",false,true),
+    new Post('post57', 'https://images.pexels.com/photos/2229930/pexels-photo-2229930.jpeg?cs=srgb&dl=pexels-nadi-lindsay-2229930.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",false,true),
+    
 ];
 
 export const TAGS = [
@@ -61,7 +76,8 @@ export const TAGS = [
     new Tag("Sport","https://images.pexels.com/photos/3876324/pexels-photo-3876324.jpeg?cs=srgb&dl=pexels-tomas-anunziata-3876324.jpg&fm=jpg"),
     new Tag("Fotografia","https://images.pexels.com/photos/4947567/pexels-photo-4947567.jpeg?cs=srgb&dl=pexels-maria-orlova-4947567.jpg&fm=jpg"),
     new Tag("Cucina","https://images.pexels.com/photos/5728327/pexels-photo-5728327.jpeg?cs=srgb&dl=pexels-any-lane-5728327.jpg&fm=jpg"),
-  
+    new Tag("Fashion","https://images.pexels.com/photos/5728327/pexels-photo-5728327.jpeg?cs=srgb&dl=pexels-any-lane-5728327.jpg&fm=jpg"),
+
 ];
 export const USERS = [
     new User("user1","Elisa","https://images.pexels.com/photos/5870335/pexels-photo-5870335.jpeg?cs=srgb&dl=pexels-jasmin-chew-5870335.jpg&fm=jpg",0,0,0),
@@ -71,6 +87,8 @@ export const USERS = [
     new User("user6","Prova5","https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",0,0,0),
     new User("user5","Katia","https://images.pexels.com/photos/2689401/pexels-photo-2689401.jpeg?cs=srgb&dl=pexels-dazzle-jam-2689401.jpg&fm=jpg",0,0,0),
     new User("user10","MyProfile","https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500er",0,0,0),
+    new User("user7","Francesca","https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?cs=srgb&dl=pexels-tomaz-barcellos-1987301.jpg&fm=jpg",0,0,0),
+
 ];
 export const GRIDS = [
 ]
@@ -89,12 +107,12 @@ export const TWOHAND =[
 ];
 export const USEREXAMPLE = new User("user10","MyProfile","https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500er",0,0,0);
 export const COMMENT=[
-    new Comment ("post13","comment1","user2","","Ujg31ctOU49tvL9zFqkX5LsCaTFYt1S3MJgzQ4E38uvvyXHpTG2ZFAAtMBWax5CT1tEm36BIk4AsyX9mjMGxEzxMWDP6KvcdMQ0u"),
-    new Comment ("post13","comment2","user1","","eeALKAAIZ3TIkYgubpblRRMx3W4uoSKZtkiH4rk3wtRkSRVM3Q98RMx2R06UHhnmTZoXbbCZ1hOjt8tvPbM7HnYjkhw7MHPpzgfX"),
-    new Comment ("post13","comment3","user3","","mzC9b4ukHtkxeZImY8YIklEY8SvVxaAwvejTVxWmN16K6ECCJHwI1xoOuzDSfwDnAcZqvSJDbKcb5Pd4oMZ9D64Q9Vkt0F407dEE"),
-    new Comment ("post1","comment1","user2","","8vMSM9GwIaPTpcGBZbYnIeCcwHlhGxbFs4TvHmhHcAq1Vixx95HlW0haxt0BEW8foF1TR7ocdocPHPewwfPItIQOCSzbM8pbyVHm"),
-    new Comment ("post3","comment1","user5","","5uuUe4BTAd9sCD0MfhCxlMVailbo2Gos7EZphUgLhjdvDEa2WRuDe4dSm6wrgIzaKiLloeUOoZqruknCnLAbooRWOEQKvrNOGT6H"),
-    new Comment ("post2","comment1","user2","","8vMSM9GwIaPTpcGBZbYnIeCcwHlhGxbFs4TvHmhHcAq1Vixx95HlW0haxt0BEW8foF1TR7ocdocPHPewwfPItIQOCSzbM8pbyVHm "),
+    new Comment ("post13","comment1","user2","2021-04-28T03:24:00","Ujg31ctOU49tvL9zFqkX5LsCaTFYt1S3MJgzQ4E38uvvyXHpTG2ZFAAtMBWax5CT1tEm36BIk4AsyX9mjMGxEzxMWDP6KvcdMQ0u"),
+    new Comment ("post13","comment2","user1","2021-04-28T03:24:00","eeALKAAIZ3TIkYgubpblRRMx3W4uoSKZtkiH4rk3wtRkSRVM3Q98RMx2R06UHhnmTZoXbbCZ1hOjt8tvPbM7HnYjkhw7MHPpzgfX"),
+    new Comment ("post13","comment3","user3","2021-04-28T03:24:00","mzC9b4ukHtkxeZImY8YIklEY8SvVxaAwvejTVxWmN16K6ECCJHwI1xoOuzDSfwDnAcZqvSJDbKcb5Pd4oMZ9D64Q9Vkt0F407dEE"),
+    new Comment ("post1","comment1","user2","2021-04-28T03:24:00","8vMSM9GwIaPTpcGBZbYnIeCcwHlhGxbFs4TvHmhHcAq1Vixx95HlW0haxt0BEW8foF1TR7ocdocPHPewwfPItIQOCSzbM8pbyVHm"),
+    new Comment ("post3","comment1","user5","2021-04-28T03:24:00","5uuUe4BTAd9sCD0MfhCxlMVailbo2Gos7EZphUgLhjdvDEa2WRuDe4dSm6wrgIzaKiLloeUOoZqruknCnLAbooRWOEQKvrNOGT6H"),
+    new Comment ("post2","comment1","user2","2021-04-28T03:24:00","8vMSM9GwIaPTpcGBZbYnIeCcwHlhGxbFs4TvHmhHcAq1Vixx95HlW0haxt0BEW8foF1TR7ocdocPHPewwfPItIQOCSzbM8pbyVHm "),
   
   
   ]
@@ -104,6 +122,7 @@ export const Dizionario = [
     new DizionarioMacro("Cibo",["Cibo","Pasta","Sugo","Chef","Cucina"]),
     new DizionarioMacro("Arte",["Arte","Statua","Fiori","Primavera","Pittura","Vintage"]),
     new DizionarioMacro("Musica",["Rock","Jazz","Chitarra","Batteria"]),
-    new DizionarioMacro("Sport",["Calcio","Corsa","Pesi","Fitness","Sport"])
+    new DizionarioMacro("Sport",["Calcio","Corsa","Pesi","Fitness","Sport"]),
+    new DizionarioMacro("Moda",["fashion"])
 
 ]

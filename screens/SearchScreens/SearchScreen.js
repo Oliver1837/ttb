@@ -54,11 +54,14 @@ return(
       data={tagsUpload}
       
       renderItem={
-      ({item}) =>  (
-        <TouchableOpacity 
-        onPress={()=>{
+      ({item}) => { 
         let  posts = post.posts;
-         posts = posts.filter(p=> p.nameTag.filter(t => t=== item.nameTag).length>0 && p.isTwoHand==false )
+        posts = posts.filter(p=> p.nameTag.filter(t => t=== item.nameTag).length>0 && p.isTwoHand===false )
+        if(posts.length>=1){
+     return  ( <TouchableOpacity 
+        onPress={()=>{
+       
+         posts = posts.filter(p=> p.nameTag.filter(t => t=== item.nameTag).length>0 && p.isTwoHand===false )
          props.navigation.navigate({
              routeName: 'Tip',
          
@@ -68,8 +71,11 @@ return(
                }});
               }}>
           <CardSearch title={item.nameTag} url={item.urlTag} navigation ={props.navigation}  posts={posts}/>
-          </TouchableOpacity>
-        )
+          </TouchableOpacity>)
+            }else{
+              return null;
+            }
+          }
       }
       style={{width:'100%',maxHeight:'86%',minHeight:"86%"}}/>
       

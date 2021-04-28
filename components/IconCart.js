@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 
 export default function IconCart({navigation,isBlack}) {
     let number = useSelector(state=> state.cart.number)
+    console.log("VAlore isBlack"+isBlack)
   return (  
   <TouchableOpacity style={{
         marginRight:10

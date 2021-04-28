@@ -1,5 +1,5 @@
 import React from 'react'
-import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image,Alert,TextInput} from 'react-native'
+import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image,Alert,TextInput, Modal, Pressable} from 'react-native'
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 import { POSTS, TAGS,TWOHAND,USERS,COMMENT, USEREXAMPLE } from '../data/dummy-data';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,17 +8,18 @@ import { useState } from 'react';
 const {width, height} = Dimensions.get('window');
 import * as actionComment from '../store/actions/Comment'
 import { ScrollView } from 'react-native-gesture-handler';
-const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
- //  const [isAdd,setIsAdd] = useState(false)
-    var Tags = TAGS
-   // Tags= Tags.filter(tag=> post.nameTag.filter(t => t=== tag.nameTag).length>0)
+import { useEffect } from 'react';
+import TimeUtils from '../Utils/TimeUtils';
+import { deletePost } from '../store/actions/UploadPost';
+const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
     const user = USERS.find(u =>  post.userId === u.idUser);
-    
+    if(navigation.getParam("isTwoHand")!='undefined'){
+      isTwoHand==navigation.getParam("isTwoHand")
+      console.log("VALORE THO HAND"+isTwoHand)
+    }
     let price ;
     const userSelector = useSelector(state=> state.user)
     const cartSelector = useSelector(state=> state.cart)
-   var isCart = 0;
-   var idCartPost = 0
    let isAdd=false
    let postUseSelector = useSelector(state=> state.post)
     if(cartSelector.cart.length>0){
@@ -36,7 +37,9 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
       } }
      
     }
-    
+    const [modalVisible,setModalVisible]= useState(false)
+    const [modalVisiblePunti,setModalVisiblePunti]= useState(false)
+
     console.log("Post ID:",post.idPost)
     const like = userSelector.likes
     const preferred = userSelector.preferred
@@ -64,108 +67,16 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
             setEnteredComment(null);
         }
     }
-    if(isTwoHand==="true"){
+    if(isTwoHand=="true" || isTwoHand==true){
 
        price = postUseSelector.ths.find(tw=> tw.idPost===post.idPost).prezzo;
-
+      console.log("ENTRO SPACCO CIAO")
     }
     let [isComment,setIsComment] = useState(false);
     if(isComment===true){
 
       return(
-        <View style={styles.screen}>
-         
-        <View style={{backgroundColor:"black",alignItems:"center",height:"45%",justifyContent:"flex-start"}}>
-        
-            <ImageBackground source={{uri:post.urlPost}} repeat style={{height:158,width:100,marginTop:100}} resizeMode={"contain"} resizeMethod="scale"/>
-            <TouchableOpacity onPress={()=>{
-          setIsComment(false)
-        }}>
-            <Text style={{color:"white"}}>Close Comments</Text>
-          </TouchableOpacity>
-        </View>
-           
-            <View style={styles.commentHeader}>
-              <Image style={styles.image} source={{
-
-                  uri:meComment.urlPhoto
-
-              }}/>
-              <TextInput 
-               multiline={true}
-              placeholder="Add comment"
-              style={styles.contentComment}
-              onChangeText={commentInputHandler}
-              value={enterdComment}
-              >
-
-
-                  
-              </TextInput>
-              <TouchableOpacity style={{
- justifyContent:"center",
- alignItems:'center',
- borderRadius:25,
- borderWidth:1,
- borderWidth:2,
- backgroundColor:"#FF4343",
- height:45,
- margin:1,
- shadowColor: 'rgba(0, 0, 0, 0.1)',
- shadowOpacity: 0.9,
- elevation: 20,
- shadowRadius: 100 ,
- shadowOffset : { width: 1, height: 13},
- borderColor:"#FF4343",
- width:80,
- flexDirection:"row"
-}}
-onPress={()=>  addCommentHandler(postId,meComment,enterdComment)}
-
->
-  <Text style={{
-   color:"white",
-   fontSize:15,
-   textAlign:"center",
-   fontWeight:"bold",
-   textAlignVertical:"center"
-   ,
-   padding:5
-
- }}>Post</Text>
-</TouchableOpacity>
-           
-              </View>
-              <ScrollView>     
-   <FlatList
-   data={comments}
-   keyExtractor={(item,index)=> item.id}
-   renderItem={({item})=>{
-       
-       const user = USERS.find(user => user.idUser === item.idCommentAuthor)
-       
-       return(
-   
-             <View style={styles.comment}>
-              <Image style={styles.image} source={{
-                  uri:user.urlPhoto
-
-              }} />
-              <Text style={styles.showCommnet}
-              
-              
-               >{item.description}</Text>
-             
-              </View>)
-
-
-   }}
-  
-   
-   />
-   </ScrollView>
-
-</View>
+     null
       )
 
     }else{
@@ -239,7 +150,7 @@ onPress={()=>  addCommentHandler(postId,meComment,enterdComment)}
             <TouchableOpacity onPress={
             ()=> {
               console.log(post.idPost)
-              setIsComment(true);
+              setModalVisible(true);
             /*  navigation.navigate({routeName:"Comment",params:{
               
                 postId: post.idPost
@@ -251,7 +162,7 @@ onPress={()=>  addCommentHandler(postId,meComment,enterdComment)}
               <Image source={require('../assets/icons/comment.png')} style={{height:30,width:30,tintColor:"#FFF",}} />
 
           </TouchableOpacity>
-            <Text style={{color: '#fff', marginBottom: 25,  fontFamily:"Manrope_500Medium"}}>{"0"}</Text>
+            <Text style={{color: '#fff', marginBottom: 25,  fontFamily:"Manrope_500Medium"}}>{comments.length}</Text>
             <TouchableOpacity onPress={
         ()=>{
           console.log(post.idPost)
@@ -265,8 +176,17 @@ onPress={()=>  addCommentHandler(postId,meComment,enterdComment)}
             <Text style={{color: '#fff', marginBottom: 25, fontFamily:"Manrope_500Medium"}}>1234</Text>
             <Image source={require('../assets/icons/share.png')} style={{height:30,width:31.71,tintColor:"#FFF",}} />
             <Text style={{color: '#fff', marginBottom: 25, fontFamily:"Manrope_500Medium"}}>1234</Text>
-            {me ==="true" ?<Text style={{color: '#fff',fontWeight:"bold",fontSize:18}}>...</Text> :null}
-            {isTwoHand==="true" ? 
+            {me ==="true" ?
+            <TouchableOpacity 
+              onPress={()=>{
+                setModalVisiblePunti(true)
+              }}
+            >           
+               <Text style={{color: '#fff',fontWeight:"bold",fontSize:18}}>...</Text> 
+            </TouchableOpacity>
+:null}
+            {(isTwoHand=="true" || isTwoHand==true)
+             ? 
             <View>
            
             <TouchableOpacity style={{
@@ -339,6 +259,158 @@ onPress={()=>  addCommentHandler(postId,meComment,enterdComment)}
             : null }
             </View>
           </View>
+
+          <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          
+          setModalVisible(false)
+        }}
+        
+        >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+           
+          <View style={styles.screen}>
+         <View style={{
+           width:"100%",
+           flexDirection:"row",
+           justifyContent:"center"
+         }}>
+             <TouchableOpacity onPress={()=>{
+           setModalVisible(false)
+         }}>
+             <Text style={{color:"black"}}>Close Comments</Text>
+           </TouchableOpacity>
+            </View>
+             <View style={styles.commentHeader}>
+               <Image style={styles.image} source={{
+ 
+                   uri:meComment.urlPhoto
+ 
+               }}/>
+               <TextInput 
+                multiline={true}
+               placeholder="Add comment"
+               style={styles.contentComment}
+               onChangeText={commentInputHandler}
+               value={enterdComment}
+               >
+ 
+ 
+                   
+               </TextInput>
+               <TouchableOpacity style={{
+  justifyContent:"center",
+  alignItems:'center',
+  borderRadius:25,
+  borderWidth:1,
+  borderWidth:2,
+  backgroundColor:"#FF6969",
+  height:45,
+  margin:1,
+  shadowColor: 'rgba(0, 0, 0, 0.1)',
+  shadowOpacity: 0.9,
+  elevation: 20,
+  shadowRadius: 100 ,
+  shadowOffset : { width: 1, height: 13},
+  borderColor:"#FF6969",
+  width:80,
+  flexDirection:"row"
+ }}
+ onPress={()=>  addCommentHandler(postId,meComment,enterdComment)}
+ 
+ >
+   <Text style={{
+    color:"white",
+    fontSize:15,
+    textAlign:"center",
+    fontWeight:"bold",
+    textAlignVertical:"center"
+    ,
+    padding:5
+ 
+  }}>Post</Text>
+ </TouchableOpacity>
+            
+               </View>
+               <ScrollView>     
+    <FlatList
+    data={comments}
+    keyExtractor={(item,index)=> item.id}
+    renderItem={({item})=>{
+        
+        const user = USERS.find(user => user.idUser === item.idCommentAuthor)
+        let like= false;
+        return(
+    
+              <View style={styles.comment}>
+               <Image style={styles.image} source={{
+                   uri:user.urlPhoto
+ 
+               }} />
+               <View style={styles.showCommnet}>               
+               <Text style={{width:"100%"}}>{ <Text style={{fontStyle:"italic",fontWeight:"bold"}}>{user.username+" "}</Text>}{item.description}</Text>
+               <Text>{TimeUtils.renderPeriod$3(new Date(item.date),new Date(),"Now",1)}</Text>
+              </View>
+             
+               </View>)
+ 
+ 
+    }}
+   style={{width:"100%"}}
+    
+    />
+    </ScrollView>
+ 
+ </View>
+          
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisiblePunti}
+        onRequestClose={() => {
+setModalVisiblePunti(false)        }}>
+        <View style={styles.centeredViewPunti}>
+          <View style={styles.modalViewPunti}>
+          <Pressable onPress={()=>{
+            setModalVisiblePunti(false)
+          }}>
+          <Text style={{
+            fontSize:16,
+            margin:5
+          }}>Modifica</Text>
+          </Pressable>
+          <Pressable onPress={()=>{
+            dispatch(deletePost(post.idPost))
+            navigation.replace('Profile')
+            
+          }}>
+          <Text  style={{
+            fontSize:16,
+            margin:5
+          }}>Elimina</Text>
+          </Pressable>
+          
+          
+          <Pressable onPress={()=>{
+            setModalVisiblePunti(false)
+          }}>
+            <Text  style={{
+            fontSize:16,
+            margin:5,
+            color:"red"
+          }}>Annulla</Text>
+          </Pressable>
+            
+          </View>
+        </View>
+      </Modal>
         </View>
       );}
 }
@@ -411,7 +483,7 @@ const styles = StyleSheet.create({
       color: '#fff',
       fontSize:16,
       height:21,
-      width:68,
+      minWidth:68,
       fontFamily:"Manrope_700Bold"
     },
     description: {
@@ -427,9 +499,9 @@ const styles = StyleSheet.create({
     comment:{
         margin:0.6,
         flexDirection:'row'
-        ,width:"100%",
-        backgroundColor:'white'
-        ,alignItems:'center',
+        ,width:350,
+        backgroundColor:'white',
+       
     
         minHeight:60    ,
         borderBottomWidth:0.150 
@@ -448,8 +520,7 @@ const styles = StyleSheet.create({
         width:45,
         height:45
     ,   borderRadius:50 
-    ,padding:10,
-        margin: 10
+    ,
     },
     contentComment:{
         backgroundColor:'#EFEFEF',
@@ -466,9 +537,84 @@ const styles = StyleSheet.create({
     
     },
     showCommnet:{
-        width:250,
-        padding:10,
-        margin:10
-    }
+        width:"80%",
+       
+        margin:5,
+        flexDirection:"row",
+        paddingTop:10
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: 'flex-end',
+      alignItems: 'center',
+      height:"100%"
+    },
+    modalView: {
+      backgroundColor: 'white',
+      borderTopRightRadius: 25,
+         borderTopLeftRadius: 25,
+      padding: 20,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+      height:"60%",
+      width:"100%",
+      maxWidth:"100%",
+      maxHeight:"100%"
+    },
+    openButton: {
+      backgroundColor: '#FFF',
+      borderRadius: 20,
+      padding: 10,
+      elevation: 2,
+      maxHeight:45,
+      flexDirection:"row",
+      borderColor:"black",
+      borderWidth:2,
+      margin:10
+    },
+    textStyle: {
+      color: 'black',
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: 'center',
+    }, centeredViewPunti: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 22,
+      height:350
+    },
+    modalViewPunti: {
+      margin: 20,
+      backgroundColor: 'white',
+      borderRadius: 25,
+         
+      padding: 35,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+      height:150,
+      width:"90%",
+      maxWidth:"90%",
+      maxHeight:"90%",
+      justifyContent:"center",
+      alignItems:"center"
+    },
    
   });
