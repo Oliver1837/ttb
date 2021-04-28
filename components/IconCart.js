@@ -14,13 +14,15 @@ export default function IconCart({navigation,isBlack}) {
         //navigator("Carrello")
       }}>
         <View>
-        <Image source={require('../assets/icons/shop.png')} style={{height:25,width:30, tintColor:isBlack?"black":"#FFF"}}/>
-            {number === 0 
+        {number === 0 
             ? 
             null 
             : 
-            <Text style={{position:"absolute",color:"white",marginVertical:15,backgroundColor:"red",borderRadius:25,height:15,width:15,textAlign:"center",fontSize:10,fontWeight:"bold"}}> {number}</Text>   
+            <Text style={{position:"absolute",color:"white",marginVertical:-5,marginHorizontal:-12,backgroundColor:"#ff6969",borderRadius:25,height:15,width:15,textAlign:"center",fontSize:10,fontWeight:"bold"}}> {number}</Text>   
             }
+          
+            <Image source={require('../assets/icons/shop.png')} style={{height:25,width:30, tintColor:isBlack?"black":"#FFF"}}/>
+          
          </View>
     </TouchableOpacity>)
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {View ,Text,StyleSheet, FlatList, Button, Image} from 'react-native'
+import {View ,Text,StyleSheet, FlatList, Button, Image, TouchableOpacity} from 'react-native'
 import { TextInput } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import {COMMENT, USEREXAMPLE,USERS} from '../data/dummy-data'
@@ -48,11 +48,39 @@ const CommentScreen = props=>{
 
                            
                        </TextInput>
-                       <Button color={'black'} style={styles.buttonPost} title="POST" onPress={()=>{
+                       <TouchableOpacity style={{
+          justifyContent:"center",
+          alignItems:'center',
+          borderRadius:25,
+          borderWidth:1,
+          borderWidth:2,
+          backgroundColor:"#FF4343",
+          height:50,
+          margin:1,
+          shadowColor: 'rgba(0, 0, 0, 0.1)',
+          shadowOpacity: 0.9,
+          elevation: 20,
+          shadowRadius: 100 ,
+          shadowOffset : { width: 1, height: 13},
+          borderColor:"#FF4343",
+          width:80,
+          flexDirection:"row"
+        }}
+        onPress={()=>  addCommentHandler(postId,me,enterdComment)}
 
-                           addCommentHandler(postId,me,enterdComment)
+        >
+           <Text style={{
+            color:"white",
+            fontSize:15,
+            textAlign:"center",
+            fontWeight:"bold",
+            textAlignVertical:"center"
+            ,
+            padding:5
 
-                       }}/>
+          }}>Post</Text>
+        </TouchableOpacity>
+                    
                        </View>
             <FlatList
             

@@ -94,6 +94,7 @@ const FeedNavigator = createStackNavigator({
           headerTitleAlign:"center",
           headerBackTitle:"",
           headerTintColor:"#FFF",
+          title:null,
      
       
         }},
@@ -119,6 +120,7 @@ const FeedNavigator = createStackNavigator({
       
       headerTransparent:true,
       headerTintColor:"#fff",
+      headerTitleAlign:"center",
   
     }},
     Profile:ProfileScreen,
@@ -126,6 +128,7 @@ const FeedNavigator = createStackNavigator({
         navigationOptions:{
           
           headerTransparent:true,
+          headerTitleAlign:"center",
          // header:null
       
         }},
@@ -206,7 +209,13 @@ const FeedNavigator = createStackNavigator({
   })
   const ProfileNavigation = createStackNavigator({
     Profile:{screen: MyProfile
-    ,
+    ,    navigationOptions:{
+          
+      title:null,
+      headerTitleAlign:"center",
+      headerBackTitle:""
+  
+    }
    
   
   },
@@ -218,7 +227,8 @@ const FeedNavigator = createStackNavigator({
       }},
     PostMyProfile:{screen:MyProfilePostScreen,  navigationOptions:{
       headerTransparent:true,
-      headerTintColor:"#fff"
+      headerTintColor:"#fff",
+       title:null,
     }} 
   });
   const TipToBeNavigator = createBottomTabNavigator({
@@ -231,6 +241,7 @@ const FeedNavigator = createStackNavigator({
             <Image source={require('../assets/icons/home.png')} style={{height:25,width:25,tintColor:tintColor}}/>
             );
           },
+          tabBarLabel:() => {return null},
           
     },
   
@@ -246,7 +257,8 @@ const FeedNavigator = createStackNavigator({
           return (
              <Image source={require('../assets/icons/search.png')} style={{width:25,height:25,tintColor:tintColor}}/>
           );
-        }
+        },
+        tabBarLabel:() => {return null},
 
   },
 },
@@ -258,6 +270,7 @@ Add :{
          <Image source={require('../assets/icons/add.png')} style={{width:25,height:25,tintColor:tintColor}}/>
       );
     },
+    tabBarLabel:() => {return null},
     tabBarVisible:false
     
 },
@@ -266,7 +279,10 @@ Add :{
     return (
        <Image source={require('../assets/icons/heart.png')} style={{width:28,height:25,tintColor:tintColor}}/>
     );
-  },
+
+  }, tabBarLabel:() => {return null},
+  headerTitleAlign:"center",
+  headerBackTitle:""
  
   
 },},
@@ -277,12 +293,12 @@ Profile:{screen:ProfileNavigation,
          <Image source={require('../assets/icons/profile.png')} style={{width:27,height:30,tintColor:tintColor}}/>
       );
     },
-    
+    tabBarLabel:() => {return null},
 },
 }
   }, {
     tabBarOptions: {
-      activeTintColor: "#ff4343",
+      activeTintColor: "#ff6969",
       inactiveTintColor: "black"
     }
   }

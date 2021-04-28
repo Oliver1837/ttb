@@ -37,10 +37,14 @@ return (
      <FlatList 
      horizontal={true}
      data={(posts)}
+     styles={{
+        marginBottom:19.3
+    }}
      renderItem={
      ({item}) =>{
 const price = TWOHAND.find(t => t.idPost === item.idPost).prezzo;
 console.log(price)
+
       return(
       <TouchableOpacity 
       onPress={()=>{
@@ -63,9 +67,8 @@ console.log(price)
             flexDirection:"row",
             justifyContent:"space-between"             
          }}><Text style={{
-             fontWeight:"bold",
              color:"#fff",
-             fontSize:18
+             fontSize:16
          }}>{price}$</Text>
          <TouchableOpacity onPress={()=>{
                 console.log(item.userId+ " "+item.idPost)
@@ -90,8 +93,7 @@ console.log(price)
                 borderRadius:10,
                 borderWidth:1,
                 margin:5,
-                borderStyle:"dashed",
-                borderColor:"#ff4343",
+                borderColor:"#ff6969",
                 alignItems:"center",
                 justifyContent:"center"
             }}>
@@ -112,17 +114,17 @@ console.log(price)
         alignItems:"center",
         maxWidth:"100%",
         minWidth:"100%",
-
+       
     }}>
     <TouchableOpacity style={{
-        maxWidth:"95%",
-        minWidth:"95%",
+        maxWidth:352.25,
+        minWidth:352.25,
         justifyContent:"center",
         
         alignItems:"center",
-        backgroundColor:"#ff4343",
+        backgroundColor:"#ff6969",
         borderRadius:20,
-        height:40}}>
+        height:45}}>
     <Text style={{
         color:"#fff",
         fontWeight:"bold"
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
 
     card:{
         width:'100%',
-        height: 280,
+        height: 300,
         alignItems:'flex-start',
         justifyContent:'flex-start',
         backgroundColor:'white',
@@ -186,10 +188,10 @@ const styles = StyleSheet.create({
     },
     tipsImage:{
        
-      borderRadius:25,
+      borderRadius:30,
   
-      height:50,
-      width:50
+      height:60,
+      width:60
       
 
   },
@@ -204,7 +206,7 @@ const styles = StyleSheet.create({
     },
     tipsTitle:{
      
-        fontSize:20,
+        fontSize:16,
         marginLeft:15
     },
     tipsListImage:{
@@ -221,10 +223,12 @@ const styles = StyleSheet.create({
         width:100
         ,height:200,
         borderRadius:10,
+        marginRight:14.7,
       },
       title: {
-        width:'100%'
-        ,height:150,
+        width:100
+        ,height:148,
+        marginRight:14.7,
         borderRadius:10,
       },
 

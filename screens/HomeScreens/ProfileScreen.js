@@ -15,7 +15,28 @@ import ListPostPreview from '../../components/ListPostPreview';
 import TwoHandPreview from '../../components/TwoHandPreview';
 import ListTwoHandPreview from '../../components/ListTwoHandPreview';
 import IconCart from '../../components/IconCart';
+import {
+  useFonts,
+ Manrope_200ExtraLight,
+ Manrope_300Light,
+ Mandali_400Regular,
+ Manrope_400Regular,
+ Manrope_500Medium,
+ Manrope_600SemiBold,
+ Manrope_700Bold,
+ Manrope_800ExtraBold
+
+} from "@expo-google-fonts/dev";
 const ProfileScreen = (props)=> {
+  let [fontsLoaded] = useFonts({
+    Manrope_200ExtraLight,
+ Manrope_300Light,
+ Mandali_400Regular,
+ Manrope_400Regular,
+ Manrope_500Medium,
+ Manrope_600SemiBold,
+ Manrope_700Bold
+  });
    const userId= props.navigation.getParam("userId")
 
    const user = USERS.find(u => userId === u.idUser);
@@ -46,9 +67,8 @@ style={styles.container}
               height:100,
               width:100,
               borderRadius:50,
-              borderWidth:2,
               marginRight:20,
-              borderColor:"black"
+
           }}
           source={{uri:user.urlPhoto}}
           />
@@ -56,32 +76,23 @@ style={styles.container}
      <View style={styles.containerDatauser}>
    <View>  
      <Text  style={{
-         fontWeight:"bold",
-         fontSize:18,
+         height:21,
+         width:139,
+         fontSize:16,
+         marginBottom:7.5,
+         fontFamily:"Manrope_700Bold"
      }}>@{user.username}</Text>
      <View  style={{
      flexDirection:"row",
     
    }}>
-     <Rating
-  type='custom'
-  ratingCount={5}
-  imageSize={18}
-  onFinishRating={()=>{return 5}}
-  startingValue={4}
-  ratingColor="black"
-  style={{
-    marginRight:95,
-    
-  }}
-/><Text style={{
-  fontWeight:"bold"
-}}>(18)</Text>
+    <Image source={require('../../assets/icons/star.png')} style={{height:12,width:73.04,tintColor:"black"}}/>
+    <Text style={{width:26,height:19,fontSize:10,marginLeft:38.5}}>(18)</Text>
 </View>
 </View>
      <View style={{
                  flexDirection:"row",
-                 margin:5
+                marginTop:7.5
                 
           }}>
        <TouchableOpacity style={{
@@ -90,30 +101,31 @@ style={styles.container}
           borderRadius:25,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:follow>=0?"#FF4343":"#ff9c9c",
-          height:40,
-          margin:1,
+          backgroundColor:follow>=0?"#fff":"#ff6969",
+          height:45,
+          marginRight:11.5,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
           shadowOpacity: 0.9,
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:follow>=0?"#FF4343":"#ff9c9c",
+          borderColor:follow>=0?"#ff6969":"#ff6969",
           width:100,
           flexDirection:"row"
         }}
         onPress={()=> dispatch(toggleFollow(userId))}
         >
            <Text style={{
-            color:"white",
+            color:follow>=0?"#ff6969":"#fff",
             fontSize:15,
             textAlign:"center",
             fontWeight:"bold",
             textAlignVertical:"center"
             ,
-            padding:5
+            padding:5,
+            fontFamily:"Manrope_700Bold"
 
-          }}>FOLLOW</Text>
+          }}>Follow</Text>
         </TouchableOpacity>
       <TouchableOpacity style={{
           justifyContent:"center",
@@ -121,20 +133,20 @@ style={styles.container}
           borderRadius:25,
           borderWidth:1,
     
-          backgroundColor:"#fff",
-          height:40,
-          margin:1,
+          backgroundColor:"#ff6969",
+          height:45,
+       
           shadowColor: 'rgba(0, 0, 0, 0.1)',
           shadowOpacity: 0.9,
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"#FF4343",
+          borderColor:"#ff6969",
           width:100
         }}
         onPress={props.toggleTag}
         >
-         <Image source={require('../../assets/icons/message.png')} style={{height:20,width:30,tintColor:"#FF4343"}}/>
+         <Image source={require('../../assets/icons/message.png')} style={{height:18,width:28.8,tintColor:"#fff"}}/>
         </TouchableOpacity>
 
      </View>
@@ -147,21 +159,21 @@ style={styles.container}
 
      <Container style={styles.tabs}>
       
-      <Tabs tabBarUnderlineStyle={{backgroundColor:'#FF4343' , height:3,}} tabContainerStyle={{borderBottomColor:"#ff9c9c",borderBottomWidth:1}}
+      <Tabs tabBarUnderlineStyle={{backgroundColor:'#ff6969' , height:3,}} tabContainerStyle={{borderBottomColor:"#ff6969",borderBottomWidth:1}}
       
       
       >
       <Tab  heading="GRID" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black',fontWeight:"bold"}}>
+           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
                 <ListPostPreview posts={postsNormal} navigation={props.navigation} routeName='Post' key="1"/>
   
            </Tab>
            <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black',fontWeight:"bold"}}>
+           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
              <ListTwoHandPreview routeName="Post" ths={ths} navigation={props.navigation}/>
            </Tab>
           
@@ -197,10 +209,11 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    
     alignItems: 'center',
     backgroundColor:"white",
-
+    marginBottom:25.9,
+    marginLeft:11.4
     
    }, containerDatauser: {
     backgroundColor:"white",
@@ -214,8 +227,7 @@ const styles = StyleSheet.create({
   screen:{
     flex:1,
    backgroundColor:'white',
-    alignItems:'center'
-
+    
 },
 
 imageThumbnail: {

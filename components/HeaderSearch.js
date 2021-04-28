@@ -13,7 +13,7 @@ const HeaderSearch = ({search,showSearch})=>{
 {pressSearch?
 <View  style={styles.input}>
  <TextInput
- style={{width:"80%"}}
+ style={{width:314.57,height:40,fontSize:16,fontFamily:"Manrope_500Medium"}}
  placeholder="Cerca"
  color="black"
  value={searchText}
@@ -93,9 +93,10 @@ const styles= StyleSheet.create({
       
         fontSize:15,
         flexDirection:"row",
-        borderColor:"#FF4343",
+        borderColor:"#FF6969",
         borderWidth:1,
-        borderRadius:25
+        borderRadius:25,
+        marginLeft:13
     },
     textInput: {
         flex: 1,

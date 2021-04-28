@@ -18,7 +18,7 @@ return (
     <View style={styles.tips}>
         <View style={styles.tipContaneir}> 
         <View style={styles.tipsBoh}>
-          <Image   source={{ uri:url}}
+          <Image   source={{ uri:url,cache: 'reload',}}
                   style={styles.tipsImage}  resizeMode='cover'
                   
                   />
@@ -32,32 +32,34 @@ return (
           borderRadius:40,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:isPreferred <0 ?"#ff9c9c":"#ff4343",
-          height:40,
+          backgroundColor:isPreferred <0 ?"#ff6969":"#fff",
+          height:45,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
           shadowOpacity: 0.9,
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:isPreferred <  0 ?"#ff9c9c":"#ff4343"
+          borderColor:isPreferred <  0 ?"#ff6969":"#ff6969"
           ,
-          width:100
+          width:100,
+     
         }}
         onPress={()=>{
            dispatch(toggleTagFollow(title))
         }}
         >
           <Text style={{
-            color:"white",
-            fontSize:15,
+            color:isPreferred <  0 ?"#fff":"#ff6969",
+            fontSize:16,
             textAlign:"center",
             fontWeight:"bold",
             textAlignVertical:"center"
             ,
-            padding:5
+            padding:5,
+            fontFamily:"Manrope_700Bold"
 
-          }}>FOLLOW</Text>
+          }}>Follow</Text>
         </TouchableOpacity>   
     
 
@@ -122,7 +124,7 @@ const styles = StyleSheet.create({
 
     card:{
         width:'100%',
-        height: 240,
+        height: 250,
         alignItems:'flex-start',
         justifyContent:'flex-start',
         backgroundColor:'white',
@@ -132,12 +134,12 @@ const styles = StyleSheet.create({
 
     tips:{
        
-        width:'100%',
+        width:'90%',
         flexDirection:"row",
         justifyContent:'space-between',
         alignItems:"center",
         padding: 10,
-        paddingRight:30,
+      
 
 
     },
@@ -161,18 +163,20 @@ const styles = StyleSheet.create({
 
   },
     tipContaneir:{
-              width:'80%',
+        width:'80%',
         height:60,
         flexDirection:"row",
         justifyContent:'flex-start',
         alignItems:"center",
+        fontFamily:"Manrope_500Medium"
        
 
     },
     tipsTitle:{
      
-        fontSize:20,
-        marginLeft:15
+        fontSize:16,
+        marginLeft:25,
+        marginTop:5
     },
     tipsListImage:{
               height:200,
@@ -183,16 +187,16 @@ const styles = StyleSheet.create({
     },
     item: {
      
-        padding: 5,
+       margin:8,
         
         width:100
-        ,height:200,
+        ,height:158,
         borderRadius:10,
       },
       title: {
-                width:'100%'
-        ,height:140,
-        borderRadius:10,
+          width:100
+        ,height:158,
+        borderRadius:8,
       },
 
 

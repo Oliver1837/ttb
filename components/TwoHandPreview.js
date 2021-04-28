@@ -40,10 +40,10 @@ function TwoHandPreview({post,navigation,routeName,price}){
               
               <Text style={
                 {
-                  fontSize:20,
+                  fontSize:17,
                   fontWeight:"bold",
                   color:"#fff",
-
+                  fontFamily:"Manrope_800ExtraBold"
                 }
               }>{price + "$"}</Text>
               </View>

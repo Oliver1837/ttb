@@ -179,9 +179,7 @@ style={styles.container}
 export default ProfileScreen;
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+   
     backgroundColor:"white",
 
     
@@ -201,9 +199,8 @@ const styles = StyleSheet.create({
 
   },
   screen:{
-    flex:1,
    backgroundColor:'white',
-    alignItems:'center'
+
 
 },
 

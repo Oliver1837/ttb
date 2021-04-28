@@ -11,12 +11,13 @@ const {width, height} = Dimensions.get('window');
 const PostScreen = (props)=>{
     const post = props.navigation.getParam("post")
     const user = USERS.find(u=> u.idUser===post.userId);
-    const isTwoHand = props.navigation.getParam("isTwoHand")
+    let isTwoHand = props.navigation.getParam("isTwoHand")
     var price = 0;
     if(isTwoHand===true){
 
       var tw = TWOHAND.find(tw=> tw.idPost===post.idPost);
       price = tw.prezzo
+      isTwoHand="true"
    }
    
   
@@ -37,15 +38,22 @@ const PostScreen = (props)=>{
 }
 PostScreen.navigationOptions = navData => {
   var isTw = navData.navigation.getParam("isTwoHand")
-  if(isTw){
   return {
     headerRight: ()=>{ return (
-      <IconCart navigation={navData.navigation} />
+      <IconCart navigation={navData.navigation}  />
     )}
-      
+    ,
+    headerLeft: ()=>(
+      <TouchableOpacity 
+      onPress={() => navData.navigation.goBack(null)}
+      >
+      <Image source={require('../../assets/icons/back.png')} style={{height:18,width:14,marginLeft:10,tintColor:"#FFF"}}/>
+      </TouchableOpacity>
+   )
+    
 
   
-  };
+  
 }
 };
 export default PostScreen;

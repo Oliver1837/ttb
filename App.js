@@ -10,8 +10,17 @@ import commentReducer from './store/reducers/Comment';
 import postReducer from './store/reducers/UploadPost'
 import { Provider } from 'react-redux';
 import * as Permissions from 'expo-permissions';
+import {
+  useFonts,
+ Manrope_200ExtraLight,
+ Manrope_300Light,
+ Mandali_400Regular,
+ Manrope_400Regular,
+ Manrope_500Medium,
+ Manrope_600SemiBold,
+ Manrope_700Bold
 
-
+} from "@expo-google-fonts/dev";
 const rootReducer = combineReducers({
   user : userReducer,
   cart : cartReducer,
@@ -31,6 +40,16 @@ async function checkMultiPermissions() {
 }
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Manrope_200ExtraLight,
+ Manrope_300Light,
+ Mandali_400Regular,
+ Manrope_400Regular,
+ Manrope_500Medium,
+ Manrope_600SemiBold,
+ Manrope_700Bold
+  });
+ 
   const [permission, askPermission, getPermission] = Permissions.usePermissions(Permissions.MEDIA_LIBRARY,{ask:true});
   askPermission()
     checkMultiPermissions();

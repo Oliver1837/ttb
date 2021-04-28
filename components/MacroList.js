@@ -10,10 +10,11 @@ export default function MacroList({macros,navigation}){
         <FlatList
         style={{
         
-          height:60,
-          backgroundColor:"#FFF"
+          height:40,
+          backgroundColor:"white"
           
         }}
+        
         showsHorizontalScrollIndicator={false}
         data={macros}
         horizontal={true}
@@ -28,17 +29,18 @@ export default function MacroList({macros,navigation}){
           borderRadius:25,
           borderWidth:1,
           borderWidth:2,
-          height:40,
-          margin:5,
+          height:25,
+          margin:4.7,
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          minWidth: 100,
-          backgroundColor:"black"
+          minWidth: 65,
+          backgroundColor:"black",
+
         }}
         onPress={()=>{
           let th =false
-          if(item==="2HAND"){
+          if(item==="2hand"){
             th= true;
           }
           navigation.navigate({routeName:"MacroTips"
@@ -53,12 +55,12 @@ export default function MacroList({macros,navigation}){
       >
         <Text style={{
                   color:"#FFF",
-                  fontSize:20,
+                  fontSize:12,
                   textAlign:"center",
                   fontWeight:"bold",
                   textAlignVertical:"center"
-                  ,
-                  padding:5
+                 ,
+                  fontFamily:"Manrope_700Bold"
       
                 }}>{item}</Text>
       </TouchableOpacity>)

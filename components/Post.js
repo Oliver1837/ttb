@@ -1,12 +1,13 @@
 import React from 'react'
-import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image,Alert} from 'react-native'
+import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image,Alert,TextInput} from 'react-native'
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
-import { POSTS, TAGS,TWOHAND,USERS } from '../data/dummy-data';
+import { POSTS, TAGS,TWOHAND,USERS,COMMENT, USEREXAMPLE } from '../data/dummy-data';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLike, togglePreferred } from '../store/actions/User';
 import { useState } from 'react';
 const {width, height} = Dimensions.get('window');
-
+import * as actionComment from '../store/actions/Comment'
+import { ScrollView } from 'react-native-gesture-handler';
 const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
  //  const [isAdd,setIsAdd] = useState(false)
     var Tags = TAGS
@@ -42,11 +43,132 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
     const index = like.findIndex(l => l=== post.idPost)
     const indexPreferedd = preferred.findIndex(p => p=== post)
     const dispatch = useDispatch()
-    if(isTwoHand){
+    const meComment = USEREXAMPLE
+    
+
+    const postId=post.idPost
+    console.log(postId)
+   // const [comments,setComment] = useState(COMMENT.filter(comment=>comment.idPost===postId ));
+   const comments = useSelector(state => state.comment.comment.filter(comment=>comment.idPost===postId ));
+   console.log(comments)
+   const [enterdComment,setEnteredComment] =useState("");
+    const commentInputHandler=enteredText=>{
+        setEnteredComment(enteredText);
+    }
+      const  addCommentHandler=(postId,meComment,enterdComment)=>{
+        if(enterdComment!=null){
+           
+            dispatch(actionComment.addComment(postId ,enterdComment,meComment.idUser));
+         /*   setComment((currentComment) => [...currentComment,
+                {id: Math.random().toString(), value:enterdComment}]);*/
+            setEnteredComment(null);
+        }
+    }
+    if(isTwoHand==="true"){
 
        price = postUseSelector.ths.find(tw=> tw.idPost===post.idPost).prezzo;
 
     }
+    let [isComment,setIsComment] = useState(false);
+    if(isComment===true){
+
+      return(
+        <View style={styles.screen}>
+         
+        <View style={{backgroundColor:"black",alignItems:"center",height:"45%",justifyContent:"flex-start"}}>
+        
+            <ImageBackground source={{uri:post.urlPost}} repeat style={{height:158,width:100,marginTop:100}} resizeMode={"contain"} resizeMethod="scale"/>
+            <TouchableOpacity onPress={()=>{
+          setIsComment(false)
+        }}>
+            <Text style={{color:"white"}}>Close Comments</Text>
+          </TouchableOpacity>
+        </View>
+           
+            <View style={styles.commentHeader}>
+              <Image style={styles.image} source={{
+
+                  uri:meComment.urlPhoto
+
+              }}/>
+              <TextInput 
+               multiline={true}
+              placeholder="Add comment"
+              style={styles.contentComment}
+              onChangeText={commentInputHandler}
+              value={enterdComment}
+              >
+
+
+                  
+              </TextInput>
+              <TouchableOpacity style={{
+ justifyContent:"center",
+ alignItems:'center',
+ borderRadius:25,
+ borderWidth:1,
+ borderWidth:2,
+ backgroundColor:"#FF4343",
+ height:45,
+ margin:1,
+ shadowColor: 'rgba(0, 0, 0, 0.1)',
+ shadowOpacity: 0.9,
+ elevation: 20,
+ shadowRadius: 100 ,
+ shadowOffset : { width: 1, height: 13},
+ borderColor:"#FF4343",
+ width:80,
+ flexDirection:"row"
+}}
+onPress={()=>  addCommentHandler(postId,meComment,enterdComment)}
+
+>
+  <Text style={{
+   color:"white",
+   fontSize:15,
+   textAlign:"center",
+   fontWeight:"bold",
+   textAlignVertical:"center"
+   ,
+   padding:5
+
+ }}>Post</Text>
+</TouchableOpacity>
+           
+              </View>
+              <ScrollView>     
+   <FlatList
+   data={comments}
+   keyExtractor={(item,index)=> item.id}
+   renderItem={({item})=>{
+       
+       const user = USERS.find(user => user.idUser === item.idCommentAuthor)
+       
+       return(
+   
+             <View style={styles.comment}>
+              <Image style={styles.image} source={{
+                  uri:user.urlPhoto
+
+              }} />
+              <Text style={styles.showCommnet}
+              
+              
+               >{item.description}</Text>
+             
+              </View>)
+
+
+   }}
+  
+   
+   />
+   </ScrollView>
+
+</View>
+      )
+
+    }else{
     return (
         <View>
           <ImageBackground source={{uri:post.urlPost}} repeat style={styles.video} resizeMode={"contain"} resizeMethod="scale"/>
@@ -73,13 +195,9 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
                 <View style={{
                   color:"#fff",
                   fontSize:16,
-                  marginTop:10,
+                 
                   flexDirection:"row"
-                }}><Text style={{
-                  color:"#fff",
-                  fontSize:16,
-                  marginTop:10
-                }}>TipTo</Text> 
+                }}><Text style={styles.description} >TipTo</Text> 
                 {post.nameTag.map( nt=> {return ( <TouchableOpacity onPress={
                   ()=>{
                     navigation.navigate({
@@ -91,8 +209,9 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
                   }
                 }><Text style={{
                   color:"#fff",
-                  fontSize:16,
-                  marginTop:10
+      fontSize:14,
+      fontFamily:"Manrope_400Regular"
+       
                 }}
                 >#{nt}</Text></TouchableOpacity>
                 )})}
@@ -113,38 +232,41 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
           dispatch(toggleLike(post.idPost))
         }
            }>
-            <Image source={require('../assets/icons/heart.png')} style={{height:26,width:30,tintColor:index>=0 ?"#FF4343":"#FFF",}} />
+             {index>=0? <Image source={require('../assets/icons/heartfull.png')} style={{height:26.25,width:30,tintColor:"#FF6969",}} />: <Image source={require('../assets/icons/heart.png')} style={{height:26,width:30,tintColor:"#FFF",}} />}
+           
            </TouchableOpacity>
-            <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
+           <Text style={{color: '#fff', marginBottom: 25, fontFamily:"Manrope_500Medium" }}>{"0"}</Text>
             <TouchableOpacity onPress={
             ()=> {
               console.log(post.idPost)
-              navigation.navigate({routeName:"Comment",params:{
+              setIsComment(true);
+            /*  navigation.navigate({routeName:"Comment",params:{
               
                 postId: post.idPost
   
               }
-            })
+            })*/
             }}>
               
               <Image source={require('../assets/icons/comment.png')} style={{height:30,width:30,tintColor:"#FFF",}} />
 
           </TouchableOpacity>
-            <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
+            <Text style={{color: '#fff', marginBottom: 25,  fontFamily:"Manrope_500Medium"}}>{"0"}</Text>
             <TouchableOpacity onPress={
         ()=>{
           console.log(post.idPost)
           dispatch(togglePreferred(post))
         }
            }>
-                <Image source={require('../assets/icons/save.png')} style={{height:30,width:20,tintColor:indexPreferedd >=0 ?"#FF4343":"#FFF",}} />
+               
+                {indexPreferedd>=0? <Image source={require('../assets/icons/savefull.png')} style={{height:30,width:18.75,tintColor:"#FF6969",}} />:  <Image source={require('../assets/icons/save.png')} style={{height:30,width:20,tintColor:indexPreferedd >=0 ?"#ff6969":"#FFF",}} />}
 
             </TouchableOpacity>
-            <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
-            <Image source={require('../assets/icons/share.png')} style={{height:30,width:31,tintColor:"#FFF",}} />
-            <Text style={{color: '#fff', marginBottom: 25}}>1234</Text>
-            {me === true ?<MaterialCommunityIcons name="settings-helper" size={24} color="white" /> :null}
-            {isTwoHand ? 
+            <Text style={{color: '#fff', marginBottom: 25, fontFamily:"Manrope_500Medium"}}>1234</Text>
+            <Image source={require('../assets/icons/share.png')} style={{height:30,width:31.71,tintColor:"#FFF",}} />
+            <Text style={{color: '#fff', marginBottom: 25, fontFamily:"Manrope_500Medium"}}>1234</Text>
+            {me ==="true" ?<Text style={{color: '#fff',fontWeight:"bold",fontSize:18}}>...</Text> :null}
+            {isTwoHand==="true" ? 
             <View>
            
             <TouchableOpacity style={{
@@ -154,7 +276,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
               borderWidth:1,
               borderWidth:2,
               backgroundColor:isAdd?"#ff9c9c": "#ff4343",
-              height:60,
+              height:46,
               margin:1,
               shadowColor: 'rgba(0, 0, 0, 0.1)',
               shadowOpacity: 0.9,
@@ -162,7 +284,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
               shadowRadius: 100 ,
               shadowOffset : { width: 1, height: 13},
               borderColor:isAdd?"#ff9c9c": "#ff4343",
-              width:120,
+              width:82,
               marginRight:50
             }}
             onPress={
@@ -197,20 +319,20 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
               }
             >
               <Text style={{
-               fontSize:18,
-               fontWeight:"bold",
-               color:"#FFF"
+               fontSize:16,
+           
+               color:"#FFF",
+               fontFamily:"Manrope_700Bold"
              }}> {price}$</Text> 
               <Text style={{
                 color:"white",
-                fontSize:15,
-                textAlign:"center",
-                fontWeight:"bold",
-                textAlignVertical:"center"
-                ,
-                padding:5
+                fontSize:16,
+                fontFamily:"Manrope_700Bold"
+                
+                
     
-              }}>{isAdd?"RIMUOVI": "COMPRA"}</Text>
+              }}>
+                {isAdd?"RIMUOVI": "BUY"}</Text>
             </TouchableOpacity>
             </View>
             
@@ -218,7 +340,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me})=>{
             </View>
           </View>
         </View>
-      );
+      );}
 }
 export default Post;
 
@@ -285,15 +407,68 @@ const styles = StyleSheet.create({
       padding: 5,
     },
     title: {
-      fontWeight: 'bold',
+      
       color: '#fff',
-      fontSize:18,
+      fontSize:16,
+      height:21,
+      width:68,
+      fontFamily:"Manrope_700Bold"
     },
     description: {
-      color: '#e5e5e5',
+      color:"#fff",
+      fontSize:14,
+      fontFamily:"Manrope_400Regular"
+      }, screen:{
+        width:'100%',
+        height:'92%'
+
+    }
+    ,
+    comment:{
+        margin:0.6,
+        flexDirection:'row'
+        ,width:"100%",
+        backgroundColor:'white'
+        ,alignItems:'center',
+    
+        minHeight:60    ,
+        borderBottomWidth:0.150 
+    }
+    ,
+    commentHeader:{
+        flexDirection:'row'
+        ,width:"100%",
+        backgroundColor:'white'
+        ,alignItems:'center',
+        borderColor:"grey"
+        ,borderBottomWidth:0.2,
     },
-    music: {
-      flexDirection: 'row',
-      alignItems: 'center',
+    image:{
+        backgroundColor:'black',
+        width:45,
+        height:45
+    ,   borderRadius:50 
+    ,padding:10,
+        margin: 10
     },
+    contentComment:{
+        backgroundColor:'#EFEFEF',
+        width:200,
+        minHeight: 50
+        ,borderRadius:25
+        ,margin:5,
+        marginRight:10,
+        padding:10
+    }
+    ,buttonPost:{
+        
+     backgroundColor:'white'
+    
+    },
+    showCommnet:{
+        width:250,
+        padding:10,
+        margin:10
+    }
+   
   });

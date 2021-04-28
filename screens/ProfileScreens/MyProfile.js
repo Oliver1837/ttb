@@ -12,6 +12,8 @@ import HeaderCart from '../../components/HeaderCart';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ListPostPreview from '../../components/ListPostPreview';
 import ListTwoHandPreview from '../../components/ListTwoHandPreview';
+import InformazioneProfile from '../../components/Profile/information_profile'
+
 import IconCart from '../../components/IconCart';
 const MyProfile = (props)=> {
   const userSelector = useSelector(state=> state.user)
@@ -40,104 +42,90 @@ style={styles.container}
               height:100,
               width:100,
               borderRadius:50,
-              borderWidth:2,
               marginRight:20,
-              borderColor:"black"
+
           }}
-          source={{uri:userSelector.user.urlPhoto}}
+          source={{uri:user.urlPhoto}}
           />
       </View>
      <View style={styles.containerDatauser}>
+   <View>  
      <Text  style={{
-         fontWeight:"bold",
-         fontSize:18,
-     }}>@{userSelector.user.username}</Text>
+         height:21,
+         width:139,
+         fontSize:16,
+         marginBottom:7.5,
+         fontFamily:"Manrope_700Bold"
+     }}>@{user.username}</Text>
+     <View  style={{
+     flexDirection:"row",
+    
+   }}>
+    <Image source={require('../../assets/icons/star.png')} style={{height:12,width:73.04,tintColor:"black"}}/>
+    <Text style={{width:26,height:19,fontSize:10,marginLeft:38.5}}>(18)</Text>
+</View>
+</View>
      <View style={{
                  flexDirection:"row",
+                marginTop:7.5
                 
           }}>
-     <View style={{
-        flexDirection:"row",
-     }}>
- <TouchableOpacity style={{
+       <TouchableOpacity style={{
           justifyContent:"center",
           alignItems:'center',
-          borderRadius:10,
+          borderRadius:25,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:"black",
-          height:40,
-          margin:1,
+          backgroundColor:"#ff6969",
+          height:45,
+          marginRight:11.5,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
           shadowOpacity: 0.9,
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"black",
-          flexDirection:"row",
-          width:150
-          
+          borderColor:"#ff6969",
+          width:100,
+          flexDirection:"row"
         }}
+        onPress={()=> {}}
         >
-          <Text style={{
-            color:"white",
+           <Text style={{
+            color:"#fff",
             fontSize:15,
             textAlign:"center",
             fontWeight:"bold",
             textAlignVertical:"center"
             ,
-            padding:5
+            padding:5,
+            fontFamily:"Manrope_700Bold"
 
-          }}>Impostazioni </Text>
-          <Ionicons name="ios-settings-outline" size={24} color="white" />
+          }}>Settings</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{
+      <TouchableOpacity style={{
           justifyContent:"center",
           alignItems:'center',
-          borderRadius:10,
+          borderRadius:25,
           borderWidth:1,
-          borderWidth:2,
-          backgroundColor:"black",
-          height:40,
-          margin:1,
+    
+          backgroundColor:"#ff6969",
+          height:45,
+       
           shadowColor: 'rgba(0, 0, 0, 0.1)',
           shadowOpacity: 0.9,
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"black",
+          borderColor:"#ff6969",
           width:100
         }}
         onPress={props.toggleTag}
         >
-          <MaterialIcons name="email" size={24} color="white" />
+         <Image source={require('../../assets/icons/message.png')} style={{height:18,width:28.8,tintColor:"#fff"}}/>
         </TouchableOpacity>
- </View>
-   
 
      </View>
-          <View style={{
-                 flexDirection:"row"
-          }}>
-               
-              <View>
-                <Text style={styles.textData}>Post</Text>
-                <Text style={styles.textData}>{postsNormal.length}</Text>
-
-              </View>
-              
-              <View>
-                <Text style={styles.textData}>Following</Text>
-                <Text style={styles.textData}>{userSelector.follow.length}</Text>
-
-              </View>
-              
-              <View>
-                <Text style={styles.textData}>Follower</Text>
-                <Text style={styles.textData}>0</Text>
-
-              </View>
-          </View>
+    <InformazioneProfile lenght={postsNormal.length} user ={user}/>
      </View>
 
 
@@ -146,25 +134,28 @@ style={styles.container}
 
      <Container style={styles.tabs}>
       
-      <Tabs tabBarUnderlineStyle={{backgroundColor:'black' , height:1}}>
+     <Tabs tabBarUnderlineStyle={{backgroundColor:'#ff6969' , height:3,}} tabContainerStyle={{borderBottomColor:"#ff6969",borderBottomWidth:1}}
+      
+      
+      >
       <Tab  heading="GRID" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black'}}>
-                <ListPostPreview posts={postsNormal} navigation={props.navigation} routeName='Post' key="1"/>
+           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
+                <ListPostPreview posts={postsNormal} navigation={props.navigation} routeName='PostMyProfile' key="1"/>
   
            </Tab>
            <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black'}}>
+           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
              <ListTwoHandPreview routeName="PostMyProfile" ths={ths} navigation={props.navigation}/>
            </Tab>
           
            <Tab   heading="SALVATI" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black'}}>
+           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
               <FlatList
              data={preferred }
              numColumns={3}
@@ -255,8 +246,10 @@ MyProfile.navigationOptions = navData => {
 
     headerRight: ()=>{ return (
       <IconCart navigation={navData.navigation} isBlack={true}/>
-    )},headerTitleAlign:"center"
-      
+    )},
+    headerTitle:()=>{
+      return(<Image source={require('../../assets/logo.png')} style={{height:25,width:65}}/>)
+    },
   };
 };
 
@@ -264,10 +257,11 @@ export default MyProfile;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    
     alignItems: 'center',
     backgroundColor:"white",
-
+    marginBottom:25.9,
+    marginLeft:11.4
     
    }, containerDatauser: {
     backgroundColor:"white",
@@ -277,18 +271,11 @@ const styles = StyleSheet.create({
     paddingTop:15
     
   },
-  textData:{
-      fontWeight:"bold",
-      fontSize:16,
-      margin:4,
-      textAlign:"center"
-
-  },
+  
   screen:{
     flex:1,
    backgroundColor:'white',
-    alignItems:'center'
-
+    
 },
 
 imageThumbnail: {

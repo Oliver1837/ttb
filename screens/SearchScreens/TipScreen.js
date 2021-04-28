@@ -25,28 +25,27 @@ const TipScreen = props =>{
                 height:150,
                 width:"100%",
                 flexDirection:"row",
-                justifyContent:"center",
-                alignItems:"center"
+                marginLeft:11.7,
+                alignItems:"center",
+               
             }}>
           
           <Image
           style={{
-              height:80,
-              width:80,
-              borderRadius:40,
+              height:100,
+              width:100,
+              borderRadius:50,
               padding:15
           }}
         source={{uri:tag.urlTag}}
           /> 
           <View style={{
-              flexDirection:"column",
-              justifyContent:"center",
-              alignItems:"center"
+           
+             
           }}>
           <View style={{
-              flexDirection:"row",
-              justifyContent:"center",
-              alignItems:"center"
+        marginLeft:14.7
+              
           }}>                                 
             <Text  style={styles.textNameTip}>#{tag.nameTag}</Text>
             <TouchableOpacity style={{
@@ -55,15 +54,15 @@ const TipScreen = props =>{
           borderRadius:25,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:"#ff9c9c",
-          height:50,
+          backgroundColor:"#ff6969",
+          height:45,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
           shadowOpacity: 0.9,
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"#ff9c9c",
+          borderColor:"#ff6969",
           width:100
         }}
         onPress={()=>{
@@ -72,20 +71,24 @@ const TipScreen = props =>{
         >
           <Text style={{
             color:"white",
-            fontSize:15,
+            fontSize:16,
             textAlign:"center",
-            fontWeight:"bold",
-            textAlignVertical:"center"
-            ,
-            padding:5
+           fontFamily:"Manrope_700Bold"
 
-          }}>FOLLOW</Text>
+          }}>Follow</Text>
         </TouchableOpacity>  
                              
         </View>
         <Text style={{
-          fontSize:18
-        }}>Numero di post {post.length}</Text>
+          fontSize:14,
+          marginLeft:14.7,
+          fontFamily:"Manrope_500Medium"
+        }}>Numero di post</Text>
+         <Text style={{
+          fontSize:14,
+          marginLeft:14.7,
+          fontFamily:"Manrope_500Medium"
+        }}>{post.length}</Text>
         </View>
  
        
@@ -99,20 +102,20 @@ const TipScreen = props =>{
       >
       <Tab  heading="POPOLARI"  tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black',fontWeight:"bold"}}>
+           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
              <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="1"/>
            </Tab>
            <Tab   heading="RECENTI"tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black',fontWeight:"bold"}}>
+           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
               <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="1"/>
            </Tab>
            <Tab   heading="2HAND"tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black',fontWeight:"bold"}}>
+           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
               <ListTwoHandPreview routeName="PostProfile" ths={ths} navigation={props.navigation} />
 
            </Tab>
@@ -163,9 +166,9 @@ const styles = StyleSheet.create({
     },
     textNameTip:{
         fontWeight:"bold",
-        fontSize:18,
+        fontSize:16,
         margin:4,
-        textAlign:"center"
+       fontFamily:"Manrope_700Bold"
   
     },
 

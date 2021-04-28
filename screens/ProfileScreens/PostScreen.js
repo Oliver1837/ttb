@@ -9,8 +9,7 @@ const {width, height} = Dimensions.get('window');
 
 const PostScreen = (props)=>{
     const post = props.navigation.getParam("post")
-  
-    console.log(post)
+    const isTwoHand = props.navigation.getParam("isThwoHand")
 
     const config = {
       velocityThreshold: 0.4,
@@ -29,9 +28,23 @@ const PostScreen = (props)=>{
             width:width
         }}
         >
-        <Post post ={post} me={true} isTwoHand="false"/>
+        <Post post ={post} me="true" isTwoHand="false"/>
         </GestureRecognizer>
       );
 }
+PostScreen.navigationOptions = navData => {
+  return {
+  
+    headerLeft: ()=>(
+      <TouchableOpacity 
+      onPress={() => navData.navigation.goBack(null)}
+      >
+      <Image source={require('../../assets/icons/back.png')} style={{height:18,width:14,marginLeft:5,tintColor:"#FFF"}}/>
+      </TouchableOpacity>
+   )
+    
+      
+  };
+};
 export default PostScreen;
 //PostScreen.navigation.

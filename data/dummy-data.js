@@ -98,7 +98,7 @@ export const COMMENT=[
   
   
   ]
-export const MACRO = ["2HAND","Viaggi","Cibo","Arte","Bellezza","Musica","Sport","Elettronica","Casa"]
+export const MACRO = ["2hand","Viaggi","Cibo","Arte","Bellezza","Musica","Sport","Elettronica","Casa"]
 export const Dizionario = [
     new DizionarioMacro("Viaggi",["Aereo","Viaggio","Albergo","Hotel"]),
     new DizionarioMacro("Cibo",["Cibo","Pasta","Sugo","Chef","Cucina"]),

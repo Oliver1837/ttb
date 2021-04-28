@@ -65,8 +65,8 @@ const AlbumScreen=(props)=> {
       "width": 0,})//Elemento selezionato 
       const[fileName,setFileName]= useState("")
       const [albums, setAlbums] = useState([])
-     // const [albumPicker, setAlbumPicker] = useState("Lightroom")
-     const [albumPicker, setAlbumPicker] = useState("Camera")
+     const [albumPicker, setAlbumPicker] = useState("Lightroom")
+     //const [albumPicker, setAlbumPicker] = useState("Camera")
       const [resize,setResize] = useState(false)
       useEffect(()=>{
         async function getPhotoAlbum () {
