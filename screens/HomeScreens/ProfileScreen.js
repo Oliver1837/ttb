@@ -125,7 +125,7 @@ style={styles.container}
             padding:5,
             fontFamily:"Manrope_700Bold"
 
-          }}>Follow</Text>
+          }}>{follow>=0?"Following":"Follow"}</Text>
         </TouchableOpacity>
       <TouchableOpacity style={{
           justifyContent:"center",

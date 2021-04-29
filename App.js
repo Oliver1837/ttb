@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View ,LogBox} from 'react-native';
 import Tiptobe from './Navigation/TtbNavigation'
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import ReduxThunk from 'redux-thunk';
@@ -21,6 +21,8 @@ import {
  Manrope_700Bold
 
 } from "@expo-google-fonts/dev";
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 const rootReducer = combineReducers({
   user : userReducer,
   cart : cartReducer,

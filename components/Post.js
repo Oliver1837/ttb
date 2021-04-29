@@ -13,6 +13,8 @@ import TimeUtils from '../Utils/TimeUtils';
 import { deletePost } from '../store/actions/UploadPost';
 const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
     const user = USERS.find(u =>  post.userId === u.idUser);
+    const posts = useSelector(state=>state.post.posts)
+    
     if(navigation.getParam("isTwoHand")!='undefined'){
       isTwoHand==navigation.getParam("isTwoHand")
       console.log("VALORE THO HAND"+isTwoHand)
@@ -26,8 +28,6 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
       const cart = cartSelector.cart.find(c=> c.idUser === userSelector.user.userId)
      // idCartPost = cart.post.find(p => p.postId === ).idPost
       const ps = cart.post
-      console.log(ps[0].idPost)
-
      
     for(var i= 0; i< ps.length ;i++){
       console.log(ps[i].idPost)
@@ -116,6 +116,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
                   
                       params: {
                           tag: nt, 
+                          posts: posts
                         }});
                   }
                 }><Text style={{
@@ -243,7 +244,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
            
                color:"#FFF",
                fontFamily:"Manrope_700Bold"
-             }}> {price}$</Text> 
+             }}> {price}€</Text> 
               <Text style={{
                 color:"white",
                 fontSize:16,

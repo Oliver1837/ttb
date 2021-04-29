@@ -38,10 +38,10 @@ function ListPostPreview({posts,navigation,routeName,macro,isMacroList,replace})
         <FlatList
         data={ps}
         numColumns={3}
-        keyExtractor={(item, index) => item.idGrid}
+        keyExtractor={(item, index) => item.idPost}
          renderItem={({item})=>{
          return (
-           <PostPreview key={item.idPost} post={item} navigation={navigation} routeName={routeName}   />
+           <PostPreview key={item.idPost} post={item} navigation={navigation} routeName={routeName} />
            )
        }}
        />

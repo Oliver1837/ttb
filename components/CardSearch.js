@@ -59,7 +59,7 @@ return (
             padding:5,
             fontFamily:"Manrope_700Bold"
 
-          }}>Follow</Text>
+          }}>{isPreferred <  0 ?"Follow":"Following"}</Text>
         </TouchableOpacity>   
     
 

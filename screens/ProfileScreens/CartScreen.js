@@ -12,12 +12,14 @@ const {width, height} = Dimensions.get('window');
 
 const CartScreen = props =>{
 const tags = TAGS;
-const cart = useSelector(state=> state.cart);
-console.log(cart.cart)
+const cart = useSelector(state=> state.cart.cart);
+console.log(cart)
+const newcart= cart.filter(c=> c.post.length>0)
+console.log(newcart)
 //const twoHand = TWOHAND.filter(t => t.id ===itemData.item.productId)
  return (
 <FlatList
-      data={cart.cart}
+      data={newcart}
       ListEmptyComponent={()=>{
 
         return (
@@ -43,9 +45,10 @@ console.log(cart.cart)
       }}
       renderItem={
       ({item}) =>  (
+      
+      <CardCart title={item.user.username} url={item.user.urlPhoto} navigation ={props.navigation} post ={item.post} total = {item.total}/>)
         
-          <CardCart title={item.user.username} url={item.user.urlPhoto} navigation ={props.navigation} post ={item.post} total = {item.total}/>
-        )
+        
       }
       style={{width:'100%',height:'90%' ,backgroundColor:"#fff"}}>
       </FlatList>

@@ -6,17 +6,21 @@ import { Ionicons } from '@expo/vector-icons';
 import ListPostPreview from '../../components/ListPostPreview';
 import { POSTS, TWOHAND } from '../../data/dummy-data';
 import ListTwoHandPreview from '../../components/ListTwoHandPreview';
-import { useSelector } from 'react-redux';
 import IconCart from '../../components/IconCart';
-
-const TipScreen = (props) =>{
-    const tagName = props.navigation.getParam("tag");
-    const tags = useSelector(state => state.post.tags)
-    const tag = tags.find(t=> t.nameTag === tagName)
-    let posts = useSelector(state => state.post.posts)
-    posts = posts.filter( p=> p.nameTag.includes(tag.nameTag) === true) 
-    const ths = TWOHAND.filter(t =>  posts.filter( p=> p.idPost === t.idPost && (p.nameTag.includes(tag.nameTag) === true) ).length>0)
-
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTagFollow } from '../../store/actions/User';
+const TipScreen = props =>{
+    const tag = props.navigation.getParam("tag");
+    const post = props.navigation.getParam("posts")
+    console.log(tag)
+    const postSelector = useSelector(state=> state.post)
+    const ths = postSelector.ths.filter(t =>  postSelector.posts.filter( p=> p.idPost === t.idPost && (p.nameTag.includes(tag.nameTag) === true) ).length>0)
+    const preferredTag = useSelector(state => state.user.preferredTag)
+    console.log("Tag preferiti:")
+    console.log(preferredTag)
+    console.log(tag)
+    var  isPreferred = preferredTag.findIndex(t=> t== tag.nameTag);
+    const dispatch= useDispatch()
     return (
       <View style={{ 
         flex: 1,
@@ -27,68 +31,71 @@ const TipScreen = (props) =>{
                 height:150,
                 width:"100%",
                 flexDirection:"row",
-                justifyContent:"center",
-                alignItems:"center"
+                marginLeft:11.7,
+                alignItems:"center",
+               
             }}>
           
           <Image
           style={{
-              height:80,
-              width:80,
-              borderRadius:40,
-              borderColor:"black",
-              borderWidth:2,
+              height:100,
+              width:100,
+              borderRadius:50,
               padding:15
           }}
         source={{uri:tag.urlTag}}
           /> 
           <View style={{
-              flexDirection:"column",
-              justifyContent:"center",
-              alignItems:"center"
+           
+             
           }}>
           <View style={{
-              flexDirection:"row",
-              justifyContent:"center",
-              alignItems:"center"
+        marginLeft:14.7
+              
           }}>                                 
             <Text  style={styles.textNameTip}>#{tag.nameTag}</Text>
             <TouchableOpacity style={{
           justifyContent:"center",
           alignItems:'center',
-          borderRadius:10,
+          borderRadius:25,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:"#0095f6",
-          height:40,
+          backgroundColor:isPreferred <0 ?"#ff6969":"#fff",
+          height:45,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
           shadowOpacity: 0.9,
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"#0095f6"
+          borderColor:isPreferred <  0 ?"#ff6969":"#ff6969",
+          width:100
         }}
         onPress={()=>{
-        //    dispatch(toggleTagFollow(props.title))
+        dispatch(toggleTagFollow(tag.nameTag))
         }}
         >
           <Text style={{
             color:"white",
-            fontSize:15,
+            fontSize:16,
             textAlign:"center",
-            fontWeight:"bold",
-            textAlignVertical:"center"
-            ,
-            padding:5
+           fontFamily:"Manrope_700Bold",
+           color:isPreferred <  0 ?"#fff":"#ff6969",
 
-          }}>FOLLOW</Text>
+          }}>{isPreferred <  0 ?"Follow":"Following"}</Text>
         </TouchableOpacity>  
                              
         </View>
         <Text style={{
-          fontSize:18
-        }}>Numero di post {posts.length}</Text>
+          fontSize:14,
+          marginLeft:14.7,
+          fontFamily:"Manrope_500Medium"
+        }}>Numero di post</Text>
+         <Text style={{
+          fontSize:14,
+          marginLeft:14.7,
+          fontFamily:"Manrope_500Medium"
+        }}>{post.length}</Text>
         </View>
  
        
@@ -96,24 +103,27 @@ const TipScreen = (props) =>{
           </View>
           <Container style={styles.tabs}>
       
-      <Tabs tabBarUnderlineStyle={{backgroundColor:'black' , height:1}}>
-      <Tab  heading="POPOLARI" tabStyle={{backgroundColor:'white'}} 
+          <Tabs tabBarUnderlineStyle={{backgroundColor:'#FF4343' , height:3,}} tabContainerStyle={{borderBottomColor:"#ff9c9c",borderBottomWidth:1}}
+      
+      
+      >
+      <Tab  heading="Popolari"  tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black'}}>
-             <ListPostPreview posts={posts} navigation={props.navigation} routeName='PostProfile' key="1"/>
+           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
+             <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="1"/>
            </Tab>
-           <Tab   heading="RECENTI" tabStyle={{backgroundColor:'white'}} 
+           <Tab   heading="Recenti"tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black'}}>
-              <ListPostPreview posts={posts} navigation={props.navigation} routeName='PostProfile' key="1"/>
+           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
+              <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="2"/>
            </Tab>
-           <Tab   heading="2HAND" tabStyle={{backgroundColor:'white'}} 
+           <Tab   heading="2Hand"tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey'}}
-           activeTextStyle={{color:'black'}}>
-              <ListTwoHandPreview routeName="PostProfile" ths={ths} navigation={props.navigation} />
+           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
+              <ListTwoHandPreview routeName="PostProfile" ths={ths} navigation={props.navigation} key="3" />
 
            </Tab>
          </Tabs>
@@ -127,11 +137,20 @@ const TipScreen = (props) =>{
 }
 TipScreen.navigationOptions = navData => {
   return {
-  
-
-    headerRight: (navData)=>{ return (
-      <IconCart navigation={navData.navigation}/>
-    )}
+    headerRight: ()=>{ return (
+      <IconCart navigation={navData.navigation} isBlack={true}/>
+    )},
+    headerTitle:()=>{
+      return(<Image source={require('../../assets/logo.png')} style={{height:25,width:65}}/>)
+    },
+    headerLeft: ()=>(
+      <TouchableOpacity 
+      onPress={() => navData.navigation.goBack(null)}
+      >
+      <Image source={require('../../assets/icons/back.png')} style={{height:18,width:14,marginLeft:5}}/>
+      </TouchableOpacity>
+   )
+    
       
   };
 };
@@ -154,9 +173,9 @@ const styles = StyleSheet.create({
     },
     textNameTip:{
         fontWeight:"bold",
-        fontSize:18,
+        fontSize:16,
         margin:4,
-        textAlign:"center"
+       fontFamily:"Manrope_700Bold"
   
     },
 

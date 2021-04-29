@@ -7,14 +7,17 @@ import ListPostPreview from '../../components/ListPostPreview';
 import { POSTS, TWOHAND } from '../../data/dummy-data';
 import ListTwoHandPreview from '../../components/ListTwoHandPreview';
 import IconCart from '../../components/IconCart';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTagFollow } from '../../store/actions/User';
 const TipScreen = props =>{
     const tag = props.navigation.getParam("tag");
     const post = props.navigation.getParam("posts")
     const postSelector = useSelector(state=> state.post)
     const ths = postSelector.ths.filter(t =>  postSelector.posts.filter( p=> p.idPost === t.idPost && (p.nameTag.includes(tag.nameTag) === true) ).length>0)
+    const preferredTag = useSelector(state => state.user.preferredTag)
 
+    var  isPreferred = preferredTag.findIndex(t=> t== tag.nameTag);
+    const dispatch= useDispatch()
     return (
       <View style={{ 
         flex: 1,
@@ -54,7 +57,7 @@ const TipScreen = props =>{
           borderRadius:25,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:"#ff6969",
+          backgroundColor:isPreferred <0 ?"#ff6969":"#fff",
           height:45,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -62,20 +65,21 @@ const TipScreen = props =>{
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"#ff6969",
+          borderColor:isPreferred <  0 ?"#ff6969":"#ff6969",
           width:100
         }}
         onPress={()=>{
-        //    dispatch(toggleTagFollow(props.title))
+        dispatch(toggleTagFollow(tag.nameTag))
         }}
         >
           <Text style={{
             color:"white",
             fontSize:16,
             textAlign:"center",
-           fontFamily:"Manrope_700Bold"
+           fontFamily:"Manrope_700Bold",
+           color:isPreferred <  0 ?"#fff":"#ff6969",
 
-          }}>Follow</Text>
+          }}>{isPreferred <  0 ?"Follow":"Following"}</Text>
         </TouchableOpacity>  
                              
         </View>

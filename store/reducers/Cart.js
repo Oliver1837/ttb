@@ -54,16 +54,16 @@ const initialState = {
                 console.log(indexCart)
                 if(indexCart>=0){
                     var updateCart = cart.find(c => c.user ===user);
-                    var indexPost = updateCart.post.findIndex(p => p === action.post)>=0
+                    var indexPost = updateCart.post.findIndex(p => p === action.post)
                     if(indexPost>=0){
                          updateCart.post.splice(indexPost,1)
                         if(updateCart.post.lenght>0){
                             return {...state , cart : updateCart,number:state.number-1}
                         }else{
-                            let newCart = cart.splice(indexCart,0)
-                            console.log(newCart)
+                            
+                            console.log(cart)
 
-                            return {...state , cart : newCart,number:state.number-1}
+                            return {...state , cart : cart,number:state.number-1}
                         }
                       
                     }else{
