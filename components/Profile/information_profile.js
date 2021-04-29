@@ -36,8 +36,8 @@ function information_profile({user,lenght}) {
          </View>
           
          <View   style={{marginRight:20}}>
-           <Text style={{ width:56,
-           height:19, fontSize:14,fontFamily:"Manrope_500Medium"}}>Follower</Text>
+           <Text style={{ width:58,
+           height:19, fontSize:14,fontFamily:"Manrope_500Medium"}}>Followers</Text>
            <Text style={styles.textData}>{user.nFollower}</Text>
 
          </View>

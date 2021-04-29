@@ -195,7 +195,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
               borderRadius:30,
               borderWidth:1,
               borderWidth:2,
-              backgroundColor:isAdd?"#ff9c9c": "#ff4343",
+              backgroundColor:isAdd?"#ff9c9c": "#ff6969",
               height:46,
               margin:1,
               shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -203,7 +203,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
               elevation: 20,
               shadowRadius: 100 ,
               shadowOffset : { width: 1, height: 13},
-              borderColor:isAdd?"#ff9c9c": "#ff4343",
+              borderColor:isAdd?"#ff9c9c": "#ff6969",
               width:82,
               marginRight:50
             }}
@@ -252,7 +252,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
                 
     
               }}>
-                {isAdd?"RIMUOVI": "BUY"}</Text>
+                {isAdd?"Remove": "Buy"}</Text>
             </TouchableOpacity>
             </View>
             
@@ -379,7 +379,12 @@ setModalVisiblePunti(false)        }}>
         <View style={styles.centeredViewPunti}>
           <View style={styles.modalViewPunti}>
           <Pressable onPress={()=>{
-            setModalVisiblePunti(false)
+           navigation.navigate({routeName:"Update",params:{
+            id:postId,
+            uri: post.urlPost,
+            isTwoHand:isTwoHand
+           }})
+          
           }}>
           <Text style={{
             fontSize:16,

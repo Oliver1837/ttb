@@ -68,7 +68,7 @@ PostProfileScreen.navigationOptions = navData => {
       <TouchableOpacity 
       onPress={() => navData.navigation.goBack(null)}
       >
-      <Image source={require('../../assets/icons/back.png')} style={{height:18,width:14,marginLeft:5}}/>
+      <Image source={require('../../assets/icons/back.png')} style={{height:18,width:14,marginLeft:5,tintColor:"#fff"}}/>
       </TouchableOpacity>
    )
     

@@ -3,7 +3,7 @@ import { GRIDPOSTS, GRIDS, POSTS, TAGS, TWOHAND } from "../../data/dummy-data";
 import Post from "../../model/Post";
 import Tag from "../../model/Tag";
 import TwoHand from "../../model/TwoHand";
-import { UPLOAD_PHOTO_GRID,UPLOAD_PHOTO_TWO_HAND,deletePost, DELETE_POST } from "../actions/UploadPost";
+import { UPLOAD_PHOTO_GRID,UPLOAD_PHOTO_TWO_HAND,deletePost, DELETE_POST, UPTADE_POST_TWO_HAND,UPTADE_POST } from "../actions/UploadPost";
 const initialState = {
     posts : POSTS,
     grid :GRIDS,
@@ -39,7 +39,6 @@ export default (state = initialState, action) => {
       case  UPLOAD_PHOTO_TWO_HAND: {
       const id = "post" + Math.random();
       let subString= getSubStringTag(action.tips)
-      console.log(subString)
       let ts = state.tags;
 
         
@@ -64,6 +63,27 @@ export default (state = initialState, action) => {
       const posts = state.posts;
       const indexPost = posts.findIndex(p=> p.idPost===id)
       posts.splice(indexPost,1);
+      return {...state , posts : posts}
+    } 
+    case UPTADE_POST :{
+      const id = action.id;
+      console.log(id)
+      const posts = state.posts;
+      const indexPost = posts.findIndex(p=> p.idPost===id)
+      let subString= getSubStringTag(action.tips)
+      let ts = state.tags;
+
+        
+     for(var i = 0; i<subString.length; i++){
+      if(ts.findIndex(t=> t.nameTag===subString[i])<0){
+        var tag = new Tag(subString[i], action.uri)
+        ts=  ts.concat(tag)
+
+      }
+     }
+      const post = new Post(id,action.uri,0,0,"user10",subString,action.descrizione,false,false)
+      posts.splice(indexPost,post)
+
       return {...state , posts : posts}
     } 
         default :return state;

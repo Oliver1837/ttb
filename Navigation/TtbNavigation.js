@@ -31,6 +31,7 @@ import CommentScreen from '../screens/CommentScreen'
 import MacroTipsScreen from '../screens/SearchScreens/MacroTips';
 import Header from '../components/Header'
 import { useNavigation } from '@react-navigation/core';
+import UptadeScreen from '../screens/UptadeScreen';
 class Notifica extends React.Component{
   constructor(props){
     super(props)
@@ -229,7 +230,14 @@ const FeedNavigator = createStackNavigator({
       headerTransparent:true,
       headerTintColor:"#fff",
        title:null,
-    }} 
+    }},
+    Update:{
+      screen:UptadeScreen,
+      navigationOptions:{
+        headerTransparent:true,
+        headerTintColor:"#fff"
+      }
+    }
   });
   const TipToBeNavigator = createBottomTabNavigator({
     

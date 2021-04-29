@@ -128,7 +128,7 @@ console.log(price)
     <Text style={{
         color:"#fff",
         fontWeight:"bold"
-    }}>ACQUISTA</Text>
+    }}>Check Out</Text>
     </TouchableOpacity>
     </View>
 </View>
