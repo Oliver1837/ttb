@@ -4,8 +4,8 @@ export const CLEAR_CART ="CLEAR_CART"
 export const addCart = (user,post,price) => {
     return { type: ADD_CART, user: user ,post : post ,price:price };
   };
-  export const removeCart = (user,post) => {
-    return { type: REMOVE_CART, user: user ,post : post};
+  export const removeCart = (user,post,price) => {
+    return { type: REMOVE_CART, user: user ,post : post,price:price};
   };
   export const clearCart = () => {
     return { type: ADD_CART, user: user ,post : post };

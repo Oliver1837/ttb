@@ -73,7 +73,7 @@ console.log(price)
          <TouchableOpacity onPress={()=>{
                 console.log(item.userId+ " "+item.idPost)
                 
-               dispatch(removeCart(USERS.find(u => u.idUser===item.userId),item))
+               dispatch(removeCart(USERS.find(u => u.idUser===item.userId),item,price))
 
          }}>     
               <Ionicons name="close-sharp" size={20} color="#fff" />

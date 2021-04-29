@@ -20,6 +20,7 @@
     "@reduxjs/toolkit": "^1.5.0",
     "expo": "~40.0.0",
     "expo-camera": "~9.1.0",
+    "expo-file-system": "^9.3.0",
     "expo-font": "~8.4.0",
     "expo-image-picker": "~9.2.0",
     "expo-media-library": "~10.0.0",
@@ -41,6 +42,7 @@
     "react-navigation-tabs": "^2.10.1",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
+    "short-hash": "^1.0.0",
     "undefined": "@expo-google-fonts\\Manrope"
   },
   "devDependencies": {

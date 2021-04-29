@@ -45,7 +45,7 @@ function TwoHandPreview({post,navigation,routeName,price}){
                   color:"#fff",
                   fontFamily:"Manrope_800ExtraBold"
                 }
-              }>{price + "$"}</Text>
+              }>{price + "€"}</Text>
               </View>
               
       

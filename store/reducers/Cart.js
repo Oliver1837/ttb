@@ -30,12 +30,14 @@ const initialState = {
                     updateCart.post = post
                     updateCart.total = updateCart.total +action.price;
                     cart[indexCart] = updateCart;
+                    console.log(cart)
                     return {...state , cart : cart,number:state.number+1}
                 }else{
                     console.log("NON Esiste");
 
                     var posts = []
-                    var carrello = new Carrello(user ,posts.concat(action.post),action.price );                                       
+                    var carrello = new Carrello(user ,posts.concat(action.post),action.price );      
+                    console.log(carrello)                                 
                      return {...state , cart : cart.concat(carrello),number:state.number+1}
                 }
                 }
@@ -56,6 +58,9 @@ const initialState = {
                     var updateCart = cart.find(c => c.user ===user);
                     var indexPost = updateCart.post.findIndex(p => p === action.post)
                     if(indexPost>=0){
+
+                        updateCart.total=  updateCart.total - action.price
+
                          updateCart.post.splice(indexPost,1)
                         if(updateCart.post.lenght>0){
                             return {...state , cart : updateCart,number:state.number-1}

@@ -11,36 +11,71 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { useEffect } from 'react';
 import TimeUtils from '../Utils/TimeUtils';
 import { deletePost } from '../store/actions/UploadPost';
+import * as FileSystem from 'expo-file-system';
+
 const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
     const user = USERS.find(u =>  post.userId === u.idUser);
     const posts = useSelector(state=>state.post.posts)
     
     if(navigation.getParam("isTwoHand")!='undefined'){
       isTwoHand==navigation.getParam("isTwoHand")
-      console.log("VALORE THO HAND"+isTwoHand)
+      
     }
+    const [url,setUrl] =useState(post.urlPhoto)
+
+    useEffect(()=>{
+     const prova = async () => {
+       console.log("Provc")
+        const uri =url;
+        const path = `${FileSystem.cacheDirectory}${uri}`;
+        const image = await FileSystem.getInfoAsync(path);
+        if (image.exists) {
+          console.log('read image from cache');
+           setUrl(image.uri)
+          return;
+        }
+    
+        console.log('downloading image to cache');
+        const newImage = await FileSystem.downloadAsync(uri, path);
+      
+        
+        setUrl(newImage.uri)
+       
+      };
+      prova()
+
+    },[])
+
     let price ;
     const userSelector = useSelector(state=> state.user)
     const cartSelector = useSelector(state=> state.cart)
    let isAdd=false
    let postUseSelector = useSelector(state=> state.post)
     if(cartSelector.cart.length>0){
-      const cart = cartSelector.cart.find(c=> c.idUser === userSelector.user.userId)
-     // idCartPost = cart.post.find(p => p.postId === ).idPost
-      const ps = cart.post
+      const cartIndex = cartSelector.cart.findIndex(c=> c.user.idUser === user.idUser)
+    
+     if(cartIndex>=0){
+    
+      const ps = cartSelector.cart[cartIndex].post
+     
+    for(var i= 0; i< ps.length ;i++){
+       if(ps[i].idPost === post.idPost) {
+       isAdd= (true)
+      } }
+  }   // idCartPost = cart.post.find(p => p.postId === ).idPost
+    /*  const ps = cart.post
      
     for(var i= 0; i< ps.length ;i++){
       console.log(ps[i].idPost)
        if(ps[i].idPost === post.idPost) {
        isAdd= (true)
-        console.log("ENTRO")
       } }
-     
+     */
     }
     const [modalVisible,setModalVisible]= useState(false)
     const [modalVisiblePunti,setModalVisiblePunti]= useState(false)
 
-    console.log("Post ID:",post.idPost)
+ 
     const like = userSelector.likes
     const preferred = userSelector.preferred
     const index = like.findIndex(l => l=== post.idPost)
@@ -50,10 +85,8 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
     
 
     const postId=post.idPost
-    console.log(postId)
-   // const [comments,setComment] = useState(COMMENT.filter(comment=>comment.idPost===postId ));
+  
    const comments = useSelector(state => state.comment.comment.filter(comment=>comment.idPost===postId ));
-   console.log(comments)
    const [enterdComment,setEnteredComment] =useState("");
     const commentInputHandler=enteredText=>{
         setEnteredComment(enteredText);
@@ -70,7 +103,6 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
     if(isTwoHand=="true" || isTwoHand==true){
 
        price = postUseSelector.ths.find(tw=> tw.idPost===post.idPost).prezzo;
-      console.log("ENTRO SPACCO CIAO")
     }
     let [isComment,setIsComment] = useState(false);
     if(isComment===true){
@@ -82,7 +114,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
     }else{
     return (
         <View>
-          <ImageBackground source={{uri:post.urlPost}} repeat style={styles.video} resizeMode={"contain"} resizeMethod="scale"/>
+          <ImageBackground source={{uri:post.urlPost,   cache: 'reload'}} repeat style={styles.video} resizeMode={"contain"} resizeMethod="scale"/>
           <View style={styles.mainContainer}>
             <View style={styles.innerLeft}>
               <View style={styles.dataContainer}>
@@ -150,7 +182,6 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
            <Text style={{color: '#fff', marginBottom: 25, fontFamily:"Manrope_500Medium" }}>{"0"}</Text>
             <TouchableOpacity onPress={
             ()=> {
-              console.log(post.idPost)
               setModalVisible(true);
             /*  navigation.navigate({routeName:"Comment",params:{
               
@@ -210,7 +241,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
             }}
             onPress={
               ()=>{
-               if(isAdd===true){
+               if(isAdd==true){
                 Alert.alert( "Rimuovi dal carrello","Sei sicuro di rimuovere l'articolo dal Carrello?",
                 [
                   {

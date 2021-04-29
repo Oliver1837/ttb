@@ -19,7 +19,7 @@ export default function IconCart({navigation,isBlack}) {
             ? 
             null 
             : 
-            <Text style={{position:"absolute",color:"white",marginVertical:-5,marginHorizontal:-12,backgroundColor:"#ff6969",borderRadius:25,height:15,width:15,textAlign:"center",fontSize:10,fontWeight:"bold"}}> {number}</Text>   
+            <Text style={{position:"absolute",color:"white",marginVertical:-5,marginHorizontal:-12,backgroundColor:"#ff6969",borderRadius:7.5,height:15,width:15,textAlign:"center",fontSize:10,fontWeight:"bold",overflow: 'hidden'}}> {number}</Text>   
             }
           
             <Image source={require('../assets/icons/shop.png')} style={{height:25,width:30, tintColor:isBlack?"black":"#FFF"}}/>
