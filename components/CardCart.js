@@ -69,7 +69,7 @@ console.log(price)
          }}><Text style={{
              color:"#fff",
              fontSize:16
-         }}>{price}$</Text>
+         }}>{price}€</Text>
          <TouchableOpacity onPress={()=>{
                 console.log(item.userId+ " "+item.idPost)
                 
