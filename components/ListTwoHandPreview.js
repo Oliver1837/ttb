@@ -3,6 +3,7 @@ import { FlatList } from 'react-native'
 import { useSelector } from 'react-redux';
 import { POSTS, TWOHAND } from '../data/dummy-data';
 import TwoHandPreview from './TwoHandPreview';
+// @refresh reset
 function ListTwoHandPreview({ths,routeName,navigation}){
     const postSelector = useSelector(state => state.post.posts)
 
@@ -11,6 +12,7 @@ function ListTwoHandPreview({ths,routeName,navigation}){
         <FlatList
         data={ths }
         numColumns={3}
+        initialNumToRender={3}
         keyExtractor={(item, index) => item.idTwoHand}
         renderItem={({item})=>{
         const post = postSelector.find(p => p.idPost===item.idPost) 

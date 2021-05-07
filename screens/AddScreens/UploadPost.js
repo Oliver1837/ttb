@@ -23,11 +23,12 @@ const Descrizione = props => {
   };
   const TipsDescription = props => {
     return (
-      <View style={{flexDirection:"row",
-      display:"flex",
+      <View style={{
+        flexDirection:"row",
       justifyContent:"flex-start",
-      width:"100%"}}>
-        <Text style={{maxHeight:"100%",textAlignVertical:"center"}}>TipTo#</Text>
+      width:"100%",
+     }}>
+      <Text style={{height:50,textAlignVertical:"center"}}>TipTo</Text>
       <TextInput
       style={{borderWidth:1}}
         {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
@@ -118,8 +119,10 @@ const  UploadPost =(props)=> {
       <TipsDescription
        style={{
           
-        maxWidth:"60%",
-        marginLeft:25
+        maxWidth:"50%",
+        marginLeft:25,
+        height:50
+        ,marginBottom:4
       }}
         multiline
         numberOfLines={4}
@@ -307,7 +310,7 @@ const styles = StyleSheet.create({
     borderBottomWidth:0.5,
     maxWidth:"100%",
     minHeight:160,
-    marginTop:5,
+   
     
   },
 });

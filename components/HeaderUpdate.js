@@ -46,7 +46,7 @@ const HeaderUpdate = ({uri,navigate,routeNameContinua,routeNameBack,label,array,
         }}
            >
             <Text style={StyleSheet.headerTitle,{
-            fontSize : 18,
+            fontSize : 16,
             textAlign:"center", 
             borderBottomColor:"white"
             ,fontStyle:"italic",
@@ -75,7 +75,7 @@ const styles= StyleSheet.create({
         paddingTop:20,
         marginTop:15,
         backgroundColor:"#FFF"
-       
+       ,height:30
        
     },
     headerTitle:{

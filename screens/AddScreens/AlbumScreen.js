@@ -65,8 +65,8 @@ const AlbumScreen=(props)=> {
       "width": 0,})//Elemento selezionato 
       const[fileName,setFileName]= useState("")
       const [albums, setAlbums] = useState([])
-     const [albumPicker, setAlbumPicker] = useState("Lightroom")
-     //const [albumPicker, setAlbumPicker] = useState("Camera")
+ const [albumPicker, setAlbumPicker] = useState("Lightroom")
+  //    const [albumPicker, setAlbumPicker] = useState("Camera")
       const [resize,setResize] = useState(false)
       useEffect(()=>{
         async function getPhotoAlbum () {
@@ -74,7 +74,13 @@ const AlbumScreen=(props)=> {
           setAlbumPicker(albums[1].title)
           const album = await MediaLibrary.getAlbumAsync(albumPicker)
         
-          const photosTemp = await MediaLibrary.getAssetsAsync({ album: album ,first:50})
+          const photosTemp = await MediaLibrary.getAssetsAsync({ 
+            album: album ,
+           
+            sortBy:['creationTime'],
+          mediaType:['photo']
+          })
+          console.log(photosTemp)
           const array = photosTemp.assets.map(asset => ({
             ...asset,
             type: "photo",
@@ -92,7 +98,7 @@ const AlbumScreen=(props)=> {
       }
         }
         getPhotoAlbum()
-      },[albumPicker])
+      },[])
       
      const scaleT =new Animated.Value(1)
      const trasformX = new Animated.Value(1)
@@ -139,7 +145,7 @@ const AlbumScreen=(props)=> {
     backgroundColor:"black"
   
   }}
-  source={{uri: first.uri}}
+  source={{uri: first.uri,}}
  />
  </PinchGestureHandler>
  </View>
@@ -164,12 +170,11 @@ const AlbumScreen=(props)=> {
          
             
             <FlatList
-           
              showsVerticalScrollIndicator={false}
-          data={photos}
-          
-          renderItem={({item}) => (
-            <View
+             data={photos}
+             initialNumToRender={5}
+              renderItem={({item}) => (
+             <View
               style={{
                 flex: 1,
                 flexDirection: 'column',
@@ -224,8 +229,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   imageThumbnail: {
-    justifyContent: 'center',
-    alignItems: 'center',
+ 
     height: 155,
     width: width/3 -2.5,
   },

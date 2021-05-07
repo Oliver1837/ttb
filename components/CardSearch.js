@@ -5,6 +5,7 @@ import {  POSTS} from '../data/dummy-data';
 import Button from './UI/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTagFollow } from '../store/actions/User';
+import ImageSearchCard from './ImageSearchCard';
 const CardSearch = ({title,url,navigation,posts}) =>{
 const preferredTag = useSelector(state => state.user.preferredTag)
 var isPreferred = preferredTag.findIndex(tag=> tag=== title);
@@ -69,24 +70,11 @@ return (
     <FlatList 
      horizontal={true}
      data={(posts)}
+     initialNumToRender={3}
      renderItem={
      ({item}) =>(
-      
-      <TouchableOpacity 
-      onPress={()=>{
-       
-       navigation.navigate({
-           routeName: 'Post',
-       
-           params: {
-               post : item,
-
-             }});
-    
-
-}} style={styles.item}>
-     <Image style={styles.title} source={{uri:item.urlPost}} resizeMode='cover' />
-     </TouchableOpacity>)
+      <ImageSearchCard post={item} navigation={navigation} key={item.idPost}/>
+     )
      
     }
      keyExtractor={(item) => item.idPost}
@@ -185,19 +173,7 @@ const styles = StyleSheet.create({
         borderRadius:10,
 
     },
-    item: {
-     
-       margin:8,
-        
-        width:100
-        ,height:158,
-        borderRadius:10,
-      },
-      title: {
-          width:100
-        ,height:158,
-        borderRadius:8,
-      },
+   
 
 
 });

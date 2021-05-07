@@ -19,7 +19,7 @@ export const uploadTwoHand = (uri,tips,descrizione,prezzo,taglia,marca,condizion
   };
   export const uptadePost = (tips,descrizione,idPost) => {
     console.log("PRemuto")
-  return { type: UPTADE_POST,descrizione:descrizione ,id:idPost,tips};
+  return { type: UPTADE_POST,descrizione:descrizione ,id:idPost,tips:tips};
     
     };
     export const uptadeTwoHand = (tips,descrizione,idPost,prezzo,taglia,marca,condizione) => {

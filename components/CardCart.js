@@ -98,7 +98,7 @@ console.log(price)
                 justifyContent:"center"
             }}>
 
-            <Ionicons name="add-outline" size={50} color="#ff4343" />
+            <Ionicons name="add-outline" size={50} color="#ff6969" />
 
 
             </View>

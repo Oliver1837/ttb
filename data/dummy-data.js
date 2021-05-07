@@ -58,11 +58,11 @@ export const POSTS = [
     new Post('post46', 'https://images.pexels.com/photos/3764430/pexels-photo-3764430.jpeg?cs=srgb&dl=pexels-chermiti-mohamed-3764430.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
     new Post('post47', 'https://images.pexels.com/photos/2312223/pexels-photo-2312223.jpeg?cs=srgb&dl=pexels-wellington-cunha-2312223.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
     new Post('post48', 'https://images.pexels.com/photos/4130226/pexels-photo-4130226.jpeg?cs=srgb&dl=pexels-elina-sazonova-4130226.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
-    new Post('post49', 'https://images.pexels.com/photos/4130226/pexels-photo-4130226.jpeg?cs=srgb&dl=pexels-elina-sazonova-4130226.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
+    new Post('post49', 'https://images.pexels.com/photos/1930621/pexels-photo-1930621.jpeg?cs=srgb&dl=pexels-dalila-dalprat-1930621.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
     new Post('post50', 'https://images.pexels.com/photos/1107969/pexels-photo-1107969.jpeg?cs=srgb&dl=pexels-stephan-seeber-1107969.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
     new Post('post51', 'https://images.pexels.com/photos/1776906/pexels-photo-1776906.jpeg?cs=srgb&dl=pexels-dalila-dalprat-1776906.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",true,false),
    /** utente 5 2hand*/
-   new Post('post52', 'https://images.pexels.com/photos/3645369/pexels-photo-3645369.jpeg?cs=srgb&dl=pexels-neemias-seara-3645369.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",false,true),
+    new Post('post52', 'https://images.pexels.com/photos/3645369/pexels-photo-3645369.jpeg?cs=srgb&dl=pexels-neemias-seara-3645369.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",false,true),
     new Post('post53', 'https://images.pexels.com/photos/3389419/pexels-photo-3389419.jpeg?cs=srgb&dl=pexels-elegance-nairobi-3389419.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",false,true),
     new Post('post54', 'https://images.pexels.com/photos/2929281/pexels-photo-2929281.jpeg?cs=srgb&dl=pexels-jack-redgate-2929281.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",false,true),
     new Post('post55', 'https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg?cs=srgb&dl=pexels-matheus-bertelli-2905238.jpg&fm=jpg',0,0,"user7",["Fashion"],"Contenuto Post 1",false,true),
@@ -104,7 +104,14 @@ export const TWOHAND =[
     new TwoHand("thowhand5","post41",20,"user3"),
     new TwoHand("thowhand6","post42",12,"user3"),
     new TwoHand("thowhand7","post43",15,"user3"),
+    new TwoHand("thowhand3","post52",10,"user7"),
+    new TwoHand("thowhand4","post53",50,"user7"),
+    new TwoHand("thowhand5","post54",20,"user7"),
+    new TwoHand("thowhand6","post55",12,"user7"),
+    new TwoHand("thowhand7","post57",15,"user7"),
+  
 ];
+
 export const USEREXAMPLE = new User("user10","MyProfile","https://images.pexels.com/photos/825949/pexels-photo-825949.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500er",0,0,0);
 export const COMMENT=[
     new Comment ("post13","comment1","user2","2021-04-28T03:24:00","Ujg31ctOU49tvL9zFqkX5LsCaTFYt1S3MJgzQ4E38uvvyXHpTG2ZFAAtMBWax5CT1tEm36BIk4AsyX9mjMGxEzxMWDP6KvcdMQ0u"),

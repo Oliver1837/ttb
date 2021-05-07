@@ -33,6 +33,7 @@ const FeedScreen = props =>{
           
           
       <FlatList
+        initialNumToRender={3}
         data={posts}
         ListEmptyComponent={()=>{
 

@@ -26,7 +26,7 @@ const Descrizione = props => {
       display:"flex",
       justifyContent:"flex-start",
       width:"100%"}}>
-        <Text style={{maxHeight:"100%",textAlignVertical:"center"}}>TipTo#</Text>
+        <Text style={{maxHeight:"100%",textAlignVertical:"center"}}>TipTo</Text>
       <TextInput
       style={{borderWidth:1}}
         {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
@@ -47,7 +47,7 @@ const  UptadeScreen =(props)=> {
     const post = posts.find(p=> p.idPost===id)
     const dispatch = useDispatch();
     const [descrizione, onChangeDescrizione] = useState(post.descrizione);
-    const [tips,onChangeTips]= useState('');
+    const [tips,onChangeTips]= useState(post.nameTag);
     const [condizione,onChangeCondizione]= useState('');
     const [prezzo,onChangePrezzo]= useState('');
     const [taglia,onChangeTaglia]= useState('');

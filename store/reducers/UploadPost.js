@@ -66,6 +66,7 @@ export default (state = initialState, action) => {
       return {...state , posts : posts}
     } 
     case UPTADE_POST :{
+      console.log("Inizio Modifica")
       const id = action.id;
       console.log(id)
       const posts = state.posts;
@@ -81,10 +82,12 @@ export default (state = initialState, action) => {
 
       }
      }
-      const post = new Post(id,action.uri,0,0,"user10",subString,action.descrizione,false,false)
-      posts.splice(indexPost,post)
+      posts[indexPost].descrizione= action.descrizione
+      posts[indexPost].nameTag=subString
+      console.log( posts[indexPost])
+     
 
-      return {...state , posts : posts}
+      return {...state , posts : posts,tags :ts}
     } 
         default :return state;
   

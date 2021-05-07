@@ -1,7 +1,33 @@
-import React from 'react'
-import { Dimensions, ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { ActivityIndicator, Dimensions, ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
 
 function PostPreview({navigation,post,routeName}){
+  const [url,setUrl] =useState(post.urlPost)
+  const [loading,setLoading] =useState(false)
+
+  useEffect(()=>{
+    
+   const preload = async () => {
+      const uri =url;
+      const name = shorthash.unique(uri);
+      const path = `${FileSystem.cacheDirectory}${name}`;
+      const image = await FileSystem.getInfoAsync(path);
+      if (image.exists) {
+        console.log('read image from cache');
+         setUrl(image.uri)
+        return;
+      }
+  
+      console.log('downloading image to cache');
+      const newImage = await FileSystem.downloadAsync(uri, path);
+    
+      
+      setUrl(newImage.uri)
+     
+    };
+    preload()
+
+  },[])
     return (
         <View
                 style={{
@@ -24,8 +50,22 @@ function PostPreview({navigation,post,routeName}){
            }}>
                 <ImageBackground
                  style={styles.imagePosts}
-                 source={{uri:post.urlPost} }
-                 resizeMode='cover'/>
+                 source={{uri:url} }
+                 resizeMode='cover'
+                 onLoadStart={
+                  ()=>{
+                    setLoading(true)
+                  }
+                 }
+                 onLoadEnd={
+                   ()=>{
+                     setLoading(false)
+                   }
+                 }
+                 >
+               {loading ?  <ActivityIndicator size="large" color="#FF6969"/> :null}
+
+                 </ImageBackground>
               
                 </TouchableOpacity>
            </View>
@@ -38,6 +78,8 @@ const styles = StyleSheet.create({
         margin:0.2,
         width:(Dimensions.get('window').width/3   - 1)
         ,height:(Dimensions.get('window').width/3   - 1),
+        alignItems:"center",
+        justifyContent:"center"
       },
 
 })

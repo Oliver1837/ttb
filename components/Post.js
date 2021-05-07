@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import TimeUtils from '../Utils/TimeUtils';
 import { deletePost } from '../store/actions/UploadPost';
 import * as FileSystem from 'expo-file-system';
-
+import shorthash  from 'short-hash'
 const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
     const user = USERS.find(u =>  post.userId === u.idUser);
     const posts = useSelector(state=>state.post.posts)
@@ -21,13 +21,15 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
       isTwoHand==navigation.getParam("isTwoHand")
       
     }
-    const [url,setUrl] =useState(post.urlPhoto)
+    const [url,setUrl] =useState(post.urlPost)
 
     useEffect(()=>{
-     const prova = async () => {
+      
+     const preload = async () => {
        console.log("Provc")
         const uri =url;
-        const path = `${FileSystem.cacheDirectory}${uri}`;
+        const name = shorthash.unique(uri);
+        const path = `${FileSystem.cacheDirectory}${name}`;
         const image = await FileSystem.getInfoAsync(path);
         if (image.exists) {
           console.log('read image from cache');
@@ -42,7 +44,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
         setUrl(newImage.uri)
        
       };
-      prova()
+      preload()
 
     },[])
 
@@ -114,7 +116,7 @@ const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
     }else{
     return (
         <View>
-          <ImageBackground source={{uri:post.urlPost,   cache: 'reload'}} repeat style={styles.video} resizeMode={"contain"} resizeMethod="scale"/>
+          <ImageBackground source={{uri:url, cache:"force-cache"}} repeat style={styles.video} resizeMode={"contain"} resizeMethod="scale"/>
           <View style={styles.mainContainer}>
             <View style={styles.innerLeft}>
               <View style={styles.dataContainer}>
