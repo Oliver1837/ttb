@@ -1,21 +1,37 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import ImagePostUpload from '../../components/ImageUploadPost'
 import HeaderAdd from '../../components/HeaderAdd';
 import SelectGrid from '../../components/SelectGrid';
 import ImageFilter from '../../components/ImageFilter';
 import HeaderAlbum from '../../components/HeaderAlbum';
+import * as ImageManipulator from 'expo-image-manipulator';
+
 const LoadPostScreen = props =>{
     const uri = props.navigation.getParam("uri");
     console.log(uri)
     const filter = [" ", " " ," " ," ", " "]  
-    
+    const [ready, setReady] = useState(false);
+  const [image, setImage] = useState(uri);
+    useEffect(() => {
+      (async () => {
+        const manipResult = await ImageManipulator.manipulateAsync(
+          image.uri,
+       [   {resize:{height:104,width:78}
+       }  ],
+          { compress: 1, format: ImageManipulator.SaveFormat.JPEG }
+        );
+        setImage(manipResult);
+        console.log(manipResult)
+      })();
+    }, []);
+  
     return (
         <View>      
      <HeaderAlbum  uri={uri.uri} routeNameContinua="UploadPost" navigate={props.navigation} routeNameBack="AlbumNav" label="AVANTI"  array={null}/>  
     
      <View  style={{flexDirection:"column",justifyContent:"center" ,alignItems:"center",backgroundColor:"#FFF"}}>    
-     <ImagePostUpload uri = {uri.uri} navigation = {props.navigation} style={{marginTop:50}}/>
+     <ImagePostUpload uri = {image.uri} navigation = {props.navigation} style={{marginTop:50}}/>
      <View style={{
   flexDirection:"row",
  height:350,

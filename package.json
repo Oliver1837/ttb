@@ -37,6 +37,7 @@
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.16.1",
     "react-native-swipe-gestures": "^1.0.5",
+    "react-native-view-editor": "^1.1.0",
     "react-native-web": "^0.15.6",
     "react-navigation": "^4.4.3",
     "react-navigation-stack": "^2.10.2",
@@ -45,7 +46,7 @@
     "redux": "^4.0.5",
     "save": "^2.4.0",
     "short-hash": "^1.0.0",
-    "undefined": "@expo-google-fonts\\Manrope"
+    "expo-image-manipulator": "~8.4.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",

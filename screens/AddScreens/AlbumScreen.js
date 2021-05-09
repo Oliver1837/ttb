@@ -16,11 +16,12 @@ import {
   State,
 } from 'react-native-gesture-handler';
 import { event } from 'react-native-reanimated';
+import FirstImage from '../../components/UploadPostComponets/FirstImage';
+import PinchableBox from '../../components/UploadPostComponets';
 const {width, height} = Dimensions.get('window');
 
 
 async function getLocationAsync() {
-  // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
   const { status, permissions } = await Permissions.askAsync(Permissions.LOCATION);
   if (status === 'granted') {
     return Location.getCurrentPositionAsync({ enableHighAccuracy: true });
@@ -65,8 +66,8 @@ const AlbumScreen=(props)=> {
       "width": 0,})//Elemento selezionato 
       const[fileName,setFileName]= useState("")
       const [albums, setAlbums] = useState([])
- const [albumPicker, setAlbumPicker] = useState("Lightroom")
-  //    const [albumPicker, setAlbumPicker] = useState("Camera")
+ //const [albumPicker, setAlbumPicker] = useState("Lightroom")
+     const [albumPicker, setAlbumPicker] = useState("Camera")
       const [resize,setResize] = useState(false)
       useEffect(()=>{
         async function getPhotoAlbum () {
@@ -100,14 +101,7 @@ const AlbumScreen=(props)=> {
         getPhotoAlbum()
       },[])
       
-     const scaleT =new Animated.Value(1)
-     const trasformX = new Animated.Value(1)
-     const trasformY = new Animated.Value(1)
-     const onPinchChange = Animated.event([
-       {nativeEvent:{scale: scaleT > 1.000 ? scaleT.setValue(1) : scaleT}}
-      ],{useNativeDriver:true})
-      const onPinchEventChange= (event)=>{
-      }
+   
       return (
         <View
           style={{
@@ -116,40 +110,16 @@ const AlbumScreen=(props)=> {
             backgroundColor:"#FFF"
           }}>
            <HeaderAlbum  uri={first} routeNameContinua="CheckPhotoAlbum" navigate={props.navigation} routeNameBack="Feed" label="AVANTI" array={null}/>
-          
-       <View  
-       style={{
-       
-            height:width,
-
-            backgroundColor:"black",
-            width:width,
-            maxHeight:width,
-            transform:[{scale:1}]
-          }}>
-       <PinchGestureHandler
-       onGestureEvent={onPinchChange}
-       onHandlerStateChange={onPinchEventChange}
-      
-               >
-  <Animated.Image
-  resizeMethod={"scale" }
-  resizeMode={"contain"}
-  style={{
-    flexDirection:"row",
-    height: width,
-    width:width,
-    maxHeight:width,
-    justifyContent:"flex-end",
-    transform:[{scale: scaleT > 1.000 ? scaleT.setValue(1) : scaleT}],
-    backgroundColor:"black"
-  
-  }}
-  source={{uri: first.uri,}}
- />
- </PinchGestureHandler>
- </View>
-          
+           <View
+    style={{
+      marginVertical: 20,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor:"white",
+      height:400
+    }}>
+          <PinchableBox uri={first.uri}/>
+          </View>  
   <View  style={{ width: "100%",height:60,backgroundColor:"#fff",flexDirection:"row",justifyContent:"space-between"}}>
   <TouchableOpacity
         style={styles.openButton}

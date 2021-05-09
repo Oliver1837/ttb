@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ActivityIndicator,Image } from 'react-native';
 import { color } from 'react-native-reanimated';
 import { useDispatch } from 'react-redux';
 import { login } from '../store/actions/User';
@@ -37,12 +37,12 @@ const LoginScreen = (props)=> {
           };
     return (
       <View style={styles.container}>
-        <Text style={styles.logo}>TipToBe</Text>
+         <Image source={require('../assets/logo/logo2x.png')} style={{width:170,height:65,margin:25}}/>
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
             placeholder="Inserisci email o username" 
-            placeholderTextColor="white"
+            placeholderTextColor="black"
             onChangeText={(text)=>{
                 setEmail(text)
             }}/>
@@ -52,14 +52,11 @@ const LoginScreen = (props)=> {
             secureTextEntry
             style={styles.inputText}
             placeholder="Inserisci la password" 
-            placeholderTextColor="white"
+            placeholderTextColor="black"
             onChangeText={(text)=>{
                 setPassword(text)
             }}/>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
     {   error? (<Text style={{color:"red"}}>{errorMessage}</Text>):<Text></Text>}
         {press 
         ?
@@ -74,7 +71,9 @@ const LoginScreen = (props)=> {
         <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>)
     }  
-        
+        <TouchableOpacity>
+          <Text style={styles.forgot}>Forgot Password?</Text>
+        </TouchableOpacity>
         <TouchableOpacity>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
@@ -100,32 +99,34 @@ const styles = StyleSheet.create({
   },
   inputView:{
     width:"80%",
-    backgroundColor:"black",
+    backgroundColor:"#FFF",
     borderRadius:25,
     height:50,
     marginBottom:20,
     justifyContent:"center",
-    padding:20
+    padding:20,
+    borderColor:"#FF6969",
+    borderWidth:2
   },
   inputText:{
     height:50,
-    color:"white"
+    color:"black"
   },
   forgot:{
-    color:"white",
+    color:"black",
     fontSize:11
   },
   loginBtn:{
     width:"80%",
-    backgroundColor:"black",
+    backgroundColor:"#FF6969",
     borderRadius:25,
     height:50,
     alignItems:"center",
     justifyContent:"center",
-    marginTop:40,
-    marginBottom:10
+    margin:5
   },
   loginText:{
-    color:"white"
+    color:"white",
+    fontSize:16
   }
 });

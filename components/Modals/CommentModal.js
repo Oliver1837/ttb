@@ -1,137 +1,125 @@
-import React from 'react'
-import {View , Text, StyleSheet,Dimensions,ImageBackground, Modal, Pressable} from 'react-native'
-import { USERS, } from '../data/dummy-data';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { Dimensions, Image, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import ListComments from "../ListComments";
+import React, { useState } from  'react'
+import { USEREXAMPLE } from "../../data/dummy-data";
 const {width, height} = Dimensions.get('window');
-import * as actionComment from '../store/actions/Comment'
-import { useEffect } from 'react';
-import * as FileSystem from 'expo-file-system';
-import shorthash  from 'short-hash'
-import DataContainerPost from './DataContainerPost';
+import * as actionComment from '../../store/actions/Comment'
 
-import ContainerIconsPost from './ContainerIconsPost';
-import CommentModal from './Modals/CommentModal';
-import OptionPostModal from './Modals/OptionPostModal';
-const Post = ({post,isTwoHand,onAddCart,onRemoveCart,navigation,me,replace})=>{
-    const user = USERS.find(u =>  post.userId === u.idUser);
-    const posts = useSelector(state=>state.post.posts)
-    
-    if(navigation.getParam("isTwoHand")!='undefined'){
-      isTwoHand==navigation.getParam("isTwoHand")
-      
-    }
-    const [url,setUrl] =useState(post.urlPost)
 
-    useEffect(()=>{
-      
-     const preload = async () => {
-       console.log("Provc")
-        const uri =url;
-        const name = shorthash.unique(uri);
-        const path = `${FileSystem.cacheDirectory}${name}`;
-        const image = await FileSystem.getInfoAsync(path);
-        if (image.exists) {
-          console.log('read image from cache');
-           setUrl(image.uri)
-          return;
-        }
-    
-        console.log('downloading image to cache');
-        const newImage = await FileSystem.downloadAsync(uri, path);
-      
-        
-        setUrl(newImage.uri)
-       
-      };
-      preload()
 
-    },[])
-
-    let price ;
-    const userSelector = useSelector(state=> state.user)
-    const cartSelector = useSelector(state=> state.cart)
-   let isAdd=false
-   let postUseSelector = useSelector(state=> state.post)
-    if(cartSelector.cart.length>0){
-      const cartIndex = cartSelector.cart.findIndex(c=> c.user.idUser === user.idUser)
-    
-     if(cartIndex>=0){
-    
-      const ps = cartSelector.cart[cartIndex].post
-     
-    for(var i= 0; i< ps.length ;i++){
-       if(ps[i].idPost === post.idPost) {
-       isAdd= (true)
-      } }
-      }   
-    }
-    const [modalVisible,setModalVisible]= useState(false)
-    const [modalVisiblePunti,setModalVisiblePunti]= useState(false)
-
- 
-    const like = userSelector.likes
-    const preferred = userSelector.preferred
-    const index = like.findIndex(l => l=== post.idPost)
-    const indexPreferedd = preferred.findIndex(p => p=== post)
-    const dispatch = useDispatch()
-    const postId=post.idPost
+const CommentModal = ({modalVisible,setModalVisible,postId})=>{
+    const dispatch = useDispatch();
     const comments = useSelector(state => state.comment.comment.filter(comment=>comment.idPost===postId ));
-    
-    
-    if(isTwoHand=="true" || isTwoHand==true){
+    const [enterdComment,setEnteredComment] =useState("");
+    const meComment = USEREXAMPLE
 
-       price = postUseSelector.ths.find(tw=> tw.idPost===post.idPost).prezzo;
-    }
-   
-    return (
-        <View>
-          <ImageBackground source={{uri:url, cache:"force-cache"}} repeat style={styles.video} resizeMode={"contain"} resizeMethod="scale"/>
-          <View style={styles.mainContainer}>
-          <DataContainerPost navigation={navigation} user={user} tags={post.nameTag} descrizione={post.descrizione}/>
-          
-          <ContainerIconsPost
-          comments={comments}
-          index={index}
-          indexPreferedd={indexPreferedd}    
-          setModalVisiblePunti={setModalVisiblePunti}      
-          setModalVisible={setModalVisible}
-          isAdd={isAdd}
-          isTwoHand={isTwoHand}
-          me={me}
-          onAddCart={onAddCart}
-          onRemoveCart={onRemoveCart}
-          post={post}
-          price={price}
-          
-          
-          />
-  
+     const commentInputHandler=enteredText=>{
+         setEnteredComment(enteredText);
+     }
+       const  addCommentHandler=(postId,meComment,enterdComment)=>{
+         if(enterdComment!=null){
             
-          </View>
+             dispatch(actionComment.addComment(postId ,enterdComment,meComment.idUser));
+        
+             setEnteredComment(null);
+         }
+     }
+    return (
 
-          <CommentModal
-          postId={postId}
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
-          />
-          <OptionPostModal
-          isTwoHand={isTwoHand}
-          modalVisiblePunti={modalVisiblePunti}
-          setModalVisiblePunti={setModalVisiblePunti}
-          navigation={navigation}
-          postId={postId}
-          urlPost={post.urlPost}
+    <Modal 
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
           
+          setModalVisible(!modalVisible)
+        }}
+        
+        >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+           
+          <View style={styles.screen}>
+         <View style={{
+           width:"100%",
+           flexDirection:"row",
+           justifyContent:"center"
+         }}>
+             <TouchableOpacity onPress={()=>{
+                 console.log("Premuto")
+           setModalVisible(!modalVisible)
+         }}>
+             <Text style={{color:"black"}}>Close Comments</Text>
+           </TouchableOpacity>
+            </View>
+             <View style={styles.commentHeader}>
+               <Image style={styles.image} source={{
+ 
+                   uri:meComment.urlPhoto
+ 
+               }}/>
+               <TextInput 
+                multiline={true}
+               placeholder="Add comment"
+               style={styles.contentComment}
+               onChangeText={commentInputHandler}
+               value={enterdComment}
+               >
+ 
+ 
+                   
+               </TextInput>
+               <TouchableOpacity style={{
+                justifyContent:"center",
+                alignItems:'center',
+                borderRadius:25,
+                borderWidth:1,
+                borderWidth:2,
+                backgroundColor:"#FF6969",
+                height:45,
+                margin:1,
+                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                shadowOpacity: 0.9,
+                elevation: 20,
+                shadowRadius: 100 ,
+                shadowOffset : { width: 1, height: 13},
+                borderColor:"#FF6969",
+                width:80,
+                flexDirection:"row"
+                }}
+                onPress={()=>  addCommentHandler(postId,meComment,enterdComment)}
+ 
+ >
+   <Text style={{
+    color:"white",
+    fontSize:15,
+    textAlign:"center",
+    fontWeight:"bold",
+    textAlignVertical:"center"
+    ,
+    padding:5
+ 
+  }}>Post</Text>
+ </TouchableOpacity>
+            
+               </View>
+               <ScrollView>     
+      <ListComments comments={comments}/>
+                   </ScrollView>
+ 
+ </View>
           
-          
-          
-          />
-      
+          </View>
         </View>
-      );
+      </Modal>
+
+    );
+
+
 }
-export default Post;
+
+export default CommentModal;
 
 const styles = StyleSheet.create({
     video: {
