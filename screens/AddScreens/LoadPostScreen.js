@@ -9,6 +9,8 @@ import * as ImageManipulator from 'expo-image-manipulator';
 
 const LoadPostScreen = props =>{
     const uri = props.navigation.getParam("uri");
+    const scale = props.navigation.getParam("scale");
+
     console.log(uri)
     const filter = [" ", " " ," " ," ", " "]  
     const [ready, setReady] = useState(false);
@@ -17,9 +19,9 @@ const LoadPostScreen = props =>{
       (async () => {
         const manipResult = await ImageManipulator.manipulateAsync(
           image.uri,
-       [   {resize:{height:104,width:78}
-       }  ],
-          { compress: 1, format: ImageManipulator.SaveFormat.JPEG }
+       [   {resize:{height:(4000*1),width:(3000*1)}
+       }  ],[{compresion:1}]
+         
         );
         setImage(manipResult);
         console.log(manipResult)
@@ -28,7 +30,7 @@ const LoadPostScreen = props =>{
   
     return (
         <View>      
-     <HeaderAlbum  uri={uri.uri} routeNameContinua="UploadPost" navigate={props.navigation} routeNameBack="AlbumNav" label="AVANTI"  array={null}/>  
+     <HeaderAlbum  uri={image.uri} routeNameContinua="UploadPost" navigate={props.navigation} routeNameBack="AlbumNav" label="AVANTI"  array={null}/>  
     
      <View  style={{flexDirection:"column",justifyContent:"center" ,alignItems:"center",backgroundColor:"#FFF"}}>    
      <ImagePostUpload uri = {image.uri} navigation = {props.navigation} style={{marginTop:50}}/>

@@ -38,7 +38,7 @@ setTimeout(()=>{
 
   return (
     <View style={styles.screen}>
-      <Image source={require('../assets/logo.png')} style={{width:135}}/>
+      <Image source={require('../assets/splash.jpeg')} style={{width:250,height:250}}/>
     </View>
   );
 };

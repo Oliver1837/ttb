@@ -7,7 +7,6 @@ import Post from '../../components/Post';
 import { TWOHAND, USERS } from '../../data/dummy-data';
 import { addCart, removeCart } from '../../store/actions/Cart';
 const {width, height} = Dimensions.get('window');
-
 const PostScreen = (props)=>{
     const post = props.navigation.getParam("post")
     const user = USERS.find(u=> u.idUser===post.userId);

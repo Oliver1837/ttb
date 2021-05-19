@@ -1,7 +1,7 @@
 import React from 'react'
 import { FlatList, Text, TouchableOpacity } from 'react-native';
 
-
+import {primary} from '../config/color'
     
 export default function MacroList({macros,navigation}){
     
@@ -35,7 +35,9 @@ export default function MacroList({macros,navigation}){
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
           minWidth: 65,
-          backgroundColor:"black",
+          backgroundColor:"white",
+          borderColor:primary
+
 
         }}
         onPress={()=>{
@@ -55,7 +57,7 @@ export default function MacroList({macros,navigation}){
       
       >
         <Text style={{
-                  color:"#FFF",
+                  color:primary,
                   fontSize:12,
                   textAlign:"center",
                   fontWeight:"bold",

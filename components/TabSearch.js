@@ -5,7 +5,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { TAGS, USERS } from '../data/dummy-data';
 import ListUserSearch from './ListUserSearch';
 import ListTipsSearch from './ListTipsSearch';
-
+import {primary,secodary} from '../config/color'
 export default function TabSearch ({tips,users,navigation}){
     const [pressUtenti,setPressUtenti] = useState(true)
     const [pressTips,setPressTips] = useState(false)
@@ -14,7 +14,7 @@ export default function TabSearch ({tips,users,navigation}){
     return (
         <Container style={{minHeight:"100%",maxHeight:"100%"}}>
       
-      <Tabs tabBarUnderlineStyle={{backgroundColor:'#FF4343' , height:3,}} tabContainerStyle={{borderBottomColor:"#ff9c9c",borderBottomWidth:1}}>
+      <Tabs tabBarUnderlineStyle={{backgroundColor:primary , height:3,}} tabContainerStyle={{borderBottomColor:primary,borderBottomWidth:1}}>
       <Tab  heading="Utenti"  tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey'}}

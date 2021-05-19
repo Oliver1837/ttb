@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, Dimensions, ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
-
+import {primary} from '../config/color'
 function PostPreview({navigation,post,routeName}){
   const [url,setUrl] =useState(post.urlPost)
   const [loading,setLoading] =useState(false)
@@ -63,7 +63,7 @@ function PostPreview({navigation,post,routeName}){
                    }
                  }
                  >
-               {loading ?  <ActivityIndicator size="large" color="#FF6969"/> :null}
+               {loading ?  <ActivityIndicator size="large" color={primary}/> :null}
 
                  </ImageBackground>
               

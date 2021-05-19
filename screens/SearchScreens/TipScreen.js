@@ -9,6 +9,7 @@ import ListTwoHandPreview from '../../components/ListTwoHandPreview';
 import IconCart from '../../components/IconCart';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTagFollow } from '../../store/actions/User';
+import {primary,secondary} from '../../config/color'
 const TipScreen = props =>{
     const tag = props.navigation.getParam("tag");
     const post = props.navigation.getParam("posts")
@@ -57,7 +58,7 @@ const TipScreen = props =>{
           borderRadius:25,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:isPreferred <0 ?"#ff6969":"#fff",
+          backgroundColor:isPreferred <0 ?primary:"#fff",
           height:45,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -65,7 +66,7 @@ const TipScreen = props =>{
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:isPreferred <  0 ?"#ff6969":"#ff6969",
+          borderColor:isPreferred <  0 ?primary:primary,
           width:100
         }}
         onPress={()=>{
@@ -77,7 +78,7 @@ const TipScreen = props =>{
             fontSize:16,
             textAlign:"center",
            fontFamily:"Manrope_700Bold",
-           color:isPreferred <  0 ?"#fff":"#ff6969",
+           color:isPreferred <  0 ?"#fff":primary,
 
           }}>{isPreferred <  0 ?"Follow":"Following"}</Text>
         </TouchableOpacity>  
@@ -100,7 +101,7 @@ const TipScreen = props =>{
           </View>
           <Container style={styles.tabs}>
       
-          <Tabs tabBarUnderlineStyle={{backgroundColor:'#FF4343' , height:3,}} tabContainerStyle={{borderBottomColor:"#ff9c9c",borderBottomWidth:1}}
+          <Tabs tabBarUnderlineStyle={{backgroundColor:primary , height:3,}} tabContainerStyle={{borderBottomColor:primary,borderBottomWidth:1}}
       
       
       >

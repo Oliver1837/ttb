@@ -20,7 +20,7 @@ import FirstImage from '../../components/UploadPostComponets/FirstImage';
 import PinchableBox from '../../components/UploadPostComponets';
 const {width, height} = Dimensions.get('window');
 
-
+import {primary} from '../../config/color'
 async function getLocationAsync() {
   const { status, permissions } = await Permissions.askAsync(Permissions.LOCATION);
   if (status === 'granted') {
@@ -66,8 +66,10 @@ const AlbumScreen=(props)=> {
       "width": 0,})//Elemento selezionato 
       const[fileName,setFileName]= useState("")
       const [albums, setAlbums] = useState([])
- //const [albumPicker, setAlbumPicker] = useState("Lightroom")
-     const [albumPicker, setAlbumPicker] = useState("Camera")
+
+      const[scale,setScale] = useState(1)
+  const [albumPicker, setAlbumPicker] = useState("Lightroom")
+   //  const [albumPicker, setAlbumPicker] = useState("Camera")
       const [resize,setResize] = useState(false)
       useEffect(()=>{
         async function getPhotoAlbum () {
@@ -118,7 +120,7 @@ const AlbumScreen=(props)=> {
       backgroundColor:"white",
       height:400
     }}>
-          <PinchableBox uri={first.uri}/>
+          <PinchableBox uri={first.uri} setScale={setScale}/>
           </View>  
   <View  style={{ width: "100%",height:60,backgroundColor:"#fff",flexDirection:"row",justifyContent:"space-between"}}>
   <TouchableOpacity
@@ -127,12 +129,12 @@ const AlbumScreen=(props)=> {
           setModalVisible(true);
         }}>
         <Text style={styles.textStyle}>{albumPicker}</Text>
-        <AntDesign name="caretdown" size={16} color="black" />
+        <AntDesign name="caretdown" size={16} color={primary} />
       </TouchableOpacity>
   
     <TouchableOpacity onPress={()=>props.navigation.navigate("Camera")} style={{width:50,height:50,backgroundColor:"transparent",borderRadius:25,
     margin:5, justifyContent:"center",alignItems:"center",
-    borderWidth:2,borderColor:"black"} }><Ionicons name="ios-camera-sharp" size={24} color="black" /></TouchableOpacity>
+    borderWidth:2,borderColor:{primary}} }><Ionicons name="ios-camera-sharp" size={24} color={primary} /></TouchableOpacity>
 
 
 
@@ -246,7 +248,7 @@ openButton: {
   elevation: 2,
   maxHeight:45,
   flexDirection:"row",
-  borderColor:"black",
+  borderColor:primary,
   borderWidth:2,
   margin:10
 },

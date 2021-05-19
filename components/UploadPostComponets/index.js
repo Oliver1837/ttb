@@ -21,6 +21,7 @@ export class PinchableBox extends React.Component {
     this._baseScale = new Animated.Value(1);
     this._pinchScale = new Animated.Value(1);
     this._scale = Animated.multiply(this._baseScale, this._pinchScale);
+   this.props.setScale(this._scale)
     this._lastScale = 1;
     this._onPinchGestureEvent = Animated.event(
       [{ nativeEvent: { scale: this._pinchScale } }],
@@ -57,6 +58,8 @@ export class PinchableBox extends React.Component {
       this._lastRotate += event.nativeEvent.rotation;
       this._rotate.setOffset(this._lastRotate);
       this._rotate.setValue(0);
+      console.log(event.nativeEvent)
+
     }
   };
   _onPinchHandlerStateChange = event => {
@@ -72,6 +75,7 @@ export class PinchableBox extends React.Component {
       this._lastTilt += event.nativeEvent.translationY;
       this._tilt.setOffset(this._lastTilt);
       this._tilt.setValue(0);
+      console.log(event.nativeEvent)
     }
   };
   render() {

@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import { addCart, removeCart } from '../store/actions/Cart';
 
+import {primary,secodary} from '../config/color'
 const CardCart = props =>{
 console.log(props.url)
 
@@ -93,12 +94,12 @@ console.log(price)
                 borderRadius:10,
                 borderWidth:1,
                 margin:5,
-                borderColor:"#ff6969",
+                borderColor:secodary,
                 alignItems:"center",
                 justifyContent:"center"
             }}>
 
-            <Ionicons name="add-outline" size={50} color="#ff6969" />
+            <Ionicons name="add-outline" size={50} color={secodary} />
 
 
             </View>
@@ -122,7 +123,7 @@ console.log(price)
         justifyContent:"center",
         
         alignItems:"center",
-        backgroundColor:"#ff6969",
+        backgroundColor:primary,
         borderRadius:20,
         height:45}}>
     <Text style={{

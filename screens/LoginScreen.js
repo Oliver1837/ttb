@@ -4,6 +4,7 @@ import { color } from 'react-native-reanimated';
 import { useDispatch } from 'react-redux';
 import { login } from '../store/actions/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {primary,secodary} from '../config/color'
 
 const LoginScreen = (props)=> {
         const [press,isPress] = useState(false);
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     marginBottom:20,
     justifyContent:"center",
     padding:20,
-    borderColor:"#FF6969",
+    borderColor:primary,
     borderWidth:2
   },
   inputText:{
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
   },
   loginBtn:{
     width:"80%",
-    backgroundColor:"#FF6969",
+    backgroundColor:primary,
     borderRadius:25,
     height:50,
     alignItems:"center",

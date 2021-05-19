@@ -25,7 +25,7 @@ const Comment = ({user,comment})=>{
 
          }} />
          <View style={styles.showCommnet}>               
-         <Text style={{width:"100%"}}>{ <Text style={{fontStyle:"italic",fontWeight:"bold"}}>{user.username+" "}</Text>}{comment.description}</Text>
+         <Text style={{width:"100%",marginTop:2,fontFamily:"Manrope_700Regular",fontSize:14}}>{ <Text style={{fontFamily:"Manrope_700Bold"}}>{user.username+" "}</Text>}{comment.description}</Text>
         <View style={{
           
          
@@ -34,37 +34,44 @@ const Comment = ({user,comment})=>{
         }}>
          <Text style={{
            color:"grey",
-           margin:5
+           margin:5,
+           fontSize:12,
+           fontFamily:"Manrope_700Regular"
          }}>{TimeUtils.renderPeriod$3(new Date(comment.date),new Date(),"Now",1)}</Text>
           <Text style={{
            color:"grey",
-           margin:5
+           margin:5,
+           fontSize:12,
+           fontFamily:"Manrope_700Regular"
 
          }}>Rispondi</Text>
+          <Text style={{
+           color:"grey",
+           margin:5,
+           fontSize:12,
+           fontFamily:"Manrope_700Regular"
+
+         }}>Elimina</Text>
+          <Text style={{
+           color:"grey",
+           margin:5,
+           fontSize:12,
+           fontFamily:"Manrope_700Regular"
+
+         }}>Segnala</Text>
          
          </View>
         </View>
-        {settings?(
-        <View style={{
-          height:50,
-          justifyContent:"center",
-          flexDirection:"row",
-          alignItems:"center", padding:5
-        }}>
-        <AntDesign name="delete" size={16} color="black" style={{margin:1}}/>
         
-        <AntDesign name="exclamationcircleo" size={16} color="black"  style={{margin:1}} />
-        </View>
-        ):(
         <View style={{
           height:50,
           justifyContent:"center",
           flexDirection:"column",
           alignItems:"center", padding:5
         }}>
-        <AntDesign name="hearto" size={16} color="black" />
+        <AntDesign name="hearto" size={14} color="black" />
         </View>
-        )}
+        
 
        
          </TouchableOpacity>
@@ -198,7 +205,7 @@ const styles = StyleSheet.create({
     
     },
     showCommnet:{
-        width:"78%",
+        width:"65%",
        
         flexDirection:"column",
         marginLeft:10,

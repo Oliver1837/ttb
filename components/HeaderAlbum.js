@@ -3,7 +3,7 @@ import {View,Text,StyleSheet, TextInput,TouchableOpacity} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { uploadPost, uploadTwoHand } from '../store/actions/UploadPost';
 import { useDispatch } from 'react-redux';
-const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array,isTh})=>{
+const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array,isTh,scale})=>{
    const dispatch = useDispatch()
     return(
         <View style={styles.header}>
@@ -43,6 +43,7 @@ const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array,i
             navigate.navigate({routeName:routeNameContinua,
             params:{
                 uri:uri
+                ,scale:scale
             }});
         }}
            >

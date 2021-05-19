@@ -1,6 +1,6 @@
 import React from 'react'
 import {View , Text, StyleSheet, Button ,TouchableOpacity,Dimensions,FlatList,ImageBackground,Image,Alert} from 'react-native'
-
+import {primary} from '../config/color'
 export default function ButtonBuy({onRemoveCart,onAddCart, isAdd,price}) {
     return(
 
@@ -12,7 +12,7 @@ export default function ButtonBuy({onRemoveCart,onAddCart, isAdd,price}) {
               borderRadius:30,
               borderWidth:1,
               borderWidth:2,
-              backgroundColor:isAdd?"#ff9c9c": "#ff6969",
+              backgroundColor:isAdd?primary: primary,
               height:46,
               margin:1,
               shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -20,9 +20,10 @@ export default function ButtonBuy({onRemoveCart,onAddCart, isAdd,price}) {
               elevation: 20,
               shadowRadius: 100 ,
               shadowOffset : { width: 1, height: 13},
-              borderColor:isAdd?"#ff9c9c": "#ff6969",
+              borderColor:isAdd?primary: primary,
               width:82,
-              marginRight:50
+              marginRight:40,
+              marginTop:20
             }}
             onPress={
               ()=>{

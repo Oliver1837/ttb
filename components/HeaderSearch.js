@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {View,Text,StyleSheet, TextInput,TouchableOpacity, Image} from 'react-native';
 import { AntDesign ,Ionicons} from '@expo/vector-icons';
+import {primary,secodary} from '../config/color'
+
 const HeaderSearch = ({search,showSearch})=>{
     const[searchText ,setSearchText] = useState('')
     const[pressSearch,setPressSearch] = useState(false)
@@ -13,7 +15,7 @@ const HeaderSearch = ({search,showSearch})=>{
 {pressSearch?
 <View  style={styles.input}>
  <TextInput
- style={{width:300,fontSize:16,fontFamily:"Manrope_500Medium"}}
+ style={{width:250,fontSize:16,fontFamily:"Manrope_500Medium"}}
  placeholder="Cerca"
  color="black"
  value={searchText}
@@ -25,7 +27,11 @@ const HeaderSearch = ({search,showSearch})=>{
  }
  
 />
- <TouchableOpacity onPress={()=>{
+ <TouchableOpacity 
+ 
+ style={{
+ }}
+ onPress={()=>{
     console.log("Premuto sasdas")
     setPressSearch(false)
     showSearch(true)
@@ -93,7 +99,7 @@ const styles= StyleSheet.create({
       
         fontSize:15,
         flexDirection:"row",
-        borderColor:"#FF6969",
+        borderColor:secodary,
         borderWidth:1,
         borderRadius:25,
         marginLeft:13
@@ -125,7 +131,7 @@ const styles= StyleSheet.create({
       
         fontSize:15,
         flexDirection:"row",
-        borderColor:"#FF6969",
+        borderColor:secodary,
         borderWidth:1,
         borderRadius:25,
         marginLeft:13

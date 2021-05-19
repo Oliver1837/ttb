@@ -5,7 +5,7 @@ const initialState = {
     likes:[],
     preferred: [],
     follow:[],
-    preferredTag:["Fashion","Shirt"],
+    preferredTag:[],
     user:USEREXAMPLE
   };
   export default (state = initialState, action) => {

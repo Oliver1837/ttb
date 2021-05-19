@@ -5,6 +5,7 @@ import {  POSTS} from '../data/dummy-data';
 import Button from './UI/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTagFollow } from '../store/actions/User';
+import {primary,secodary} from '../config/color'
 import ImageSearchCard from './ImageSearchCard';
 const CardSearch = ({title,url,navigation,posts}) =>{
 const preferredTag = useSelector(state => state.user.preferredTag)
@@ -33,7 +34,7 @@ return (
           borderRadius:40,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:isPreferred <0 ?"#ff6969":"#fff",
+          backgroundColor:isPreferred <0 ?primary:"#fff",
           height:45,
           margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -41,7 +42,7 @@ return (
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:isPreferred <  0 ?"#ff6969":"#ff6969"
+          borderColor:isPreferred <  0 ?primary:primary
           ,
           width:100,
      
@@ -51,7 +52,7 @@ return (
         }}
         >
           <Text style={{
-            color:isPreferred <  0 ?"#fff":"#ff6969",
+            color:isPreferred <  0 ?"#fff":primary,
             fontSize:16,
             textAlign:"center",
             fontWeight:"bold",

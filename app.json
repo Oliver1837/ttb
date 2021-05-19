@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "ttb",
+    "name": "TipToBe",
     "slug": "ttb",
     "version": "1.0.0",
     "orientation": "square",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/icon.jpeg",
+   
     "updates": {
       "fallbackToCacheTimeout": 0
     },

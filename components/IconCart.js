@@ -3,6 +3,7 @@ import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
 import {View, TouchableOpacity,Text,StyleSheet,Image} from 'react-native'
 import { useSelector } from 'react-redux'
+import {primary,secodary} from '../config/color'
 
 export default function IconCart({navigation,isBlack}) {
     let number = useSelector(state=> state.cart.number)
@@ -19,7 +20,7 @@ export default function IconCart({navigation,isBlack}) {
             ? 
             null 
             : 
-            <Text style={{position:"absolute",color:"white",marginVertical:-5,marginHorizontal:-12,backgroundColor:"#ff6969",borderRadius:7.5,height:15,width:15,textAlign:"center",fontSize:10,fontWeight:"bold",overflow: 'hidden'}}> {number}</Text>   
+            <Text style={{position:"absolute",color:"white",marginVertical:-5,marginHorizontal:-12,backgroundColor:secodary,borderRadius:7.5,height:15,width:15,textAlign:"center",fontSize:10,fontWeight:"bold",overflow: 'hidden'}}> {number}</Text>   
             }
           
             <Image source={require('../assets/icons/shop.png')} style={{height:25,width:30, tintColor:isBlack?"black":"#FFF"}}/>

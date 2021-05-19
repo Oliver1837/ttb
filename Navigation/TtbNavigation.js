@@ -32,6 +32,7 @@ import MacroTipsScreen from '../screens/SearchScreens/MacroTips';
 import Header from '../components/Header'
 import { useNavigation } from '@react-navigation/core';
 import UptadeScreen from '../screens/UptadeScreen';
+import {primary,secodary} from '../config/color'
 class Notifica extends React.Component{
   constructor(props){
     super(props)
@@ -306,7 +307,7 @@ Profile:{screen:ProfileNavigation,
 }
   }, {
     tabBarOptions: {
-      activeTintColor: "#ff6969",
+      activeTintColor: primary,
       inactiveTintColor: "black"
     }
   }

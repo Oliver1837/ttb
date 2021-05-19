@@ -27,6 +27,8 @@ import {
  Manrope_800ExtraBold
 
 } from "@expo-google-fonts/dev";
+import {primary,secodary} from '../../config/color'
+
 const ProfileScreen = (props)=> {
   let [fontsLoaded] = useFonts({
     Manrope_200ExtraLight,
@@ -86,8 +88,8 @@ style={styles.container}
      flexDirection:"row",
     
    }}>
-    <Image source={require('../../assets/icons/star.png')} style={{height:12,width:73.04,tintColor:"black"}}/>
-    <Text style={{width:26,height:19,fontSize:10,marginLeft:38.5}}>(18)</Text>
+    <Image source={require('../../assets/icons/star.png')} style={{height:12,width:74,tintColor:secodary}}/>
+    <Text style={{width:26,height:19,fontSize:10,marginLeft:5.5}}>(18)</Text>
 </View>
 </View>
      <View style={{
@@ -101,7 +103,7 @@ style={styles.container}
           borderRadius:25,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:follow>=0?"#fff":"#ff6969",
+          backgroundColor:follow>=0?"#fff":primary,
           height:45,
           marginRight:11.5,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -109,14 +111,14 @@ style={styles.container}
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:follow>=0?"#ff6969":"#ff6969",
+          borderColor:follow>=0?primary:primary,
           width:100,
           flexDirection:"row"
         }}
         onPress={()=> dispatch(toggleFollow(userId))}
         >
            <Text style={{
-            color:follow>=0?"#ff6969":"#fff",
+            color:follow>=0?primary:"#fff",
             fontSize:15,
             textAlign:"center",
             fontWeight:"bold",
@@ -133,7 +135,7 @@ style={styles.container}
           borderRadius:25,
           borderWidth:1,
     
-          backgroundColor:"#ff6969",
+          backgroundColor:"#FFF",
           height:45,
        
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -141,12 +143,12 @@ style={styles.container}
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"#ff6969",
+          borderColor:primary,
           width:100
         }}
         onPress={props.toggleTag}
         >
-         <Image source={require('../../assets/icons/message.png')} style={{height:18,width:28.8,tintColor:"#fff"}}/>
+         <Image source={require('../../assets/icons/message.png')} style={{height:18,width:28.8,tintColor:primary}}/>
         </TouchableOpacity>
 
      </View>
@@ -159,7 +161,7 @@ style={styles.container}
 
      <Container style={styles.tabs}>
       
-      <Tabs tabBarUnderlineStyle={{backgroundColor:'#ff6969' , height:3,}} tabContainerStyle={{borderBottomColor:"#ff6969",borderBottomWidth:1}}
+      <Tabs tabBarUnderlineStyle={{backgroundColor:primary , height:3,}} tabContainerStyle={{borderBottomColor:primary,borderBottomWidth:1}}
       
       
       >

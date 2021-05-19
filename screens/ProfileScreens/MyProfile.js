@@ -13,7 +13,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ListPostPreview from '../../components/ListPostPreview';
 import ListTwoHandPreview from '../../components/ListTwoHandPreview';
 import InformazioneProfile from '../../components/Profile/information_profile'
-
+import {primary,secodary} from '../../config/color'
 import IconCart from '../../components/IconCart';
 const MyProfile = (props)=> {
   const userSelector = useSelector(state=> state.user)
@@ -76,7 +76,7 @@ style={styles.container}
           borderRadius:25,
           borderWidth:1,
           borderWidth:2,
-          backgroundColor:"#ff6969",
+          backgroundColor:primary,
           height:45,
           marginRight:11.5,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -84,7 +84,7 @@ style={styles.container}
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"#ff6969",
+          borderColor:primary,
           width:100,
           flexDirection:"row"
         }}
@@ -108,7 +108,7 @@ style={styles.container}
           borderRadius:25,
           borderWidth:1,
     
-          backgroundColor:"#ff6969",
+          backgroundColor:"#FFF",
           height:45,
        
           shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -116,12 +116,12 @@ style={styles.container}
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          borderColor:"#ff6969",
+          borderColor:primary,
           width:100
         }}
         onPress={props.toggleTag}
         >
-         <Image source={require('../../assets/icons/message.png')} style={{height:18,width:28.8,tintColor:"#fff"}}/>
+         <Image source={require('../../assets/icons/message.png')} style={{height:18,width:28.8,tintColor:primary}}/>
         </TouchableOpacity>
 
      </View>
@@ -134,7 +134,7 @@ style={styles.container}
 
      <Container style={styles.tabs}>
       
-     <Tabs tabBarUnderlineStyle={{backgroundColor:'#ff6969' , height:3,}} tabContainerStyle={{borderBottomColor:"#ff6969",borderBottomWidth:1}}
+     <Tabs tabBarUnderlineStyle={{backgroundColor:primary , height:3,}} tabContainerStyle={{borderBottomColor:primary,borderBottomWidth:1}}
       
       
       >

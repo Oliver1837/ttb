@@ -5,6 +5,7 @@ import React, { useState } from  'react'
 import { USEREXAMPLE } from "../../data/dummy-data";
 const {width, height} = Dimensions.get('window');
 import * as actionComment from '../../store/actions/Comment'
+import {primary,secodary} from '../../config/color'
 
 
 
@@ -35,6 +36,7 @@ const CommentModal = ({modalVisible,setModalVisible,postId})=>{
           
           setModalVisible(!modalVisible)
         }}
+        
         
         >
         <View style={styles.centeredView}>
@@ -76,7 +78,7 @@ const CommentModal = ({modalVisible,setModalVisible,postId})=>{
                 borderRadius:25,
                 borderWidth:1,
                 borderWidth:2,
-                backgroundColor:"#FF6969",
+                backgroundColor:primary,
                 height:45,
                 margin:1,
                 shadowColor: 'rgba(0, 0, 0, 0.1)',
@@ -84,7 +86,7 @@ const CommentModal = ({modalVisible,setModalVisible,postId})=>{
                 elevation: 20,
                 shadowRadius: 100 ,
                 shadowOffset : { width: 1, height: 13},
-                borderColor:"#FF6969",
+                borderColor:primary,
                 width:80,
                 flexDirection:"row"
                 }}
@@ -227,8 +229,10 @@ const styles = StyleSheet.create({
         ,borderRadius:25
         ,margin:5,
         marginRight:10,
-        padding:10
-    }
+        padding:10,
+        textAlignVertical:"center",
+        paddingTop:15
+           }
     ,buttonPost:{
         
      backgroundColor:'white'

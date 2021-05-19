@@ -3,7 +3,7 @@ import React,{ useState} from 'react'
 import { ActivityIndicator, Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import shorthash  from 'short-hash'
 import { useEffect } from 'react';
-
+import {primary}  from '../config/color'
 function TwoHandPreview({post,navigation,routeName,price}){
     console.log(post.urlPost)
     const [url,setUrl] =useState(post.urlPost)
@@ -67,7 +67,7 @@ function TwoHandPreview({post,navigation,routeName,price}){
                }
                fadeDuration={0}
                >
-             {loading ?  <ActivityIndicator size="large" color="#FF6969"/> :
+             {loading ?  <ActivityIndicator size="large" color={primary}/> :
 
               <View style={
                 {
