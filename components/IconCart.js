@@ -20,10 +20,12 @@ export default function IconCart({navigation,isBlack}) {
             ? 
             null 
             : 
-            <Text style={{position:"absolute",color:"white",marginVertical:-5,marginHorizontal:-12,backgroundColor:secodary,borderRadius:7.5,height:15,width:15,textAlign:"center",fontSize:10,fontWeight:"bold",overflow: 'hidden'}}> {number}</Text>   
+            <View style={{position:"absolute",marginVertical:-10,marginHorizontal:-12,backgroundColor:secodary,borderRadius:10,height:20,width:20}}>
+            <Text style={{color:"white",textAlign:"center",fontSize:12,fontWeight:"bold"}}> {number}</Text>   
+            </View>
             }
           
-            <Image source={require('../assets/icons/shop.png')} style={{height:25,width:30, tintColor:isBlack?"black":"#FFF"}}/>
+            <Image source={require('../assets/icons/shop.png')} style={{height:25,width:30, tintColor:isBlack?"black":"#FFF",backgroundColor:"trasparent"}}/>
           
          </View>
     </TouchableOpacity>)

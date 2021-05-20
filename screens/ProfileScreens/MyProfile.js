@@ -61,7 +61,7 @@ style={styles.container}
      flexDirection:"row",
     
    }}>
-    <Image source={require('../../assets/icons/star.png')} style={{height:12,width:73.04,tintColor:"black"}}/>
+    <Image source={require('../../assets/icons/star.png')} style={{height:12,width:73.04,tintColor:"black",marginLeft:4}}/>
     <Text style={{width:26,height:19,fontSize:10,marginLeft:38.5}}>(18)</Text>
 </View>
 </View>
@@ -106,7 +106,7 @@ style={styles.container}
           justifyContent:"center",
           alignItems:'center',
           borderRadius:25,
-          borderWidth:1,
+          borderWidth:2,
     
           backgroundColor:"#FFF",
           height:45,
