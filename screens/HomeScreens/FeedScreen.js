@@ -1,9 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {View , Text, StyleSheet, TouchableOpacity,Dimensions,FlatList,Image} from 'react-native'
 import { enableScreens } from 'react-native-screens';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import { useSelector } from 'react-redux';
+import WelcomePage from '../../components/Feed/WelcomePage';
 import Header from '../../components/Header';
 import IconCart from '../../components/IconCart';
 import Post from '../../components/Post';
@@ -21,8 +22,7 @@ const FeedScreen = props =>{
     posts = posts.filter(p=> p.nameTag.filter(tag => user.preferredTag.filter(t=> t ===tag).length>0).length>0)
     console.log("FEED")
     posts = posts.filter(p=> p.isTwoHand===false);
-    console.log(posts)
-
+    const enableSwipe=useState(true)
 
     return (
         <View  style={{ 
@@ -38,20 +38,7 @@ const FeedScreen = props =>{
         ListEmptyComponent={()=>{
 
           return (
-            <View style={{ 
-              flex: 1,
-              backgroundColor: 'white',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height:height
-            }}
-            >
-              <Text style={{
-                fontWeight:'bold',
-                fontSize:30
-              }}>Benvenuto in TipTobe </Text>
-              
-            </View>
+            <WelcomePage/>
           );
         }}
         keyExtractor={(item, index) => item.idPost}
@@ -88,7 +75,7 @@ const FeedScreen = props =>{
         showsVerticalScrollIndicator={false}
         snapToInterval={Dimensions.get('window').height}
         snapToAlignment={'start'}
-        decelerationRate={'fast'}
+        decelerationRate={'normal'}
         style={ {
           height:height,
           width:width
@@ -102,9 +89,7 @@ const FeedScreen = props =>{
 
 }
 FeedScreen.navigationOptions = navData => {
-  console.log(navData)
-  return {
-  
+  return {  
     headerRight: ()=>{ return (
       <IconCart navigation={navData.navigation} />
     )}

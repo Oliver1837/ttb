@@ -29,7 +29,9 @@ function information_profile({user,lenght}) {
           
          <View style={{marginRight:20}}>
            <Text style={{ width:28,
-           height:19, fontSize:14,fontFamily:"Manrope_500Medium"}}>Tips</Text>
+           height:19, 
+           fontSize:14,
+           fontFamily:"Manrope_500Medium"}}>Tips</Text>
            
            <Text style={styles.textData}>{lenght}</Text>
 
@@ -37,7 +39,9 @@ function information_profile({user,lenght}) {
           
          <View   style={{marginRight:20}}>
            <Text style={{ width:65,
-           height:19, fontSize:14,fontFamily:"Manrope_500Medium"}}>Followers</Text>
+           height:19, 
+           fontSize:14,
+           fontFamily:"Manrope_500Medium"}}>Followers</Text>
            <Text style={styles.textData}>{user.nFollower}</Text>
 
          </View>
@@ -55,9 +59,9 @@ function information_profile({user,lenght}) {
 export default information_profile;
 const styles = StyleSheet.create({
     textData:{
-      width:26,
-      height:21,
-      fontSize:16,
+    width:26,
+    height:21,
+    fontSize:16,
     fontFamily:"Manrope_700Bold"    },
     text:{
     

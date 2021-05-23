@@ -28,6 +28,9 @@ import {
 
 } from "@expo-google-fonts/dev";
 import {primary,secodary} from '../../config/color'
+import ImageProfile from '../../components/Profile/ImageProfile';
+import ButtonMessage from '../../components/UI/ButtonMessage';
+import { AntDesign } from '@expo/vector-icons';
 
 const ProfileScreen = (props)=> {
   let [fontsLoaded] = useFonts({
@@ -43,65 +46,69 @@ const ProfileScreen = (props)=> {
 
    const user = USERS.find(u => userId === u.idUser);
    const posts = POSTS.filter(p => p.userId === user.idUser );
-   const grid = GRIDS.filter(g=> g.userId===user.idUser)
    const ths = TWOHAND.filter(th => th.idUser===user.idUser)
    const postsNormal = posts.filter(p=> p.isGrid===true)
    const userSelector = useSelector(state => state.user);
    const follow = userSelector.follow.findIndex(f=> f === userId);
-   const isSearch = false;
  
    const dispatch = useDispatch();
-   console.log(ths)
   return (
     <View style={styles.screen}>
         
         <View 
-style={styles.container}
-            
-
-    >
-      <View style={{
-            backgroundColor:"white",
-            
-      }}>
-          <Image
-          style={{
-              height:100,
-              width:100,
-              borderRadius:50,
-              marginRight:20,
-
-          }}
-          source={{uri:user.urlPhoto}}
-          />
-      </View>
+style={styles.container}>
+      
+      <ImageProfile url={user.urlPhoto}/>
      <View style={styles.containerDatauser}>
    <View>  
      <Text  style={{
-         height:21,
+         height:20,
          width:139,
          fontSize:16,
-         marginBottom:7.5,
-         fontFamily:"Manrope_700Bold"
+         marginBottom:0,
+         fontFamily:"Manrope_700Bold",
      }}>@{user.username}</Text>
      <View  style={{
      flexDirection:"row",
-    
+     marginLeft:0,
+     height:20,
+     width:110,
+     marginTop:2
    }}>
-    <Image source={require('../../assets/icons/star.png')} style={{height:12,width:73,tintColor:secodary,marginLeft:2}}/>
-    <Text style={{width:26,height:19,fontSize:10,marginLeft:5.5}}>(18)</Text>
+   <AntDesign name="star" size={13} color={secodary} style={{
+     margin:1
+   }}/>
+   <AntDesign name="star" size={13} color={secodary} style={{
+     margin:1
+   }}/>
+   <AntDesign name="star" size={13} color={secodary} style={{
+     margin:1
+   }}/>
+   <AntDesign name="star" size={13} color={secodary} style={{
+     margin:1
+   }}/>
+   <AntDesign name="staro" size={13} color={secodary} style={{
+     margin:1
+   }}/>
+
+    <Text style={{
+    width:26
+    ,height:18,
+    fontSize:11,
+    marginLeft:2,
+    marginTop:1
+      }}>(18)</Text>
 </View>
 </View>
      <View style={{
                  flexDirection:"row",
-                marginTop:7.5
+                marginTop:2,
                 
           }}>
        <TouchableOpacity style={{
           justifyContent:"center",
           alignItems:'center',
           borderRadius:25,
-          borderWidth:1,
           borderWidth:2,
           backgroundColor:follow>=0?"#fff":primary,
           height:45,
@@ -119,7 +126,7 @@ style={styles.container}
         >
            <Text style={{
             color:follow>=0?primary:"#fff",
-            fontSize:15,
+            fontSize:16,
             textAlign:"center",
             fontWeight:"bold",
             textAlignVertical:"center"
@@ -129,27 +136,7 @@ style={styles.container}
 
           }}>{follow>=0?"Following":"Follow"}</Text>
         </TouchableOpacity>
-      <TouchableOpacity style={{
-          justifyContent:"center",
-          alignItems:'center',
-          borderRadius:25,
-          borderWidth:2,
-    
-          backgroundColor:"#FFF",
-          height:45,
-       
-          shadowColor: 'rgba(0, 0, 0, 0.1)',
-          shadowOpacity: 0.9,
-          elevation: 20,
-          shadowRadius: 100 ,
-          shadowOffset : { width: 1, height: 13},
-          borderColor:primary,
-          width:100
-        }}
-        onPress={props.toggleTag}
-        >
-         <Image source={require('../../assets/icons/message.png')} style={{height:18,width:28.8,tintColor:primary}}/>
-        </TouchableOpacity>
+      <ButtonMessage/>
 
      </View>
     <InformazioneProfile lenght={postsNormal.length} user ={user}/>
@@ -167,15 +154,30 @@ style={styles.container}
       >
       <Tab  heading="Grid" tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
-           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
+           textStyle={{
+             color:'grey',
+           fontSize:16,fontFamily:"Manrope_400Regular"}}
+           activeTextStyle={{color:'black',fontWeight:"bold",
+           fontSize:16,
+           fontFamily:"Manrope_700Bold"}}>
                 <ListPostPreview posts={postsNormal} navigation={props.navigation} routeName='Post' key="1"/>
   
            </Tab>
-           <Tab   heading="2Hand" tabStyle={{backgroundColor:'white'}} 
+           <Tab   
+           heading="2hand" 
+           tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
-           textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
-           activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
+           textStyle={{
+           color:'grey',
+           fontSize:16,
+           fontFamily:"Manrope_400Regular"
+           }}
+           activeTextStyle={{
+           color:'black',
+           fontWeight:"bold",
+           fontSize:16,
+           fontFamily:"Manrope_700Bold"
+           }}>
              <ListTwoHandPreview routeName="Post" ths={ths} navigation={props.navigation}/>
            </Tab>
           
@@ -194,7 +196,7 @@ ProfileScreen.navigationOptions = navData => {
       <IconCart navigation={navData.navigation} isBlack={true}/>
     )},
     headerTitle:()=>{
-      return(<Image source={require('../../assets/logo.png')} style={{height:25,width:65}}/>)
+      return(<Image source={require('../../assets/drawable-hdpi/feed.png')} style={{height:25,width:65}}/>)
     },
     headerLeft: ()=>(
       <TouchableOpacity 
@@ -214,7 +216,7 @@ const styles = StyleSheet.create({
     
     alignItems: 'center',
     backgroundColor:"white",
-    marginBottom:25.9,
+    marginBottom:14,
     marginLeft:11.4
     
    }, containerDatauser: {

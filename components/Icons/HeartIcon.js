@@ -9,8 +9,17 @@ const HeartIcon = ({index,id})=>{
     return (
         <TouchableOpacity onPress={()=>{
             dispatch(toggleLike(id))        }}>
-             {index>=0? <Image source={require('../../assets/icons/heartfull.png')} style={{height:26.25,width:30,tintColor:"#FF6969",}} />: 
-             <Image source={require('../../assets/icons/heart.png')} style={{height:26,width:30,tintColor:"#FFF",}} />
+             {index>=0? 
+             <Image
+             source={require('../../assets/icons/heartfull.png')} 
+             style={{height:26.25,width:30,tintColor:"#FF6969",}} 
+             fadeDuration={0}
+             />: 
+             <Image 
+             source={require('../../assets/icons/heart.png')}
+             fadeDuration={0}
+             style={{height:26,width:30,tintColor:"#FFF",}}
+             />
              }
         </TouchableOpacity>
 
