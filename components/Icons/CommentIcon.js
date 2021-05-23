@@ -9,8 +9,10 @@ const CommentICon = ({setModalVisible})=>{
           setModalVisible(true);
         
         }}>
-          
-          <Image source={require('../../assets/icons/comment.png')} style={{height:30,width:30,tintColor:"#FFF",}} />
+          <Image 
+          fadeDuration={0}
+          source={require('../../assets/icons/comment.png')} 
+          style={{height:30,width:30,tintColor:"#FFF",}} />
 
       </TouchableOpacity>
       );
