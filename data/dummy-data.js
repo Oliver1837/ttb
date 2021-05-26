@@ -11,21 +11,21 @@ import DizionarioMacro from "../model/DizionarioMacro";
 
 export const POSTS = [
 
-    new Post('post8', "https://images.pexels.com/photos/3519656/pexels-photo-3519656.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",2,0,"user4",["Shirt",],"Contenuto Post 1",false,true),
-    new Post('post10',"https://images.pexels.com/photos/2689401/pexels-photo-2689401.jpeg?cs=srgb&dl=pexels-dazzle-jam-2689401.jpg&fm=jpg",2,0,"user6",["Watch","Dress"],"Contenuto Post 1",false,true),
-    new Post('post1', 'https://images.pexels.com/photos/6731908/pexels-photo-6731908.jpeg?cs=srgb&dl=pexels-thirdman-6731908.jpg&fm=jpg',0,0,"user5",["Art","Pennelli","Pittura"],"Contenuto TwoHand 1",false,true),
-    new Post('post2', 'https://images.pexels.com/photos/4490130/pexels-photo-4490130.jpeg?cs=srgb&dl=pexels-dominika-roseclay-4490130.jpg&fm=jpg',0,0,"user5",["Art","Quadro"],"Contenuto user TwoHand 2",false,true),
-    new Post('post13', "https://images.pexels.com/photos/2825749/pexels-photo-2825749.jpeg?cs=srgb&dl=pexels-valeriia-miller-2825749.jpg&fm=jpg",0,0,"user5",["Art","Fiori","Primavera"],"Contenuto user5 Post 1",true,false),
-    new Post('post14', "https://images.pexels.com/photos/3685523/pexels-photo-3685523.jpeg?cs=srgb&dl=pexels-valeriia-miller-3685523.jpg&fm=jpg",1,0,"user5",["Bellezza","Fashion","Fiori"],"Contenuto user5 Post 2",true,false),
-    new Post('post15', "https://images.pexels.com/photos/5591722/pexels-photo-5591722.jpeg?cs=srgb&dl=pexels-daniela-constantini-5591722.jpg&fm=jpg",0,0,"user5",["Fotografia","Vintage","Libri"],"Contenuto user 5  Post 3",true,false),
-    new Post('post16', "https://images.pexels.com/photos/4068151/pexels-photo-4068151.jpeg?cs=srgb&dl=pexels-lisa-fotios-4068151.jpg&fm=jpg",1,0,"user5",["Fiori","Primavera","Piante"],"Contenuto user 5 Post 4",true,false),
-    new Post('post17', "https://images.pexels.com/photos/6732542/pexels-photo-6732542.jpeg?cs=srgb&dl=pexels-thirdman-6732542.jpg&fm=jpg",1,0,"user5",["Art","Pittura","Fiori"],"Contenuto user5 Post 5",true,false),
-    new Post('post18', "https://images.pexels.com/photos/3817570/pexels-photo-3817570.jpeg?cs=srgb&dl=pexels-rfstudio-3817570.jpg&fm=jpg",1,0,"user5",["Art","Pittura"],"Contenuto user5 Post 6",true,false),
+    new Post('post8', "https://images.pexels.com/photos/3519656/pexels-photo-3519656.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",2,0,"user4",["Shirt",],"Contenuto Post 1",false,true),
+    new Post('post10',"https://images.pexels.com/photos/2689401/pexels-photo-2689401.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",2,0,"user6",["Watch","Dress"],"Contenuto Post 1",false,true),
+    new Post('post1', 'https://images.pexels.com/photos/6731908/pexels-photo-6731908.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800',0,0,"user5",["Art","Pennelli","Pittura"],"Contenuto TwoHand 1",false,true),
+    new Post('post2', 'https://images.pexels.com/photos/4490130/pexels-photo-4490130.jpeg',0,0,"user5",["Art","Quadro"],"Contenuto user TwoHand 2",false,true),
+    new Post('post13', "https://images.pexels.com/photos/2825749/pexels-photo-2825749.jpeg",0,0,"user5",["Art","Fiori","Primavera"],"Contenuto user5 Post 1",true,false),
+    new Post('post14', "https://images.pexels.com/photos/3685523/pexels-photo-3685523.jpeg",1,0,"user5",["Bellezza","Fashion","Fiori"],"Contenuto user5 Post 2",true,false),
+    new Post('post15', "https://images.pexels.com/photos/5591722/pexels-photo-5591722.jpeg",0,0,"user5",["Fotografia","Vintage","Libri"],"Contenuto user 5  Post 3",true,false),
+    new Post('post16', "https://images.pexels.com/photos/4068151/pexels-photo-4068151.jpeg",1,0,"user5",["Fiori","Primavera","Piante"],"Contenuto user 5 Post 4",true,false),
+    new Post('post17', "https://images.pexels.com/photos/6732542/pexels-photo-6732542.jpeg",1,0,"user5",["Art","Pittura","Fiori"],"Contenuto user5 Post 5",true,false),
+    new Post('post18', "https://images.pexels.com/photos/3817570/pexels-photo-3817570.jpeg",1,0,"user5",["Art","Pittura"],"Contenuto user5 Post 6",true,false),
     /** utente 2  post */
-    new Post('post19', 'https://images.pexels.com/photos/3876324/pexels-photo-3876324.jpeg?cs=srgb&dl=pexels-tomas-anunziata-3876324.jpg&fm=jpg',0,0,"user2",["Sport",],"Contenuto Post 1",true,false),
-    new Post('post20', 'https://images.pexels.com/photos/9752/taking-photo-hiking-sport-adventure.jpg?cs=srgb&dl=pexels-creative-vix-9752.jpg&fm=jpg',0,0,"user2",["Sport",],"Contenuto Post 1",true,false),
-    new Post('post21', 'https://images.pexels.com/photos/4146246/pexels-photo-4146246.jpeg?cs=srgb&dl=pexels-gantas-vai%C4%8Diul%C4%97nas-4146246.jpg&fm=jpg',0,0,"user2",["Sport"],"Contenuto Post 1",true,false),
-    new Post('post22', 'https://images.pexels.com/photos/6149484/pexels-photo-6149484.jpeg?cs=srgb&dl=pexels-daniel-torobekov-6149484.jpg&fm=jpg',0,0,"user2",["Sport"],"Contenuto Post 1",true,false),
+    new Post('post19', 'https://images.pexels.com/photos/3876324/pexels-photo-3876324.jpeg',0,0,"user2",["Sport",],"Contenuto Post 1",true,false),
+    new Post('post20', 'https://images.pexels.com/photos/9752/taking-photo-hiking-sport-adventure.jpg',0,0,"user2",["Sport",],"Contenuto Post 1",true,false),
+    new Post('post21', 'https://images.pexels.com/photos/4146246/pexels-photo-4146246.jpeg',0,0,"user2",["Sport"],"Contenuto Post 1",true,false),
+    new Post('post22', 'https://images.pexels.com/photos/6149484/pexels-photo-6149484.jpeg',0,0,"user2",["Sport"],"Contenuto Post 1",true,false),
     new Post('post23', 'https://images.pexels.com/photos/5262741/pexels-photo-5262741.jpeg?cs=srgb&dl=pexels-anna-shvets-5262741.jpg&fm=jpg',0,0,"user2",["Sport"],"Contenuto Post 1",true,false),
     new Post('post24', 'https://images.pexels.com/photos/5262942/pexels-photo-5262942.jpeg?cs=srgb&dl=pexels-anna-shvets-5262942.jpg&fm=jpg',0,0,"user2",["Sport"],"Contenuto Post 1",true,false),
     /** utente 2  2hand */
@@ -126,7 +126,7 @@ export const COMMENT=[
 export const MACRO = ["2hand","Fashion","Food","Art","Music","Sport","Electronics","Home","Travel","Vintage"]
 export const Dizionario = [
     new DizionarioMacro("Travel",["Aereo","Viaggio","Albergo","Hotel"]),
-    new DizionarioMacro("Cibo",["Cibo","Pasta","Sugo","Chef","Cucina"]),
+    new DizionarioMacro("Food",["Cibo","Pasta","Sugo","Chef","Cucina"]),
     new DizionarioMacro("Art",["Art","Statua","Fiori","Primavera","Pittura","Vintage"]),
     new DizionarioMacro("Music",["Rock","Jazz","Chitarra","Batteria"]),
     new DizionarioMacro("Sport",["Calcio","Corsa","Pesi","Fitness","Sport"]),

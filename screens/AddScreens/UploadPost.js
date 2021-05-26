@@ -28,7 +28,7 @@ const Descrizione = props => {
       justifyContent:"flex-start",
       width:"100%",
      }}>
-      <Text style={{height:50,textAlignVertical:"center"}}>TipTo</Text>
+      <Text style={{height:50,paddingTop:14.6}}>TipTo #</Text>
       <TextInput
       style={{borderWidth:1}}
         {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
@@ -69,8 +69,9 @@ const  UploadPost =(props)=> {
           justifyContent: 'center',
          
           flexDirection:"column",
-       
-        }}>
+          marginTop:25
+        }}
+        >
        <KeyboardAvoidingView enabled>
     <View style={{
         height:"100%",
@@ -82,10 +83,12 @@ const  UploadPost =(props)=> {
     <View style={styles.container}>
         <Image source ={{uri:uriPhoto}} 
             style={{
-                height:100,
-                width:80,
+                height:158,
+                width:100,
                 borderColor:"black",
                 borderWidth:1,
+                borderRadius:4,
+                marginBottom:5
           
             }}
         />
@@ -120,7 +123,6 @@ const  UploadPost =(props)=> {
        style={{
           
         maxWidth:"50%",
-        marginLeft:25,
         height:50
         ,marginBottom:4
       }}
@@ -295,21 +297,23 @@ const styles = StyleSheet.create({
   
     backgroundColor: '#fff',
     flexDirection:"row",
-    padding : 20,
+    paddingTop : 16,
     borderBottomColor:"gray",
     borderBottomWidth:0.5,
-    width:"90%",
-    minHeight:150
+    width:"96%",
+    minHeight:150,
+    paddingBottom:10
   },
    containerTip: {
   
     backgroundColor: '#fff',
     flexDirection:"row",
-    padding : 20,
+    padding : 5,
     borderBottomColor:"gray",
     borderBottomWidth:0.5,
-    maxWidth:"100%",
-    minHeight:160,
+    width:"96%",
+    minHeight:150,
+    paddingBottom:10
    
     
   },

@@ -3,6 +3,7 @@ import {View,Text,StyleSheet, TextInput,TouchableOpacity} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { uploadPost, uploadTwoHand } from '../store/actions/UploadPost';
 import { useDispatch } from 'react-redux';
+import NextIcon from '../Icons/NextIcon';
 const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array,isTh})=>{
    const dispatch = useDispatch()
     return(
@@ -46,14 +47,7 @@ const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array,i
             }});
         }}
            >
-            <Text style={StyleSheet.headerTitle,{
-            fontSize : 18,
-            textAlign:"center", 
-            borderBottomColor:"white"
-            ,fontStyle:"italic",
-            fontWeight:"bold"
-           
-            }}>{label}</Text>
+            <NextIcon/>
             </TouchableOpacity>
 
             
@@ -74,7 +68,7 @@ const styles= StyleSheet.create({
         justifyContent  : 'space-between',
         color:"white",   
         paddingTop:20,
-        marginTop:10,
+        marginTop:15,
         backgroundColor:"#FFF"
        
        

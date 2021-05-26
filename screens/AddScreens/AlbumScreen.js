@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import{View,Button,ScrollView,Image, ImageBackground, FlatList ,StyleSheet, TouchableOpacity,Text, Dimensions, Modal, TouchableHighlight,Animated} from 'react-native'
 import * as MediaLibrary from 'expo-media-library';
-import * as ImagePicker from 'expo-image-picker';
-import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
-import HeaderAdd from '../../components/HeaderAdd';
 import HeaderAlbum from '../../components/HeaderAlbum';
 import {Permissions} from 'expo-permissions'
-import { Picker } from 'native-base';
 import { AntDesign } from '@expo/vector-icons';
 import {
   PanGestureHandler,
@@ -134,7 +130,7 @@ const AlbumScreen=(props)=> {
   
     <TouchableOpacity onPress={()=>props.navigation.navigate("Camera")} style={{width:40,height:40,
     backgroundColor:primary,borderRadius:25,
-    margin:5, justifyContent:"center",alignItems:"center",
+    marginRight:10, justifyContent:"center",alignItems:"center",
     borderWidth:1.5,borderColor:primary} }><Ionicons name="ios-camera-sharp" size={24} color='#FFF' /></TouchableOpacity>
 
 
@@ -246,11 +242,11 @@ openButton: {
   backgroundColor: '#FFF',
   borderRadius: 20,
   paddingTop: 7,
-  maxHeight:50,
+  height:40,
   flexDirection:"row",
   borderColor:primary,
   borderWidth:1.5,
-  margin:10,
+  marginLeft:10,
   width:123.52,
   alignContent:"center"
 },

@@ -3,18 +3,19 @@ import {View,Text,StyleSheet, TextInput,TouchableOpacity} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { uploadPost, uploadTwoHand } from '../store/actions/UploadPost';
 import { useDispatch } from 'react-redux';
+import NextIcon from './Icons/NextIcon';
+import CloseIcon from './Icons/CloseIcon';
+
 const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array,isTh,scale})=>{
    const dispatch = useDispatch()
     return(
         <View style={styles.header}>
             <TouchableOpacity style={
                {
-                borderColor:"white",
-                borderWidth:2,
-                 borderRadius:25,
-                 width:100,
-                 alignContent:"center",
-                 
+                 width:50,
+                 height:50,
+                 paddingTop:18,
+                 marginLeft:8
                }
            }
            onPress={()=>{
@@ -22,15 +23,12 @@ const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array,i
                navigate.navigate({routeName:routeNameBack});
            }}
            >
-<Ionicons name="ios-close-sharp" size={24} color="black" style={{marginLeft:10}} /> 
+            <CloseIcon/>
              </TouchableOpacity>
            <TouchableOpacity style={
                {
-                   borderColor:"white",
-                   borderWidth:2,
-                    borderRadius:25,
-                    width:100,
-                    alignContent:"center",
+                  
+                    width:25,
                  
                }
            }
@@ -47,14 +45,7 @@ const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array,i
             }});
         }}
            >
-            <Text style={StyleSheet.headerTitle,{
-            fontSize : 18,
-            textAlign:"center", 
-            borderBottomColor:"white"
-            ,fontStyle:"italic",
-            fontWeight:"bold"
-           
-            }}>{label}</Text>
+            <NextIcon/>
             </TouchableOpacity>
 
             
@@ -67,21 +58,15 @@ const HeaderAlbum = ({uri,navigate,routeNameContinua,routeNameBack,label,array,i
 export default HeaderAlbum;
 const styles= StyleSheet.create({
     header:{
-     
-        
         flexDirection:"row",
-  
         alignItems : 'center',
         justifyContent  : 'space-between',
-        color:"white",   
-        paddingTop:20,
-        marginTop:10,
-        backgroundColor:"#FFF"
+        paddingTop:60,
+        height:60,
        
        
     },
     headerTitle:{
-        tintColor:"white",        
         fontSize : 25
         ,
     }

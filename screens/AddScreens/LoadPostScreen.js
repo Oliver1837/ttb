@@ -32,7 +32,7 @@ const LoadPostScreen = props =>{
         <View>      
      <HeaderAlbum  uri={image.uri} routeNameContinua="UploadPost" navigate={props.navigation} routeNameBack="AlbumNav" label="AVANTI"  array={null}/>  
     
-     <View  style={{flexDirection:"column",justifyContent:"center" ,alignItems:"center",backgroundColor:"#FFF"}}>    
+     <View  style={{flexDirection:"column",justifyContent:"center" ,alignItems:"center",backgroundColor:"#FFF", marginTop:25}}>    
      <ImagePostUpload uri = {image.uri} navigation = {props.navigation} style={{marginTop:50}}/>
      <View style={{
   flexDirection:"row",
