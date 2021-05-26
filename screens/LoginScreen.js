@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../store/actions/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {primary,secodary} from '../config/color'
+import LogoHome from '../components/Logo/logoHome';
 
 const LoginScreen = (props)=> {
         const [press,isPress] = useState(false);
@@ -38,7 +39,7 @@ const LoginScreen = (props)=> {
           };
     return (
       <View style={styles.container}>
-         <Image source={require('../assets/logo/logo2x.png')} style={{width:170,height:65,margin:25}}/>
+        <LogoHome/>
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}

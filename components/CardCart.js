@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import { addCart, removeCart } from '../store/actions/Cart';
+import Svg, { G, Path } from "react-native-svg"
 
 import {primary,secodary} from '../config/color'
 const CardCart = props =>{
@@ -28,7 +29,8 @@ return (
         </View>
         <Text style={styles.tipsTitle}>{props.title}</Text>
         </View>    
-        <Text style={styles.tipsTitle}>Tot:{props.total}$</Text>
+        <Text style={styles.tipsTitle,{fontWeight:"bold",fontSize:16, height:50,
+        paddingTop:20,marginLeft:16}}>Tot: {props.total}€</Text>
    
 
 
@@ -39,7 +41,16 @@ return (
      horizontal={true}
      data={(posts)}
      styles={{
-        marginBottom:19.3
+        marginBottom:19.3,
+        marginLeft:10
+    }}
+    contentContainerStyle={{
+        marginLeft:10,
+        marginTop:5,
+
+
+
+
     }}
      renderItem={
      ({item}) =>{
@@ -69,16 +80,37 @@ console.log(price)
             justifyContent:"space-between"             
          }}><Text style={{
              color:"#fff",
-             fontSize:16
+             fontSize:17,
+             minHeight:"100%",
+             paddingTop:"120%",
+             fontWeight:"bold",
+             padding:5
          }}>{price}€</Text>
          <TouchableOpacity onPress={()=>{
                 console.log(item.userId+ " "+item.idPost)
                 
                dispatch(removeCart(USERS.find(u => u.idUser===item.userId),item,price))
 
-         }}>     
-              <Ionicons name="close-sharp" size={20} color="#fff" />
-         </TouchableOpacity>
+         }}
+         style={{padding:5}}
+         >     
+<Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={14.707}
+      height={14.707}
+      viewBox="0 0 14.707 14.707"
+    >
+      <G
+        data-name="Raggruppa 73"
+        fill="none"
+        stroke="#fff"
+        strokeMiterlimit={10}
+      >
+        <Path data-name="Linea 49" d="M14.354.353l-14 14" />
+        <Path data-name="Linea 50" d="M14.354 14.353l-14-14" />
+      </G>
+    </Svg>         
+    </TouchableOpacity>
  
          </View>
      </ImageBackground>
@@ -92,14 +124,31 @@ console.log(price)
                 width: 100
                 ,height:150,
                 borderRadius:10,
-                borderWidth:1,
+                borderWidth:1.5,
                 margin:5,
                 borderColor:secodary,
                 alignItems:"center",
                 justifyContent:"center"
             }}>
 
-            <Ionicons name="add-outline" size={50} color={secodary} />
+<Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={27.5}
+      height={27.5}
+      viewBox="0 0 27.5 27.5"
+    >
+      <G
+        data-name="Raggruppa 98"
+        fill="none"
+        stroke="#e628ac"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.5}
+      >
+        <Path data-name="Linea 67" d="M13.75.75v26" />
+        <Path data-name="Linea 68" d="M26.75 13.75h-26" />
+      </G>
+    </Svg>
 
 
             </View>
@@ -128,7 +177,8 @@ console.log(price)
         height:45}}>
     <Text style={{
         color:"#fff",
-        fontWeight:"bold"
+        fontWeight:"bold",
+        fontSize:16
     }}>Check Out</Text>
     </TouchableOpacity>
     </View>
@@ -208,7 +258,9 @@ const styles = StyleSheet.create({
     tipsTitle:{
      
         fontSize:16,
-        marginLeft:15
+        marginLeft:15,
+        height:50,
+        paddingTop:20
     },
     tipsListImage:{
               height:200,

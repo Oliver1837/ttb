@@ -10,9 +10,14 @@ export default function MacroList({macros,navigation}){
         <FlatList
         style={{
         
-          height:40,
-          backgroundColor:"white"
+          height:60,
+          backgroundColor:"#FFF",
           
+        }}
+        contentContainerStyle={{
+          alignItems:"center",
+          backgroundColor:"#FFF"
+
         }}
         
         showsHorizontalScrollIndicator={false}
@@ -27,14 +32,13 @@ export default function MacroList({macros,navigation}){
           justifyContent:"center",
           alignItems:'center',
           borderRadius:25,
-          borderWidth:1,
-          borderWidth:2,
-          height:25,
+          borderWidth:1.5,
+          height:30,
           margin:4.7,
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
-          minWidth: 65,
+          minWidth: 90,
           backgroundColor:"white",
           borderColor:primary
 
@@ -58,9 +62,8 @@ export default function MacroList({macros,navigation}){
       >
         <Text style={{
                   color:primary,
-                  fontSize:12,
+                  fontSize:14,
                   textAlign:"center",
-                  fontWeight:"bold",
                 
                   fontFamily:"Manrope_700Bold"
       

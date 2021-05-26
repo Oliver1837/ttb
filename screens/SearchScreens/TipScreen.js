@@ -56,18 +56,17 @@ const TipScreen = props =>{
           justifyContent:"center",
           alignItems:'center',
           borderRadius:25,
-          borderWidth:1,
           borderWidth:2,
           backgroundColor:isPreferred <0 ?primary:"#fff",
           height:45,
-          margin:1,
           shadowColor: 'rgba(0, 0, 0, 0.1)',
           shadowOpacity: 0.9,
           elevation: 20,
           shadowRadius: 100 ,
           shadowOffset : { width: 1, height: 13},
           borderColor:isPreferred <  0 ?primary:primary,
-          width:100
+          width:100,
+          marginTop:2
         }}
         onPress={()=>{
         dispatch(toggleTagFollow(tag.nameTag))
@@ -87,12 +86,14 @@ const TipScreen = props =>{
         <Text style={{
           fontSize:14,
           marginLeft:14.7,
-          fontFamily:"Manrope_500Medium"
-        }}>Numero di post</Text>
+          fontFamily:"Manrope_500Medium",
+          marginTop:4
+        }}>Tips</Text>
          <Text style={{
-          fontSize:14,
+          fontSize:16,
           marginLeft:14.7,
-          fontFamily:"Manrope_500Medium"
+          fontFamily:"Manrope_700Bold",
+         
         }}>{post.length}</Text>
         </View>
  
@@ -105,19 +106,19 @@ const TipScreen = props =>{
       
       
       >
-      <Tab  heading="Popolari"  tabStyle={{backgroundColor:'white'}} 
+      <Tab  heading="Popular"  tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
            activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
              <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="1"/>
            </Tab>
-           <Tab   heading="Recenti"tabStyle={{backgroundColor:'white'}} 
+           <Tab   heading="Recent"tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
            activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>
               <ListPostPreview posts={post} navigation={props.navigation} routeName='PostProfile' key="1"/>
            </Tab>
-           <Tab   heading="2Hand"tabStyle={{backgroundColor:'white'}} 
+           <Tab   heading="2hand"tabStyle={{backgroundColor:'white'}} 
            activeTabStyle={{backgroundColor:'white'}}	
            textStyle={{color:'grey',fontSize:16,fontFamily:"Manrope_400Regular"}}
            activeTextStyle={{color:'black',fontWeight:"bold",fontSize:16,fontFamily:"Manrope_700Bold"}}>

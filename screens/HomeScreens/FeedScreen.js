@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import WelcomePage from '../../components/Feed/WelcomePage';
 import Header from '../../components/Header';
 import IconCart from '../../components/IconCart';
+import LogoFeed from '../../components/Logo/logoFeed';
 import Post from '../../components/Post';
 import Button from '../../components/UI/Button'
 enableScreens();
@@ -95,7 +96,7 @@ FeedScreen.navigationOptions = navData => {
     )}
       ,
       headerTitle:()=>{
-        return(<Image source={require('../../assets/logofeed.png')} style={{height:25,width:65}}/>)
+        return(<LogoFeed/>)
       }
       
   };

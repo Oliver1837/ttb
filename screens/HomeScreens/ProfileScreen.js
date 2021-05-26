@@ -31,6 +31,7 @@ import {primary,secodary} from '../../config/color'
 import ImageProfile from '../../components/Profile/ImageProfile';
 import ButtonMessage from '../../components/UI/ButtonMessage';
 import { AntDesign } from '@expo/vector-icons';
+import Logo from '../../components/Logo/logo';
 
 const ProfileScreen = (props)=> {
   let [fontsLoaded] = useFonts({
@@ -196,7 +197,7 @@ ProfileScreen.navigationOptions = navData => {
       <IconCart navigation={navData.navigation} isBlack={true}/>
     )},
     headerTitle:()=>{
-      return(<Image source={require('../../assets/drawable-hdpi/feed.png')} style={{height:25,width:65}}/>)
+      return(<Logo/>)
     },
     headerLeft: ()=>(
       <TouchableOpacity 

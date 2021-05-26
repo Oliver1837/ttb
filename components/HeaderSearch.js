@@ -10,10 +10,9 @@ const HeaderSearch = ({search,showSearch})=>{
 
     <View style={styles.header}>
     <View style={styles.searchSection}>
-    <Image source={require('../assets/icons/search.png')} style={{width:25,height:25}}/>
-    
 {pressSearch?
 <View  style={styles.input}>
+<Image source={require('../assets/icons/search.png')} style={{width:25,height:25}}/>
  <TextInput
  style={{width:250,fontSize:16,fontFamily:"Manrope_500Medium"}}
  placeholder="Cerca"
@@ -37,7 +36,9 @@ const HeaderSearch = ({search,showSearch})=>{
     showSearch(true)
     setSearchText("")
 }}>
- <Text>ANNULLA</Text>
+ <Text style={{
+     fontWeight:"bold"
+ }}>X</Text>
 </TouchableOpacity></View>
 :<TouchableOpacity    style={styles.input} onPress={()=>{
     console.log("Premuto sasdas")
@@ -46,7 +47,13 @@ const HeaderSearch = ({search,showSearch})=>{
 
 
 }}>
-<Text>Search</Text>
+<Image source={require('../assets/icons/search.png')} style={{width:25,height:25}}/>
+<Text style={{
+height:40,
+fontSize:16,
+marginLeft:5,
+paddingVertical:8,
+fontFamily:"Manrope_600SemiBold"}}>Search</Text>
 </TouchableOpacity>}
 
 
@@ -86,23 +93,18 @@ const styles= StyleSheet.create({
   
     input: {
         flex: 1,
-        minWidth:'90%',
-        maxWidth:'90%',
+        minWidth:'99%',
+        maxWidth:'99%',
         height:40,
-        paddingTop: 10,
-        paddingRight: 10,
-        paddingBottom: 10,
-        paddingLeft: 10,
         backgroundColor: '#fff',
         color: 'black',
-    
-      
         fontSize:15,
         flexDirection:"row",
         borderColor:secodary,
-        borderWidth:1,
+        borderWidth:1.5,
         borderRadius:25,
-        marginLeft:13
+        alignItems:"center",
+        paddingLeft:5
     },
     textInput: {
         flex: 1,

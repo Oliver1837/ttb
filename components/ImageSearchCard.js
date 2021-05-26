@@ -56,7 +56,7 @@ const ImageSearchCard = ({navigation,post})=>{
                    }
                  }
                  >
-               {loading ?  <ActivityIndicator size="large" color="#FF6969"/> :null}
+               {loading ?  <ActivityIndicator size="large" color="#38C18A"/> :null}
          
        </ImageBackground>
        </TouchableOpacity>

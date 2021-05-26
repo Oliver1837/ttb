@@ -129,12 +129,13 @@ const AlbumScreen=(props)=> {
           setModalVisible(true);
         }}>
         <Text style={styles.textStyle}>{albumPicker}</Text>
-        <AntDesign name="caretdown" size={16} color={primary} />
+        <AntDesign name="caretdown" size={18} color={primary} />
       </TouchableOpacity>
   
-    <TouchableOpacity onPress={()=>props.navigation.navigate("Camera")} style={{width:50,height:50,backgroundColor:"transparent",borderRadius:25,
+    <TouchableOpacity onPress={()=>props.navigation.navigate("Camera")} style={{width:40,height:40,
+    backgroundColor:primary,borderRadius:25,
     margin:5, justifyContent:"center",alignItems:"center",
-    borderWidth:2,borderColor:{primary}} }><Ionicons name="ios-camera-sharp" size={24} color={primary} /></TouchableOpacity>
+    borderWidth:1.5,borderColor:primary} }><Ionicons name="ios-camera-sharp" size={24} color='#FFF' /></TouchableOpacity>
 
 
 
@@ -244,18 +245,21 @@ modalView: {
 openButton: {
   backgroundColor: '#FFF',
   borderRadius: 20,
-  padding: 10,
-  elevation: 2,
-  maxHeight:45,
+  paddingTop: 7,
+  maxHeight:50,
   flexDirection:"row",
   borderColor:primary,
-  borderWidth:2,
-  margin:10
+  borderWidth:1.5,
+  margin:10,
+  width:123.52,
+  alignContent:"center"
 },
 textStyle: {
-  color: 'black',
-  fontWeight: 'bold',
+  color: primary,
   textAlign: 'center',
+  fontSize:16,
+  fontFamily:"Manrope_500Medium",  height:50,
+  width:90
 },
 modalText: {
   marginBottom: 15,

@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as userAction from '../store/actions/User'
+import LogoHome from '../components/Logo/logoHome';
 
 
 const StartupScreen = props => {
@@ -38,7 +39,7 @@ setTimeout(()=>{
 
   return (
     <View style={styles.screen}>
-      <Image source={require('../assets/splash.jpeg')} style={{width:250,height:250}}/>
+      <LogoHome/>
     </View>
   );
 };

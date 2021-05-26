@@ -26,7 +26,7 @@ return (
                   />
 
         </View>
-        <Text style={styles.tipsTitle}>{title}</Text>
+        <Text style={styles.tipsTitle}>{"#"+title}</Text>
         </View> 
         <TouchableOpacity style={{
           justifyContent:"center",
@@ -165,7 +165,8 @@ const styles = StyleSheet.create({
      
         fontSize:16,
         marginLeft:25,
-        marginTop:5
+        marginTop:5,
+        fontFamily:"Manrope_600SemiBold"
     },
     tipsListImage:{
               height:200,

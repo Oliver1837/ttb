@@ -81,7 +81,12 @@ const FeedNavigator = createStackNavigator({
       headerTitleAlign:"center"
      
       
-    }},Carrello : CartScreen,
+    }},Carrello :{screen: CartScreen, navigationOptions:{
+      title:"Cart",
+    
+     
+      
+    }},
     Profile:{screen:ProfileScreen,
       navigationOptions:{
         

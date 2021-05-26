@@ -42,8 +42,8 @@ const DataContainerPost = ({navigation,user,tags,descrizione})=>{
           }
         }><Text style={{
           color:"#fff",
-fontSize:14,
-fontFamily:"Manrope_400Regular"
+fontSize:16,
+fontFamily:"Manrope_500Medium"
 
         }}
         >#{nt}</Text></TouchableOpacity>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     description: {
       color:"#fff",
       fontSize:14,
-      fontFamily:"Manrope_400Regular"
+      fontFamily:"Manrope_500Medium"
       }, screen:{
         width:'100%',
         height:'92%'

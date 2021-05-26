@@ -13,11 +13,11 @@ const ContainerIconsPost = ({post,index,comments,setModalVisiblePunti,onAddCart,
     return(
         <View style={styles.innerRight}>
             <HeartIcon id={post.idPost} index={index}/>
-            <Text style={{color: '#fff', marginBottom: 25, fontFamily:"Manrope_500Medium" }}>{"0"}</Text>
+            <Text style={{color: '#fff', marginBottom: 25, fontFamily:"Manrope_500Medium",fontSize:12 }}>{"0"}</Text>
             <CommentICon setModalVisible={setModalVisible}/>
-            <Text style={{color: '#fff', marginBottom: 25,  fontFamily:"Manrope_500Medium"}}>{comments.length}</Text>
+            <Text style={{color: '#fff', marginBottom: 25,  fontFamily:"Manrope_500Medium",fontSize:12 }}>{comments.length}</Text>
             <SaveIcon post={post} indexPrefered={indexPreferedd}/>
-            <Text style={{color: '#fff', marginBottom: 25, fontFamily:"Manrope_500Medium"}}>{"0"}</Text>
+            <Text style={{color: '#fff', marginBottom: 25, fontFamily:"Manrope_500Medium",fontSize:12 }}>{"0"}</Text>
             <ShareICon/>
             {me ==="true" ?
             <EllipsisIcon setModalVisiblePunti={setModalVisiblePunti}/>
@@ -39,5 +39,5 @@ const styles = StyleSheet.create({
         width: '20%',
         height: '100%',
         alignItems: 'center',
-      },
+            },
 })

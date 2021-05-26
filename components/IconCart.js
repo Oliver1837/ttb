@@ -22,7 +22,7 @@ export default function IconCart({navigation,isBlack}) {
             ? 
             null 
             : 
-            <View style={{position:"absolute",marginVertical:-10,marginHorizontal:-12,backgroundColor:secodary,borderRadius:10,height:20,width:20}}>
+            <View style={{position:"relative",marginVertical:-10,marginHorizontal:-12,backgroundColor:secodary,borderRadius:12.5,height:25,width:25,overflow:"hidden"}}>
             <Text style={{color:"white",textAlign:"center",fontSize:12,fontWeight:"bold"}}> {number}</Text>   
             </View>
             }

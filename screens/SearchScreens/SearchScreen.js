@@ -42,7 +42,7 @@ const SearchScreen = (props) =>{
   const macro = MACRO.sort();
 return(
 
-      <View style={{backgroundColor:"#FFF",minHeight:"100%",maxHeight:"100%"}}>
+      <View style={{backgroundColor:"#FFF",minHeight:"100%",maxHeight:"100%",paddingTop:8}}>
         <HeaderSearch search={search} showSearch={showSearch}/>
   {pressSearchShow===false ?  
   <TabSearch tips={tags} users={users} navigation={props.navigation}/>

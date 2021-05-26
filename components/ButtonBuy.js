@@ -10,8 +10,7 @@ export default function ButtonBuy({onRemoveCart,onAddCart, isAdd,price}) {
               justifyContent:"center",
               alignItems:'center',
               borderRadius:30,
-              borderWidth:1,
-              borderWidth:2,
+           
               backgroundColor:isAdd?primary: primary,
               height:46,
               margin:1,
@@ -22,7 +21,7 @@ export default function ButtonBuy({onRemoveCart,onAddCart, isAdd,price}) {
               shadowOffset : { width: 1, height: 13},
               borderColor:isAdd?primary: primary,
               width:82,
-              marginRight:40,
+              marginRight:50,
               marginTop:20
             }}
             onPress={
@@ -57,7 +56,7 @@ export default function ButtonBuy({onRemoveCart,onAddCart, isAdd,price}) {
               }
             >
               <Text style={{
-               fontSize:16,
+               fontSize:14,
            
                color:"#FFF",
                fontFamily:"Manrope_700Bold"
